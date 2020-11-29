@@ -1,11 +1,13 @@
 package com.loizou.treasurehunt
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.autofill.UserData
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,11 +19,13 @@ class MainActivity : AppCompatActivity() {
         // Greet user
         showMessage(rootLayout, "Welcome to treasure hunt!")
 
-        val btnHuntMode = findViewById<View>(R.id.btnHuntMode);
-        val btnBurialMode = findViewById<View>(R.id.btnBurialMode);
+        val btnHuntMode = findViewById<CardView>(R.id.btnHuntMode);
+        val btnBurialMode = findViewById<CardView>(R.id.btnBurialMode);
 
         btnHuntMode.setOnClickListener {
             showMessage(rootLayout, "TREASURE HUNT MODE")
+            val intent = Intent(this, TreasureHuntActivity::class.java)
+            startActivity(intent)
         }
 
         btnBurialMode.setOnClickListener {
