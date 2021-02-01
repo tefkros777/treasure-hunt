@@ -3,9 +3,7 @@ package com.loizou.treasurehunt
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.service.autofill.UserData
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 
@@ -13,7 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.v(DEBUG_TAG, "Main Activity Loaded")
+        Log.v(LOG_TAG, "Main Activity Loaded")
 
         val rootLayout = findViewById<ViewGroup>(R.id.rootLayout)
         // Greet user

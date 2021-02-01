@@ -12,6 +12,7 @@
     <string name="treasure_burial">Treasure Burial</string>
     <string name="treasure_hunt">Treasure Hunt</string>
     <string name="title_activity_treasure_hunt">Map</string>
+    <string name="treasure_hunt_waypoints">Treasure hunt Waypoints</string>
 
 
 </resources>

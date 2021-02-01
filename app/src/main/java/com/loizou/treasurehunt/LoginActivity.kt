@@ -12,7 +12,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        Log.v(DEBUG_TAG, "Login Activity Loaded")
+        Log.v(LOG_TAG, "Login Activity Loaded")
 
         // Login button
         val btnLogin = findViewById<MaterialButton>(R.id.btnLogin)
