@@ -35,9 +35,6 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         title = "Swansea Marina Exploration"
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        //requestLocationData()
-        getLastLocation()
-
     }
 
     /**
@@ -51,6 +48,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        checkLocationPermission()
+
+        mMap.isMyLocationEnabled = true
+
         // Add a marker in Swansea
         val meridianTower = LatLng(51.61387, -3.94321)
 
@@ -61,46 +62,29 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Request new high accuracy location
+     * Checks if location permission is granted and requests it if it's not
      */
-    private fun requestLocationData() {
-        val locationRequest = LocationRequest()
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 10
-        locationRequest.fastestInterval = 0
-
+    private fun checkLocationPermission() {
         // Check for location permission
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             // Request location permission
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQ_CODE)
             return
         }
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
     }
 
     /**
-     * Returns true if either GPS location or Network location is enabled
+     * Request new high accuracy location
      */
-    private fun isLocationEnabled(): Boolean {
-        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
-                locationManager.isProviderEnabled((LocationManager.NETWORK_PROVIDER))
-    }
+    private fun getLocationData() {
+        val locationRequest = LocationRequest()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = 10
+        locationRequest.fastestInterval = 0
 
-    private val locationCallback = object : LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            val lastLocation : Location = locationResult.lastLocation
-            val lat = lastLocation.latitude
-            val long = lastLocation.longitude
-
-            Log.i(LOG_TAG, "Current Location: $lat, $long")
-
-            val lastLoc = LatLng(lat, long)
-            mMap.addMarker(MarkerOptions().position(lastLoc).title("Me"))
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(lastLoc))
-
-        }
+        checkLocationPermission()
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
     }
 
     /**
@@ -108,16 +92,11 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     private fun getLastLocation(){
         if (isLocationEnabled()){
-            // Check for location permission
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                // Request location permission
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQ_CODE)
-                return
-            }
+            checkLocationPermission()
             fusedLocationClient.lastLocation.addOnCompleteListener(this){ task ->
                 val location: Location? = task.result // Wait until task has finished
                 if (location == null)
-                    requestLocationData() // Request new location
+                    getLocationData() // Request new location
                 else {
                     val lat = location.latitude
                     val long = location.longitude
@@ -130,9 +109,34 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     // Add marker to last location
                     mMap.addMarker(MarkerOptions().position(lastLoc).title("My last location"))
-
                 }
             }
+        }
+    }
+
+    /**
+     * Returns true if either GPS location or Network location is enabled
+     */
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled((LocationManager.NETWORK_PROVIDER))
+    }
+
+    /**
+     * Called whenever new location becomes available
+     */
+    private val locationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            val lastLocation : Location = locationResult.lastLocation
+            val lat = lastLocation.latitude
+            val long = lastLocation.longitude
+
+            Log.i(LOG_TAG, "Current Location: $lat, $long")
+
+            val lastLoc = LatLng(lat, long)
+            mMap.addMarker(MarkerOptions().position(lastLoc).title("Me"))
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(lastLoc))
         }
     }
 
