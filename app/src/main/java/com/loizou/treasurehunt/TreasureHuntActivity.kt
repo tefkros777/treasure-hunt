@@ -18,19 +18,29 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.loizou.treasurehunt.Models.TreasureHunt
 
 class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    private lateinit var mTreasureHunt : TreasureHunt
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_treasure_hunt)
+
+        val game_id = intent.getStringExtra("game_id")
+        mTreasureHunt = DataManager.getTreasureHuntById(game_id)!!
+        Log.d(LOG_TAG, "LOADED GAME WITH ID: ${mTreasureHunt.id}")
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapTreasureHunt) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        val treasure = intent.getStringExtra("url")
 
         title = "Swansea Marina Exploration"
 

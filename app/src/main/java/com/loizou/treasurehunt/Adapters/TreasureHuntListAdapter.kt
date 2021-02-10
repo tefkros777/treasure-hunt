@@ -1,5 +1,6 @@
 package com.loizou.treasurehunt.Adapters
 
+import android.content.Intent
 import android.os.Debug
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.LOG_TAG
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.R
+import com.loizou.treasurehunt.TreasureHuntActivity
 import com.loizou.treasurehunt.showMessage
 
 class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : RecyclerView.Adapter<TreasureHuntListAdapter.ViewHolder>() {
@@ -53,7 +55,10 @@ class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : 
 
         override fun onClick(v: View?) {
             // Use adapterPosition to get index of selected item
-            showMessage(itemView, mTreasureHuntModelList[adapterPosition].name + " clicked")
+            Log.d(LOG_TAG, mTreasureHuntModelList[adapterPosition].name + " clicked")
+            val intent = Intent(itemView.context, TreasureHuntActivity::class.java)
+            intent.putExtra("game_id", mTreasureHuntModelList[adapterPosition].id)
+            itemView.context.startActivity(intent)
         }
 
         init {
