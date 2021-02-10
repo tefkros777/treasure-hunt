@@ -1,24 +1,21 @@
 package com.loizou.treasurehunt.Adapters
 
+import android.os.Debug
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
+import com.loizou.treasurehunt.LOG_TAG
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.R
+import com.loizou.treasurehunt.showMessage
 
 class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : RecyclerView.Adapter<TreasureHuntListAdapter.ViewHolder>() {
 
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Your holder should contain and initialize a member variable
-        // for any view that will be set as you render a row
-        val tvName = itemView.findViewById<MaterialTextView>(R.id.tvHuntName)
-        val tvDifficulty = itemView.findViewById<MaterialTextView>(R.id.tvHuntDifficulty)
-        val tvDistance = itemView.findViewById<MaterialTextView>(R.id.tvHuntDistanceFromMe)
-    }
+    var onItemClick: ((TreasureHunt) -> Unit)? = null
 
     /**
      * Called whenever new item needs to be created
@@ -43,4 +40,26 @@ class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : 
     override fun getItemCount(): Int {
         return mTreasureHuntModelList.size
     }
+
+    /**
+     * Provide a direct reference to each of the views within a data item
+     * Used to cache the views within the item layout for fast access
+     */
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+        val tvName = itemView.findViewById<MaterialTextView>(R.id.tvHuntName)
+        val tvDifficulty = itemView.findViewById<MaterialTextView>(R.id.tvHuntDifficulty)
+        val tvDistance = itemView.findViewById<MaterialTextView>(R.id.tvHuntDistanceFromMe)
+
+        override fun onClick(v: View?) {
+            // Use adapterPosition to get index of selected item
+            showMessage(itemView, mTreasureHuntModelList[adapterPosition].name + " clicked")
+        }
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+    }
+
 }
