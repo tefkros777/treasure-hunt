@@ -5,7 +5,6 @@
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
@@ -16,7 +15,6 @@
         android:fontFamily="monospace"
         android:gravity="center"
         android:text="@string/ahoy"
-        android:textColor="@color/colorPrimaryText"
         android:textSize="24sp"
         android:textStyle="italic" />
 
@@ -28,7 +26,6 @@
         android:layout_margin="12dp"
         android:gravity="center"
         android:text="@string/welcome_message"
-        android:textColor="@color/colorSecondaryText"
         android:textSize="16sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

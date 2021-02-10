@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         btnHuntMode.setOnClickListener {
             showMessage(rootLayout, "TREASURE HUNT MODE")
-            val intent = Intent(this, TreasureHuntActivity::class.java)
+            // val intent = Intent(this, TreasureHuntActivity::class.java)
+            val intent = Intent(this, TreasureHuntSelectionActivity::class.java)
             startActivity(intent)
         }
 

@@ -13,6 +13,9 @@
     <string name="treasure_hunt">Treasure Hunt</string>
     <string name="title_activity_treasure_hunt">Map</string>
     <string name="treasure_hunt_waypoints">Treasure hunt Waypoints</string>
+    <string name="hunt_name_placeholder">Treasure Hunt Placeholder</string>
+    <string name="hunt_difficulty_placeholder">EASY</string>
+    <string name="hunt_distance_placeholder">1.2 mi</string>
 
 
 </resources>
