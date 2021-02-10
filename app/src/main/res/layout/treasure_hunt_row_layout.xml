@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:clickable="true"
+    android:foreground="?selectableItemBackground">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvHuntName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="@string/hunt_name_placeholder"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvHuntDifficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHuntName"
+        android:text="@string/hunt_difficulty_placeholder" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvHuntDistanceFromMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHuntDifficulty"
+        android:text="@string/hunt_distance_placeholder" />
+</com.google.android.material.circularreveal.CircularRevealRelativeLayout>

@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Treasure Hunt</string>
+    <string name="login_prompt">Login to get started</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="signup">Signup</string>
+    <string name="ahoy">Ahoy!</string>
+    <string name="welcome_message">Welcome onboard! Select a game mode to get started! </string>
+    <string name="lets_go">LET\'S GO!</string>
+    <string name="treasure_burial">Treasure Burial</string>
+    <string name="treasure_hunt">Treasure Hunt</string>
+    <string name="title_activity_treasure_hunt">Map</string>
+    <string name="treasure_hunt_waypoints">Treasure hunt Waypoints</string>
+    <string name="hunt_name_placeholder">Treasure Hunt Placeholder</string>
+    <string name="hunt_difficulty_placeholder">EASY</string>
+    <string name="hunt_distance_placeholder">1.2 mi</string>
+
+
 </resources>
