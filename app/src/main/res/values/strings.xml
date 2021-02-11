@@ -16,6 +16,8 @@
     <string name="hunt_name_placeholder">Treasure Hunt Placeholder</string>
     <string name="hunt_difficulty_placeholder">EASY</string>
     <string name="hunt_distance_placeholder">1.2 mi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

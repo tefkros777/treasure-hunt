@@ -35,16 +35,23 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         mTreasureHunt = DataManager.getTreasureHuntById(game_id)!!
         Log.d(LOG_TAG, "LOADED GAME WITH ID: ${mTreasureHunt.id}")
 
+        val treasure = intent.getStringExtra("url") //TODO: This will crash
+        title = "Swansea Marina Exploration"
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapTreasureHunt) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        val treasure = intent.getStringExtra("url")
+        // Waypoint List Fragment stuff
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragWaypointList, WaypointListFragment(), "WaypointListFragment")
+            .commit()
 
-        title = "Swansea Marina Exploration"
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
     }
 
     /**
