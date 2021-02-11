@@ -13,7 +13,7 @@ class TreasureHuntSelectionActivity : AppCompatActivity() {
 
         title = "Select a treasure hunt"
 
-        val recViewTreasureHuntsList = findViewById<RecyclerView>(R.id.TreasureHuntsRecyclerView)
+        val recViewTreasureHuntsList = findViewById<RecyclerView>(R.id.recViewTreasureHunts)
         recViewTreasureHuntsList.layoutManager = LinearLayoutManager(this)
         recViewTreasureHuntsList.adapter = TreasureHuntListAdapter(DataManager.getTreasureHunts())
 

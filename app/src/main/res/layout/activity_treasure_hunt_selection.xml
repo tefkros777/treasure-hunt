@@ -7,7 +7,7 @@
     tools:context=".TreasureHuntSelectionActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/TreasureHuntsRecyclerView"
+        android:id="@+id/recViewTreasureHunts"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

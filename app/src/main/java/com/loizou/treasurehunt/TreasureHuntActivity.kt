@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.*
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -18,6 +20,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.loizou.treasurehunt.Adapters.TreasureHuntListAdapter
+import com.loizou.treasurehunt.Adapters.WaypointListAdapter
 import com.loizou.treasurehunt.Models.TreasureHunt
 
 class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -33,21 +37,17 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val game_id = intent.getStringExtra("game_id")
         mTreasureHunt = DataManager.getTreasureHuntById(game_id)!!
+        title = mTreasureHunt.name
         Log.d(LOG_TAG, "LOADED GAME WITH ID: ${mTreasureHunt.id}")
-
-        val treasure = intent.getStringExtra("url") //TODO: This will crash
-        title = "Swansea Marina Exploration"
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapTreasureHunt) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        // Waypoint List Fragment stuff
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragWaypointList, WaypointListFragment(), "WaypointListFragment")
-            .commit()
+        val recViewWaypointList = findViewById<RecyclerView>(R.id.recViewWaypointList)
+        recViewWaypointList.layoutManager = LinearLayoutManager(this)
+        recViewWaypointList.adapter = WaypointListAdapter(mTreasureHunt.Waypoints)
 
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)

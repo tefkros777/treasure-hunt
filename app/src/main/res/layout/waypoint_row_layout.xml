@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:padding="8dp"
+    android:foreground="?selectableItemBackground"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvWaypointName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/waypoint_placeholder"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvWaypointLat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/coord_placeholder" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvWaypointLng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/coord_placeholder" />
+
+</com.google.android.material.circularreveal.CircularRevealLinearLayout>

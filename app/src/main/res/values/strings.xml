@@ -18,6 +18,8 @@
     <string name="hunt_distance_placeholder">1.2 mi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="waypoint_placeholder">Waypoint name</string>
+    <string name="coord_placeholder">35.42197</string>
 
 
 </resources>

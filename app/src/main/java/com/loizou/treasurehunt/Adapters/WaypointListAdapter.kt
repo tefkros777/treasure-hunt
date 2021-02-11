@@ -1,21 +1,19 @@
 package com.loizou.treasurehunt.Adapters
 
 import android.content.Intent
-import android.os.Debug
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.LOG_TAG
 import com.loizou.treasurehunt.Models.TreasureHunt
+import com.loizou.treasurehunt.Models.Waypoint
 import com.loizou.treasurehunt.R
 import com.loizou.treasurehunt.TreasureHuntActivity
-import com.loizou.treasurehunt.showMessage
 
-class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : RecyclerView.Adapter<TreasureHuntListAdapter.ViewHolder>() {
+class WaypointListAdapter(val mWaypointList: List<Waypoint>) : RecyclerView.Adapter<WaypointListAdapter.ViewHolder>() {
 
     /**
      * Called whenever new item needs to be created
@@ -24,21 +22,21 @@ class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context) // Parent calling activity/class
         // Inflate a row_layout
-        val treasureHuntView = inflater.inflate(R.layout.treasure_hunt_row_layout, parent,false)
-        return ViewHolder(treasureHuntView)
+        val waypointView = inflater.inflate(R.layout.waypoint_row_layout, parent,false)
+        return ViewHolder(waypointView)
     }
 
     /**
      * Populate data, feed information from the data source to the view
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvName.text = mTreasureHuntModelList[position].name
-        holder.tvDifficulty.text = "Difficulty: " + mTreasureHuntModelList[position].difficulty.toString()
-        holder.tvDistance.text = "Distance from me: RANDOM DISTANCE"
+        holder.tvName.text = mWaypointList[position].name
+        holder.tvLat.text = "Latitude: " + mWaypointList[position].coords.latitude.toString()
+        holder.tvLng.text = "Longtitude: " + mWaypointList[position].coords.longitude.toString()
     }
 
     override fun getItemCount(): Int {
-        return mTreasureHuntModelList.size
+        return mWaypointList.size
     }
 
     /**
@@ -47,16 +45,13 @@ class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : 
      */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        val tvName = itemView.findViewById<MaterialTextView>(R.id.tvHuntName)
-        val tvDifficulty = itemView.findViewById<MaterialTextView>(R.id.tvHuntDifficulty)
-        val tvDistance = itemView.findViewById<MaterialTextView>(R.id.tvHuntDistanceFromMe)
+        val tvName = itemView.findViewById<MaterialTextView>(R.id.tvWaypointName)
+        val tvLat = itemView.findViewById<MaterialTextView>(R.id.tvWaypointLat)
+        val tvLng = itemView.findViewById<MaterialTextView>(R.id.tvWaypointLng)
 
         override fun onClick(v: View?) {
             // Use adapterPosition to get index of selected item
-            Log.d(LOG_TAG, mTreasureHuntModelList[adapterPosition].name + " clicked")
-            val intent = Intent(itemView.context, TreasureHuntActivity::class.java)
-            intent.putExtra("game_id", mTreasureHuntModelList[adapterPosition].id)
-            itemView.context.startActivity(intent)
+            Log.d(LOG_TAG, mWaypointList[adapterPosition].name + " clicked")
         }
 
         init {
