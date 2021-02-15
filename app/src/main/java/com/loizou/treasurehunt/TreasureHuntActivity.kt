@@ -47,7 +47,9 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val recViewWaypointList = findViewById<RecyclerView>(R.id.recViewWaypointList)
         recViewWaypointList.layoutManager = LinearLayoutManager(this)
-        recViewWaypointList.adapter = WaypointListAdapter(mTreasureHunt.Waypoints)
+        recViewWaypointList.adapter = WaypointListAdapter(mTreasureHunt.Waypoints){
+            item -> Log.d(LOG_TAG, "SELECTED WAYPOINT: ${item.name}")
+        }
 
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
