@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:padding="6dp"
-        android:text="@string/treasure_hunt_waypoints"
+        android:text="@string/available_waypoints"
         android:textColor="@color/colorPrimaryText"
         android:textSize="22sp" />
 
