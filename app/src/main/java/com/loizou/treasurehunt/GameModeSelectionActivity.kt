@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 
-class MainActivity : AppCompatActivity() {
+class GameModeSelectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

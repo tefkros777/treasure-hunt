@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
 
             // TODO: IMPLEMENT USER LOGIN WITH FIREBASE
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, GameModeSelectionActivity::class.java)
             startActivity(intent)
             finish()
         }
