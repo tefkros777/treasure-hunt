@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.loizou.treasurehunt.Adapters.TreasureHuntListAdapter
 import com.loizou.treasurehunt.Adapters.WaypointListAdapter
 import com.loizou.treasurehunt.Models.TreasureHunt
+import com.loizou.treasurehunt.Models.Waypoint
 
 class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -35,7 +36,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_treasure_hunt)
 
-        val game_id = intent.getStringExtra("game_id")
+        val game_id = intent.getStringExtra("game_id")!!
         mTreasureHunt = DataManager.getTreasureHuntById(game_id)!!
         title = mTreasureHunt.name
         Log.d(LOG_TAG, "LOADED GAME WITH ID: ${mTreasureHunt.id}")
@@ -45,15 +46,34 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.mapTreasureHunt) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        // Setup waypoint recycler view
         val recViewWaypointList = findViewById<RecyclerView>(R.id.recViewWaypointList)
         recViewWaypointList.layoutManager = LinearLayoutManager(this)
         recViewWaypointList.adapter = WaypointListAdapter(mTreasureHunt.Waypoints){
-            item -> Log.d(LOG_TAG, "SELECTED WAYPOINT: ${item.name}")
+            item -> handleWaypointClick(item)
         }
 
-
+        // Get location access
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+    }
+
+    /**
+     * Adds a marker on the map for every visible waypoint
+     */
+    private fun addWaypointMarkers(waypoints: List<Waypoint>) {
+        for (waypoint in waypoints){
+            if (waypoint.isVisible){
+                val marker = LatLng(waypoint.coords.latitude, waypoint.coords.longitude)
+                mMap.addMarker(MarkerOptions().position(marker).title(waypoint.name))
+                debugLog("Added marker for ${waypoint.name}")
+            }
+        }
+    }
+
+    fun handleWaypointClick(waypoint: Waypoint){
+        Log.d(LOG_TAG, "SELECTED WAYPOINT: ${waypoint.name}")
+        val zoomLevel = 15.0f
     }
 
     /**
@@ -66,18 +86,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         checkLocationPermission()
-
         mMap.isMyLocationEnabled = true
-
-        // Add a marker in Swansea
-        val meridianTower = LatLng(51.61387, -3.94321)
-
-        val zoomLevel = 12.0f
-
-        mMap.addMarker(MarkerOptions().position(meridianTower).title("Meridian Tower"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(meridianTower, zoomLevel))
+        getLastLocation()
+        addWaypointMarkers(mTreasureHunt.Waypoints)
     }
 
     /**
@@ -107,7 +119,8 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Return last location of the client. Won't update if location is changed until called again
+     * Return last location of the client and zoom into it on the map.
+     * Won't update if location is changed until called again
      */
     private fun getLastLocation(){
         if (isLocationEnabled()){
@@ -122,12 +135,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                     Log.i(LOG_TAG, "Last Location: $lat, $long")
 
                     val lastLoc = LatLng(lat, long)
+                    val zoomLevel = 15.0f
 
                     // Move map to last location
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(lastLoc))
-
-                    // Add marker to last location
-                    mMap.addMarker(MarkerOptions().position(lastLoc).title("My last location"))
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLoc, zoomLevel))
                 }
             }
         }
