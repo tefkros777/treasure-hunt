@@ -12,6 +12,7 @@ data class Waypoint(
     val isVisible: Boolean = false,
     val sloved: Boolean = false,
     val id: String = "WP_" + ++waypoint_id,
-    var description : String = ""
+    var description : String = "",
+    var tasks : String = ""
 
 )
