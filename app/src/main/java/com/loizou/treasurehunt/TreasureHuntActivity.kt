@@ -2,6 +2,7 @@ package com.loizou.treasurehunt
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -75,6 +77,12 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         Log.d(LOG_TAG, "SELECTED WAYPOINT: ${waypoint.name}")
         val zoomLevel = 15.0f
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(waypoint.coords, zoomLevel))
+
+//        val intent = Intent(this, WaypointDetails::class.java)
+//        intent.putExtra("waypoint_id", waypoint.id)
+//        intent.putExtra("game_id", mTreasureHunt.id)
+//        startActivity(intent)
+
     }
 
     /**

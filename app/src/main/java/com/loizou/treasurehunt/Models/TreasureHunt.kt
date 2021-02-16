@@ -1,6 +1,6 @@
 package com.loizou.treasurehunt.Models
 
-var game_id = 0;
+private var game_id = 0;
 
 data class TreasureHunt (
         val name: String,

@@ -22,6 +22,10 @@ object DataManager {
         return TreasureHunts.find { it.id == id }
     }
 
+    fun getWaypointById(id: String, treasureHunt: TreasureHunt) : Waypoint?{
+        return treasureHunt.Waypoints.find { it.id == id }
+    }
+
     init {
         TreasureHunts.addAll(listOf(
             TreasureHunt("Treasure Hunt 1", 2, "Joe Doe", RandomWaypoints),
