@@ -5,6 +5,7 @@ import com.google.android.gms.maps.model.LatLng
 private var waypoint_id = 0
 
 data class Waypoint(
+    val parent_game: TreasureHunt,
     val name: String,
     val coords: LatLng,
     val isFinal: Boolean,

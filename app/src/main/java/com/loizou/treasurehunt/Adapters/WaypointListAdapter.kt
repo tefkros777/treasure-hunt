@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
-import com.loizou.treasurehunt.LOG_TAG
+import com.loizou.treasurehunt.*
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
-import com.loizou.treasurehunt.R
-import com.loizou.treasurehunt.TreasureHuntActivity
 
 class WaypointListAdapter(val mWaypointList: List<Waypoint>, val listener: (Waypoint) -> Unit) :
     RecyclerView.Adapter<WaypointListAdapter.ViewHolder>() {
@@ -33,7 +32,13 @@ class WaypointListAdapter(val mWaypointList: List<Waypoint>, val listener: (Wayp
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mWaypointList[position]
         holder.bind(item)
-        holder.itemView.setOnClickListener { listener(item) }
+        holder.waypointRow.setOnClickListener { listener(item) }
+        holder.btnShowDetails.setOnClickListener {
+            val intent = Intent(it.context, WaypointDetails::class.java)
+            intent.putExtra("waypoint_id", mWaypointList[position].id)
+            intent.putExtra("game_id", mWaypointList[position].parent_game.id)
+            it.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -48,6 +53,8 @@ class WaypointListAdapter(val mWaypointList: List<Waypoint>, val listener: (Wayp
         val tvName = itemView.findViewById<MaterialTextView>(R.id.tvWaypointName)
         val tvLat = itemView.findViewById<MaterialTextView>(R.id.tvWaypointLat)
         val tvLng = itemView.findViewById<MaterialTextView>(R.id.tvWaypointLng)
+        val waypointRow = itemView.findViewById<ViewGroup>(R.id.waypointDetailsLayout)
+        val btnShowDetails = itemView.findViewById<MaterialButton>(R.id.btnShowWaypointDetails)
 
         fun bind(item: Waypoint) {
             tvName.text = item.name

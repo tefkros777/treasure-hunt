@@ -31,7 +31,6 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
     private lateinit var mTreasureHunt : TreasureHunt
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,12 +76,6 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         Log.d(LOG_TAG, "SELECTED WAYPOINT: ${waypoint.name}")
         val zoomLevel = 15.0f
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(waypoint.coords, zoomLevel))
-
-//        val intent = Intent(this, WaypointDetails::class.java)
-//        intent.putExtra("waypoint_id", waypoint.id)
-//        intent.putExtra("game_id", mTreasureHunt.id)
-//        startActivity(intent)
-
     }
 
     /**

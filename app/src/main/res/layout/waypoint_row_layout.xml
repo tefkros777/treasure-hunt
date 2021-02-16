@@ -1,30 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/circularRevealRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:padding="8dp"
-    android:foreground="?selectableItemBackground"
-    android:orientation="vertical">
+    android:padding="8dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvWaypointName"
+    <!--Details-->
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        android:id="@+id/waypointDetailsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/waypoint_placeholder"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnShowWaypointDetails"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvWaypointLat"
-        android:layout_width="match_parent"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvWaypointName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/waypoint_placeholder"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:layout_conversion_absoluteHeight="21dp"
+            tools:layout_conversion_absoluteWidth="112dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvWaypointLat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coord_placeholder"
+            tools:layout_conversion_absoluteHeight="19dp"
+            tools:layout_conversion_absoluteWidth="60dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="29dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvWaypointLng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coord_placeholder"
+            tools:layout_conversion_absoluteHeight="19dp"
+            tools:layout_conversion_absoluteWidth="60dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="49dp" />
+
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShowWaypointDetails"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/coord_placeholder" />
+        android:text="@string/details"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvWaypointLng"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/coord_placeholder" />
-
-</com.google.android.material.circularreveal.CircularRevealLinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
