@@ -1,5 +1,6 @@
 package com.loizou.treasurehunt
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -23,11 +24,17 @@ class WaypointDetails : AppCompatActivity() {
                 // Solve attempt successful
                 showMessage(btnSolve, R.string.puzzle_solved)
                 // TODO: End activity with result
+                finish()
             } else {
                 // Solve attempt unsuccessful
                 showMessage(btnSolve, R.string.try_again)
             }
         }
+    }
+
+    override fun finish() {
+        setResult(Activity.RESULT_OK)
+        super.finish()
     }
 
     fun solve(): Boolean {

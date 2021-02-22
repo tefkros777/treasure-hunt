@@ -1,7 +1,7 @@
 package com.loizou.treasurehunt.Adapters
 
+import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.*
-import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 
-class WaypointListAdapter(val mWaypointList: List<Waypoint>, val listener: (Waypoint) -> Unit) :
+class WaypointListAdapter(val mWaypointList: List<Waypoint>, val mCallingActivity: Activity, val listener: (Waypoint) -> Unit) :
     RecyclerView.Adapter<WaypointListAdapter.ViewHolder>() {
 
     /**
@@ -34,10 +33,10 @@ class WaypointListAdapter(val mWaypointList: List<Waypoint>, val listener: (Wayp
         holder.bind(item)
         holder.waypointRow.setOnClickListener { listener(item) }
         holder.btnShowDetails.setOnClickListener {
-            val intent = Intent(it.context, WaypointDetails::class.java)
+            val intent = Intent(mCallingActivity, WaypointDetails::class.java)
             intent.putExtra("waypoint_id", mWaypointList[position].id)
             intent.putExtra("game_id", mWaypointList[position].parent_game.id)
-            it.context.startActivity(intent)
+            mCallingActivity.startActivityForResult(intent, WPT_DETAILS_REQ_CODE)
         }
     }
 

@@ -1,31 +1,31 @@
 package com.loizou.treasurehunt
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
-import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.*
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.loizou.treasurehunt.Adapters.TreasureHuntListAdapter
 import com.loizou.treasurehunt.Adapters.WaypointListAdapter
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
+
 
 class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -52,13 +52,24 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         recViewWaypointList.layoutManager = LinearLayoutManager(this)
         recViewWaypointList.adapter =
             // Only visible waypoints
-            WaypointListAdapter(mTreasureHunt.Waypoints.filter { it.isVisible }){
-            item -> handleWaypointClick(item)
+            WaypointListAdapter(mTreasureHunt.Waypoints.filter { it.isVisible }, this){ item -> handleWaypointClick(
+                item
+            )
         }
 
         // Get location access
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+    }
+
+    /**
+     * Called when WaypointDetailsActivity finishes
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data:Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == WPT_DETAILS_REQ_CODE) {
+            Toast.makeText(this, "ACTIVITY FINISHED", Toast.LENGTH_SHORT).show()
+        }
     }
 
     /**
@@ -103,7 +114,11 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         // Check for location permission
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             // Request location permission
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQ_CODE)
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQ_CODE
+            )
             return
         }
     }
@@ -119,7 +134,11 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
         checkLocationPermission()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.myLooper()
+        )
     }
 
     /**
