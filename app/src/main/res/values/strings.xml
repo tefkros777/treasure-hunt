@@ -28,6 +28,8 @@
     <string name="coords_placeholder">35.51497, 33.01792</string>
     <string name="your_task">Your Task</string>
     <string name="tasks_placeholder">Tasks 1…</string>
+    <string name="more">More</string>
+    <string name="navigate">Navigate</string>
 
 
 </resources>

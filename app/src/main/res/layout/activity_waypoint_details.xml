@@ -25,7 +25,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/coords_placeholder" />
 
-        <View style="@style/Divider"/>
+        <View style="@style/Divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:scrollbars="vertical"
             android:text="@string/lorem" />
 
-        <View style="@style/Divider"/>
+        <View style="@style/Divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
@@ -57,16 +57,29 @@
 
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSolveWaypoint"
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="8dp"
-        android:text="@string/solve"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNavigate"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="2"
+            android:text="@string/navigate" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSolveWaypoint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_weight="2"
+            android:text="@string/solve" />
+
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
