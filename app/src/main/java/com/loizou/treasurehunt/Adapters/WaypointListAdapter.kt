@@ -36,6 +36,10 @@ class WaypointListAdapter(val mWaypointList: List<Waypoint>, val mCallingActivit
             val intent = Intent(mCallingActivity, WaypointDetails::class.java)
             intent.putExtra("waypoint_id", mWaypointList[position].id)
             intent.putExtra("game_id", mWaypointList[position].parent_game.id)
+            /**
+             * When secondary activity finishes, the onActivityResult method of the mCallingActivity
+             * class will be called
+             */
             mCallingActivity.startActivityForResult(intent, WPT_DETAILS_REQ_CODE)
         }
     }
@@ -59,10 +63,6 @@ class WaypointListAdapter(val mWaypointList: List<Waypoint>, val mCallingActivit
             tvName.text = item.name
             tvLat.text = "Latitude: " + item.coords.latitude.toString()
             tvLng.text = "Longtitude: " + item.coords.longitude.toString()
-        }
-
-        fun makeInvisible() {
-            itemView.visibility = View.GONE;
         }
 
     }

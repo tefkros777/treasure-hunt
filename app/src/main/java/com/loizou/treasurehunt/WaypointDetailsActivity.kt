@@ -22,8 +22,6 @@ class WaypointDetails : AppCompatActivity() {
         btnSolve.setOnClickListener {
             if(solve()){
                 // Solve attempt successful
-                showMessage(btnSolve, R.string.puzzle_solved)
-                // TODO: End activity with result
                 finish()
             } else {
                 // Solve attempt unsuccessful
