@@ -30,6 +30,8 @@
     <string name="tasks_placeholder">Tasks 1…</string>
     <string name="more">More</string>
     <string name="navigate">Navigate</string>
+    <string name="puzzle_solved">Puzzle Solved!</string>
+    <string name="try_again">Try again!</string>
 
 
 </resources>

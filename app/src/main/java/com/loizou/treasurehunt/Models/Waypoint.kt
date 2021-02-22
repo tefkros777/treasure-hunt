@@ -9,10 +9,14 @@ data class Waypoint(
     val name: String,
     val coords: LatLng,
     val isFinal: Boolean,
-    val isVisible: Boolean = false,
-    val sloved: Boolean = false,
+    var isVisible: Boolean = false,
+    var solved: Boolean = false,
     val id: String = "WP_" + ++waypoint_id,
     var description : String = "",
     var tasks : String = ""
 
-)
+){
+    fun solve(){
+        parent_game.solveWaypoint(this)
+    }
+}

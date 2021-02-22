@@ -62,6 +62,10 @@ class WaypointListAdapter(val mWaypointList: List<Waypoint>, val listener: (Wayp
             tvLng.text = "Longtitude: " + item.coords.longitude.toString()
         }
 
+        fun makeInvisible() {
+            itemView.visibility = View.GONE;
+        }
+
     }
 
 }

@@ -50,7 +50,9 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         // Setup waypoint recycler view
         val recViewWaypointList = findViewById<RecyclerView>(R.id.recViewWaypointList)
         recViewWaypointList.layoutManager = LinearLayoutManager(this)
-        recViewWaypointList.adapter = WaypointListAdapter(mTreasureHunt.Waypoints){
+        recViewWaypointList.adapter =
+            // Only visible waypoints
+            WaypointListAdapter(mTreasureHunt.Waypoints.filter { it.isVisible }){
             item -> handleWaypointClick(item)
         }
 

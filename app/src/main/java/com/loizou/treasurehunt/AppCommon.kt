@@ -3,6 +3,7 @@ package com.loizou.treasurehunt
 import android.nfc.Tag
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
 const val LOG_TAG = "TREASURE_HUNT_APP_DEBUG: "
