@@ -16,7 +16,8 @@ data class TreasureHunt(
         wpt.solved = true
         // Make next waypoint visible
         val wptIdex = Waypoints.indexOf(wpt)
-        Waypoints[wptIdex + 1].isVisible = true;
+        if (wptIdex + 1 <= Waypoints.size)
+            Waypoints[wptIdex + 1].isVisible = true;
     }
 }
 
