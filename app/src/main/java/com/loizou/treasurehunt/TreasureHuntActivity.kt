@@ -73,8 +73,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == WPT_DETAILS_REQ_CODE) {
             Toast.makeText(this, "ACTIVITY FINISHED", Toast.LENGTH_SHORT).show()
-            // TODO: Probably not the best implementation but notifyDatasetChanged()
-            // does not update the view
+            // TODO: Probably not the best implementation but notifyDatasetChanged() wont update the view
             setupAdapter()
             addWaypointMarkers(mTreasureHunt.Waypoints)
         }
