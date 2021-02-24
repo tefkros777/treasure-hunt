@@ -31,10 +31,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var mTreasureHunt : TreasureHunt
+    private lateinit var mTreasureHunt: TreasureHunt
     private lateinit var mRecViewWaypointList: RecyclerView
 
-    private lateinit var visibleWaypointList : MutableList<Waypoint>
+    private lateinit var visibleWaypointList: MutableList<Waypoint>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +55,13 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         mRecViewWaypointList.layoutManager = LinearLayoutManager(this)
 
         // Include only visible waypoints to the list
-        mRecViewWaypointList.adapter = WaypointListAdapter(mTreasureHunt.Waypoints.filter { it.isVisible } as MutableList<Waypoint>, this){
-                item -> handleWaypointClick(item)
-        }
+        mRecViewWaypointList.adapter =
+            WaypointListAdapter(mTreasureHunt.Waypoints.filter { it.isVisible } as MutableList<Waypoint>,
+                this) { item ->
+                handleWaypointClick(item)
+            }
 
+        // Cache the Waypoint list of the adapter (data source)
         visibleWaypointList = (mRecViewWaypointList.adapter as WaypointListAdapter).mWaypointList
 
         // Get location access
@@ -69,16 +72,16 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     /**
      * Called when WaypointDetailsActivity finishes
      */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data:Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == WPT_DETAILS_REQ_CODE) {
             Toast.makeText(this, "ACTIVITY FINISHED", Toast.LENGTH_SHORT).show()
-            // TODO: Probably not the best implementation but notifyDatasetChanged() wont update the view
-            // setupAdapter()
-            // need to add new waypoint to list
-            visibleWaypointList.add( mTreasureHunt.Waypoints.last { it.isVisible } )
-            mRecViewWaypointList.adapter!!.notifyDataSetChanged()
-            addWaypointMarkers(mTreasureHunt.Waypoints)
+            if (data!!.hasExtra("waypoint_index")) {
+                val nextWptIndex = data.extras!!.getInt("waypoint_index") + 1
+                visibleWaypointList.add(mTreasureHunt.Waypoints[nextWptIndex])
+                mRecViewWaypointList.adapter!!.notifyItemChanged(nextWptIndex)
+                addWaypointMarkers(mTreasureHunt.Waypoints)
+            }
         }
     }
 
@@ -86,9 +89,9 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      * Adds a marker on the map for every visible waypoint
      */
     private fun addWaypointMarkers(waypoints: List<Waypoint>) {
-        for (waypoint in waypoints){
+        for (waypoint in waypoints) {
             // Solved waypoints have already been added. Don't add them again
-            if (waypoint.isVisible && !waypoint.solved){
+            if (waypoint.isVisible && !waypoint.solved) {
                 val marker = LatLng(waypoint.coords.latitude, waypoint.coords.longitude)
                 mMap.addMarker(MarkerOptions().position(marker).title(waypoint.name))
                 debugLog("Added marker for ${waypoint.name}")
@@ -96,7 +99,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    fun handleWaypointClick(waypoint: Waypoint){
+    fun handleWaypointClick(waypoint: Waypoint) {
         Log.d(LOG_TAG, "SELECTED WAYPOINT: ${waypoint.name}")
         val zoomLevel = 15.0f
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(waypoint.coords, zoomLevel))
@@ -123,7 +126,11 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     private fun checkLocationPermission() {
         // Check for location permission
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             // Request location permission
             ActivityCompat.requestPermissions(
                 this,
@@ -156,10 +163,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      * Return last location of the client and zoom into it on the map.
      * Won't update if location is changed until called again
      */
-    private fun getLastLocation(){
-        if (isLocationEnabled()){
+    private fun getLastLocation() {
+        if (isLocationEnabled()) {
             checkLocationPermission()
-            fusedLocationClient.lastLocation.addOnCompleteListener(this){ task ->
+            fusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
                 val location: Location? = task.result // Wait until task has finished
                 if (location == null)
                     getLocationData() // Request new location
@@ -192,7 +199,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
-            val lastLocation : Location = locationResult.lastLocation
+            val lastLocation: Location = locationResult.lastLocation
             val lat = lastLocation.latitude
             val long = lastLocation.longitude
 
