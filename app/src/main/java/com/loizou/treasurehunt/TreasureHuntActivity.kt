@@ -34,6 +34,8 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mTreasureHunt : TreasureHunt
     private lateinit var mRecViewWaypointList: RecyclerView
 
+    private lateinit var visibleWaypointList : MutableList<Waypoint>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_treasure_hunt)
@@ -51,19 +53,17 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         // Setup waypoint recycler view
         mRecViewWaypointList = findViewById(R.id.recViewWaypointList)
         mRecViewWaypointList.layoutManager = LinearLayoutManager(this)
-        setupAdapter()
+
+        // Include only visible waypoints to the list
+        mRecViewWaypointList.adapter = WaypointListAdapter(mTreasureHunt.Waypoints.filter { it.isVisible } as MutableList<Waypoint>, this){
+                item -> handleWaypointClick(item)
+        }
+
+        visibleWaypointList = (mRecViewWaypointList.adapter as WaypointListAdapter).mWaypointList
 
         // Get location access
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-    }
-
-    private fun setupAdapter() {
-        // Include only visible waypoints to the list
-        mRecViewWaypointList.adapter = WaypointListAdapter(
-            mTreasureHunt.Waypoints.filter { it.isVisible }, this){
-                item -> handleWaypointClick(item)
-        }
     }
 
     /**
@@ -74,7 +74,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         if (resultCode == Activity.RESULT_OK && requestCode == WPT_DETAILS_REQ_CODE) {
             Toast.makeText(this, "ACTIVITY FINISHED", Toast.LENGTH_SHORT).show()
             // TODO: Probably not the best implementation but notifyDatasetChanged() wont update the view
-            setupAdapter()
+            // setupAdapter()
+            // need to add new waypoint to list
+            visibleWaypointList.add( mTreasureHunt.Waypoints.last { it.isVisible } )
+            mRecViewWaypointList.adapter!!.notifyDataSetChanged()
             addWaypointMarkers(mTreasureHunt.Waypoints)
         }
     }

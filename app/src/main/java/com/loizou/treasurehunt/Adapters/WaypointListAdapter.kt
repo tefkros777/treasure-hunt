@@ -11,7 +11,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.*
 import com.loizou.treasurehunt.Models.Waypoint
 
-class WaypointListAdapter(val mWaypointList: List<Waypoint>, val mCallingActivity: Activity, val listener: (Waypoint) -> Unit) :
+class WaypointListAdapter(val mWaypointList: MutableList<Waypoint>, val mCallingActivity: Activity, val listener: (Waypoint) -> Unit) :
     RecyclerView.Adapter<WaypointListAdapter.ViewHolder>() {
 
     /**
