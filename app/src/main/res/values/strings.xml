@@ -32,6 +32,7 @@
     <string name="navigate">Navigate</string>
     <string name="puzzle_solved">Puzzle Solved!</string>
     <string name="try_again">Try again!</string>
+    <string name="game_finished">Congratulations! You\'ve finished this game</string>
 
 
 </resources>

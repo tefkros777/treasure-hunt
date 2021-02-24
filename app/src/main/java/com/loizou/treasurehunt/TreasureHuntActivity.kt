@@ -75,9 +75,13 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == WPT_DETAILS_REQ_CODE) {
-            Toast.makeText(this, "ACTIVITY FINISHED", Toast.LENGTH_SHORT).show()
             if (data!!.hasExtra("waypoint_index")) {
                 val nextWptIndex = data.extras!!.getInt("waypoint_index") + 1
+                // If there is no next waypoint
+                if (nextWptIndex >= mTreasureHunt.Waypoints.size) {
+                    showMessage(mRecViewWaypointList, R.string.game_finished)
+                    return
+                }
                 visibleWaypointList.add(mTreasureHunt.Waypoints[nextWptIndex])
                 mRecViewWaypointList.adapter!!.notifyItemChanged(nextWptIndex)
                 addWaypointMarkers(mTreasureHunt.Waypoints)
