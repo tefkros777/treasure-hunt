@@ -10,7 +10,6 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -95,7 +94,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun addWaypointMarkers(waypoints: List<Waypoint>) {
         for (waypoint in waypoints) {
             // Solved waypoints have already been added. Don't add them again
-            if (waypoint.isVisible && !waypoint.solved) {
+            if (waypoint.isVisible && !waypoint.isSolved) {
                 val marker = LatLng(waypoint.coords.latitude, waypoint.coords.longitude)
                 mMap.addMarker(MarkerOptions().position(marker).title(waypoint.name))
                 debugLog("Added marker for ${waypoint.name}")

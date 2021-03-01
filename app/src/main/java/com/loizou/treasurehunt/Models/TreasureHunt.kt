@@ -9,11 +9,17 @@ data class TreasureHunt(
     val difficulty: Int, // TODO: Make enum (LOW,MID,HARD)
     val author: String?, // TODO: Make User
     val Waypoints: List<Waypoint>,
-    val id: String = "TH_" + ++game_id
+    val id: String = "TH_" + ++game_id,
 ) {
+
+    fun processWaypoints(){
+        Waypoints.first().isVisible = true
+        Waypoints.last().isFinal = true
+    }
+
     fun solveWaypoint(wpt: Waypoint) {
         debugLog("Waypoint ${wpt.name} solved")
-        wpt.solved = true
+        wpt.isSolved = true
         // Make next waypoint visible
         val wptIndex = Waypoints.indexOf(wpt)
         if (wpt.isFinal || wptIndex == Waypoints.size-1)
