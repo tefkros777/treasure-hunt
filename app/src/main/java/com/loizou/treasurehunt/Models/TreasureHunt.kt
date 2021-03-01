@@ -17,13 +17,11 @@ data class TreasureHunt(
         Waypoints.last().isFinal = true
     }
 
-    fun solveWaypoint(wpt: Waypoint) {
-        debugLog("Waypoint ${wpt.name} solved")
-        wpt.isSolved = true
+    fun enableNextWaypoint(wpt: Waypoint){
         // Make next waypoint visible
         val wptIndex = Waypoints.indexOf(wpt)
         if (wpt.isFinal || wptIndex == Waypoints.size-1)
-            return
+            return // There is no next waypoint
         if (wptIndex + 1 <= Waypoints.size)
             Waypoints[wptIndex + 1].isVisible = true;
     }

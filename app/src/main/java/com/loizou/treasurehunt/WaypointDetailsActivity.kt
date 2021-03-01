@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import com.google.android.material.button.MaterialButton
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
@@ -23,25 +23,24 @@ class WaypointDetails : AppCompatActivity() {
 
         title = mWaypoint.name
 
-        val btnSolve = findViewById<MaterialButton>(R.id.btnSolveWaypoint)
-        btnSolve.setOnClickListener {
-            if (solve()) {
-                // Solve attempt successful
-                val data = Intent()
-                data.putExtra("waypoint_index", mTreasureHunt.Waypoints.indexOf(mWaypoint))
-                setResult(Activity.RESULT_OK, data)
-                finish()
-            } else {
-                // Solve attempt unsuccessful
-                showMessage(btnSolve, R.string.try_again)
-            }
-        }
     }
 
-    fun solve(): Boolean {
-        //TODO: Check for puzzle solution
-        mWaypoint.solve()
-        return true
+    /**
+     * Linked to btnSolveWaypoint
+     */
+    fun solveWaypoint(v: View) {
+        val attempt = mWaypoint.attemptSolve("solution") //TODO: Read solution from user
+        if (attempt) {
+            // Solve attempt successful
+            val data = Intent()
+            data.putExtra("waypoint_index", mTreasureHunt.Waypoints.indexOf(mWaypoint))
+            setResult(Activity.RESULT_OK, data)
+            finish()
+        } else {
+            // Solve attempt unsuccessful
+            val btnSolve = findViewById<MaterialButton>(R.id.btnSolveWaypoint)
+            showMessage(btnSolve, R.string.try_again)
+        }
     }
 
 }

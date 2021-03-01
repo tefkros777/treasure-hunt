@@ -42,10 +42,10 @@ object DataManager {
         ))
 
         RandomWaypoints.addAll(listOf(
-            Waypoint(TreasureHunts.first(),"Waypoint Swansea", LatLng(51.621441, -3.943646)),
-            Waypoint(TreasureHunts.first(),"Waypoint Cardiff", LatLng(51.481583, -3.179090)),
-            Waypoint(TreasureHunts.first(),"Waypoint Bournemouth", LatLng(50.718395, -1.883377)),
-            Waypoint(TreasureHunts.first(),"Waypoint St. Davids", LatLng(51.882000, -5.269000)),
+            Waypoint(TreasureHunts.first(),"Waypoint Swansea", LatLng(51.621441, -3.943646), "solution"),
+            Waypoint(TreasureHunts.first(),"Waypoint Cardiff", LatLng(51.481583, -3.179090), "solution"),
+            Waypoint(TreasureHunts.first(),"Waypoint Bournemouth", LatLng(50.718395, -1.883377), "solution"),
+            Waypoint(TreasureHunts.first(),"Waypoint St. Davids", LatLng(51.882000, -5.269000), "solution"),
         ))
 
         TreasureHunts.first().processWaypoints()
