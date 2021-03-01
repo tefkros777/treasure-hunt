@@ -37,6 +37,7 @@
     <string name="go">Go!</string>
     <string name="cancel">Cancel</string>
     <string name="enter_solution">Solution...</string>
+    <string name="can_you_solve_it">Can you solve it?</string>
 
 
 </resources>
