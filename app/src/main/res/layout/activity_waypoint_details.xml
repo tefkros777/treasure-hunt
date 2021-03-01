@@ -78,8 +78,8 @@
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
             android:layout_weight="2"
-            android:onClick="solveWaypoint"
-            android:text="@string/solve" />
+            android:onClick="showDialog"
+            android:text="@string/solve_waypoint" />
 
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 

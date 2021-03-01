@@ -1,13 +1,20 @@
 package com.loizou.treasurehunt
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
+
 
 class WaypointDetails : AppCompatActivity() {
 
@@ -29,7 +36,10 @@ class WaypointDetails : AppCompatActivity() {
      * Linked to btnSolveWaypoint
      */
     fun solveWaypoint(v: View) {
-        val attempt = mWaypoint.attemptSolve("solution") //TODO: Read solution from user
+        // Read solution from user
+      //  showDialog()
+
+        val attempt = mWaypoint.attemptSolve("solution")
         if (attempt) {
             // Solve attempt successful
             val data = Intent()
@@ -43,4 +53,22 @@ class WaypointDetails : AppCompatActivity() {
         }
     }
 
+
+    fun showDialog(v: View) {
+        val dialog = Dialog(this)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.solve_waypoint_dialog_layout)
+        val tvTitle = dialog.findViewById(R.id.tvTitle) as MaterialTextView
+        val tvInput = dialog.findViewById(R.id.tvInput) as TextInputEditText
+        val btnAttemptSolve = dialog.findViewById(R.id.btnAttemptSolve) as MaterialButton
+        val btnCancelSolve = dialog.findViewById(R.id.btnCancelSolve) as MaterialButton
+        btnAttemptSolve.setOnClickListener {
+            dialog.dismiss()
+        }
+        btnCancelSolve.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
+    }
 }

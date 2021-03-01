@@ -22,7 +22,7 @@
     <string name="coord_placeholder">35.42197</string>
     <string name="details">Details</string>
     <string name="lorem">Lorem ipsum dolor sit amet</string>
-    <string name="solve">Solve Waypoint!</string>
+    <string name="solve_waypoint">Solve Waypoint!</string>
     <string name="coords">Coordinates</string>
     <string name="description">Description</string>
     <string name="coords_placeholder">35.51497, 33.01792</string>
@@ -33,6 +33,10 @@
     <string name="puzzle_solved">Puzzle Solved!</string>
     <string name="try_again">Try again!</string>
     <string name="game_finished">Congratulations! You\'ve finished this game</string>
+    <string name="whats_your_answer">What\'s your answer?</string>
+    <string name="go">Go!</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_solution">Solution...</string>
 
 
 </resources>
