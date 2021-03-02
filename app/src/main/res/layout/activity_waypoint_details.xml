@@ -70,7 +70,8 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="4dp"
             android:layout_weight="2"
-            android:text="@string/navigate" />
+            android:text="@string/navigate"
+            android:textColor="@color/colorPrimaryText" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSolveWaypoint"
@@ -78,6 +79,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
             android:layout_weight="2"
+            android:backgroundTint="@color/colorAccent"
             android:onClick="solveWaypoint"
             android:text="@string/solve_waypoint" />
 

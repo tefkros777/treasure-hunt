@@ -23,14 +23,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:text="@string/cancel" />
+            android:text="@string/cancel"
+            android:textColor="@color/colorSecondaryText" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAttemptSolve"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/go" />
+            android:text="@string/go"
+            android:textColor="@color/colorAccent" />
 
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
