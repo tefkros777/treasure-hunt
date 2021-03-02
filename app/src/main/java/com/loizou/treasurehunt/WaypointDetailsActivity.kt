@@ -33,40 +33,39 @@ class WaypointDetails : AppCompatActivity() {
      * Linked to btnSolveWaypoint
      */
     fun solveWaypoint(v: View) {
-        // Read solution from user
-      //  showDialog()
-
-        val attempt = mWaypoint.attemptSolve("solution")
-        if (attempt) {
-            // Solve attempt successful
-            val data = Intent()
-            data.putExtra("waypoint_index", mTreasureHunt.Waypoints.indexOf(mWaypoint))
-            setResult(Activity.RESULT_OK, data)
-            finish()
-        } else {
-            // Solve attempt unsuccessful
-            val btnSolve = findViewById<MaterialButton>(R.id.btnSolveWaypoint)
-            showMessage(btnSolve, R.string.try_again)
-        }
-    }
-
-
-    fun showDialog(v: View) {
         //Inflate the dialog with custom view
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.solve_waypoint_dialog_layout, null)
+        val dialogView =
+            LayoutInflater.from(this).inflate(R.layout.solve_waypoint_dialog_layout, null)
         //AlertDialogBuilder
         val dialogBuilder = AlertDialog.Builder(this)
             .setView(dialogView)
             .setTitle(R.string.can_you_solve_it)
+        val alertDialog = dialogBuilder.show()
 
-        val  alertDialog = dialogBuilder.show()
-        //login button click of custom layout
+        // Solve button of the dialog
         dialogView.btnAttemptSolve.setOnClickListener {
-            //dismiss dialog
-            alertDialog.dismiss()
+            var userSolution = dialogView.tvPuzzleSolution.text!!.trim().toString()
+            showMessage(dialogView, userSolution)
 
+            userSolution = "solution" // TODO: FOR TESTING ONLY, DELETE AFTERWARDS
+
+            // Attempt to solve the puzzle
+            val attempt = mWaypoint.attemptSolve(userSolution)
+            if (attempt) {
+                // Solve attempt successful
+                val data = Intent()
+                data.putExtra("waypoint_index", mTreasureHunt.Waypoints.indexOf(mWaypoint))
+                setResult(Activity.RESULT_OK, data)
+                finish()
+            } else {
+                // Solve attempt unsuccessful
+                val btnSolve = findViewById<MaterialButton>(R.id.btnSolveWaypoint)
+                showMessage(btnSolve, R.string.try_again)
+            }
+
+            alertDialog.dismiss()
         }
-        // Cancel button
+        // Cancel button of the dialog
         dialogView.btnAttemptCancel.setOnClickListener {
             alertDialog.dismiss()
         }
