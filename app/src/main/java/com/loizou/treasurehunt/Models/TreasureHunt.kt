@@ -10,6 +10,7 @@ data class TreasureHunt(
     val author: String?, // TODO: Make User
     val Waypoints: List<Waypoint>,
     val id: String = "TH_" + ++game_id,
+    var description: String = "",
     var isSolved: Boolean = false
 ) {
 
