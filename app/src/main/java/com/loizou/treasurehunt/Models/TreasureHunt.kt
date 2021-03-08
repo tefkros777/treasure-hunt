@@ -10,6 +10,7 @@ data class TreasureHunt(
     val author: String?, // TODO: Make User
     val Waypoints: List<Waypoint>,
     val id: String = "TH_" + ++game_id,
+    var isSolved: Boolean = false
 ) {
 
     fun processWaypoints(){
@@ -20,8 +21,11 @@ data class TreasureHunt(
     fun enableNextWaypoint(wpt: Waypoint){
         // Make next waypoint visible
         val wptIndex = Waypoints.indexOf(wpt)
-        if (wpt.isFinal || wptIndex == Waypoints.size-1)
-            return // There is no next waypoint
+        if (wpt.isFinal || wptIndex == Waypoints.size-1){
+            // There is no next waypoint
+            this.isSolved = true
+            return
+        }
         if (wptIndex + 1 <= Waypoints.size)
             Waypoints[wptIndex + 1].isVisible = true;
     }
