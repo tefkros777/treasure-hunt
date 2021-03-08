@@ -13,17 +13,20 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTreasureHuntDetails_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="@string/created_by" />
+            android:gravity="center"
+            android:text="@string/treasure_hunt"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTreasureHuntDetails_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/hunt_author_paceholder" />
+            android:gravity="center"
+            android:text="@string/hunt_author_placeholder" />
 
         <View style="@style/Divider" />
 

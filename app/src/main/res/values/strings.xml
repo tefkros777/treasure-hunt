@@ -44,7 +44,7 @@
     <string name="created_by">Hidden by</string>
     <string name="available_points">Available points</string>
     <string name="start_hunting">Start Hunting!</string>
-    <string name="hunt_author_paceholder">Indiana Jones</string>
+    <string name="hunt_author_placeholder">by Indiana Jones</string>
 
 
 </resources>
