@@ -75,11 +75,9 @@ class WaypointDetails : AppCompatActivity() {
 
     fun navigateToWaypoint(v: View) {
         // Create a Uri from an intent string. Use the result to create an Intent.
-        val intentURI = Uri.parse("google.navigation:q=${mWaypoint.coords.latitude},${mWaypoint.coords.longitude}")
+        val intentURI =
+            Uri.parse("http://maps.google.com/maps?daddr=${mWaypoint.coords.latitude},${mWaypoint.coords.longitude}")
         val mapIntent = Intent(Intent.ACTION_VIEW, intentURI)
-        // Make the Intent explicit by setting the Google Maps package
-        mapIntent.setPackage("com.google.android.apps.maps")
-        // Verify that there is an app capable of handling the intent
         mapIntent.resolveActivity(packageManager)?.let {
             startActivity(mapIntent)
         }
