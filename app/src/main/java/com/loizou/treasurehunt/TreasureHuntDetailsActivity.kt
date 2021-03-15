@@ -1,7 +1,6 @@
 package com.loizou.treasurehunt
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
@@ -51,13 +50,13 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                mTreasureHunt.Waypoints[0].coords,
-                ZOOM_LEVEL
-            )
-        )
+        val group = LatLngBounds.Builder()
+        for (wpt: Waypoint in mTreasureHunt.Waypoints)
+            group.include(wpt.coords)
         drawTreasureHunt()
+        mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(group.build(),100)) // Set Padding and that's all!
+
     }
 
     // Draw a line from all the waypoints of the treasure hunt
@@ -65,8 +64,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         val line = PolylineOptions()
         for (waypoint: Waypoint in mTreasureHunt.Waypoints)
             line.add(waypoint.coords)
-        line.width(5f).color(Color.RED)
+        line.width(10f).color(R.color.colorPrimary)
         mMap.addPolyline(line)
-
     }
 }
