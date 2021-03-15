@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 import kotlinx.android.synthetic.main.activity_waypoint_details.*
@@ -32,6 +34,8 @@ class WaypointDetails : AppCompatActivity() {
 
         if (mWaypoint.isSolved)
             btnSolveWaypoint.visibility = View.GONE
+
+        findViewById<MaterialTextView>(R.id.tvWaypointDetails_description).movementMethod = ScrollingMovementMethod()
 
     }
 

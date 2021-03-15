@@ -2,6 +2,7 @@ package com.loizou.treasurehunt
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -10,6 +11,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 
@@ -32,6 +34,9 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapTreasureHuntPreview) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // Make description scrollable
+        findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description).movementMethod = ScrollingMovementMethod()
     }
 
     fun startTreasureHunt(view: View) {
@@ -55,7 +60,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
             group.include(wpt.coords)
         drawTreasureHunt()
         mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(group.build(),100))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(group.build(), 100))
     }
 
     // Draw a line from all the waypoints of the treasure hunt
