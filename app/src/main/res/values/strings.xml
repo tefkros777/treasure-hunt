@@ -21,7 +21,16 @@
     <string name="waypoint_placeholder">Waypoint name</string>
     <string name="coord_placeholder">35.42197</string>
     <string name="details">Details</string>
-    <string name="lorem">Lorem ipsum dolor sit amet</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.
+Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.
+Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla.
+Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien. Donec ut est in lectus consequat consequat.
+Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
+
+</string>
     <string name="solve_waypoint">Solve Waypoint!</string>
     <string name="coords">Coordinates</string>
     <string name="description">Description</string>
@@ -39,10 +48,10 @@
     <string name="enter_solution">Solution...</string>
     <string name="can_you_solve_it">Can you solve it?</string>
     <string name="th_details">Treasure Hunt Details</string>
-    <string name="difficulty">Difficulty</string>
+    <string name="difficulty">Difficulty:</string>
     <string name="th_preview">Treasure Hunt Preview</string>
     <string name="created_by">Hidden by</string>
-    <string name="available_points">Available points</string>
+    <string name="available_points">Available points:</string>
     <string name="start_hunting">Start Hunting!</string>
     <string name="hunt_author_placeholder">by Indiana Jones</string>
 

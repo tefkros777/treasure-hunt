@@ -32,40 +32,64 @@
 
         <View style="@style/Divider" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="@string/difficulty" />
+        <com.google.android.material.circularreveal.CircularRevealLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTreasureHuntDetails_difficulty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/hunt_difficulty_placeholder" />
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:drawableStart="@drawable/ic_baseline_speed_24"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:text="@string/difficulty"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTreasureHuntDetails_difficulty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/hunt_difficulty_placeholder" />
+
+        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+        <View style="@style/Divider" />
+
+        <com.google.android.material.circularreveal.CircularRevealLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_bar_chart_24"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:text="@string/available_points"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTreasureHuntDetails_points"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:scrollbars="vertical"
+                android:text="@string/available_points" />
+
+        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
         <View style="@style/Divider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/available_points" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTreasureHuntDetails_points"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:scrollbars="vertical"
-            android:text="@string/available_points" />
-
-        <View style="@style/Divider" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/description" />
+            android:drawableStart="@drawable/ic_description_light_24"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:text="@string/description"
+            android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTreasureHuntDetails_description"
@@ -75,16 +99,17 @@
             android:scrollbars="vertical"
             android:text="@string/lorem" />
 
-
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/roundedMapContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/btnStartHaunting"
         android:layout_below="@+id/vgTreasureHuntDetails"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
+        android:minHeight="200dp"
         app:cardCornerRadius="25dp">
 
         <fragment
