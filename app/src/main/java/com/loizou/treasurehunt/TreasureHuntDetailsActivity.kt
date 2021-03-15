@@ -55,8 +55,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
             group.include(wpt.coords)
         drawTreasureHunt()
         mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(group.build(),100)) // Set Padding and that's all!
-
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(group.build(),100))
     }
 
     // Draw a line from all the waypoints of the treasure hunt

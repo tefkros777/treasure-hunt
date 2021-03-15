@@ -78,16 +78,24 @@
 
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
-    <fragment
-        android:id="@+id/mapTreasureHuntPreview"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@id/btnSolveWaypoint"
         android:layout_below="@+id/vgTreasureHuntDetails"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        tools:context=".TreasureHuntDetailsActivity" />
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="25dp">
+
+        <fragment
+            android:id="@+id/mapTreasureHuntPreview"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".TreasureHuntDetailsActivity" />
+
+    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSolveWaypoint"
