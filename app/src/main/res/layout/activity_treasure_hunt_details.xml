@@ -8,8 +8,10 @@
     tools:context=".TreasureHuntDetailsActivity">
 
     <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        android:id="@+id/vgTreasureHuntDetails"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
@@ -48,21 +50,6 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/description" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTreasureHuntDetails_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:scrollbars="vertical"
-            android:text="@string/lorem" />
-
-        <View style="@style/Divider" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/available_points" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -73,24 +60,42 @@
             android:scrollbars="vertical"
             android:text="@string/available_points" />
 
+        <View style="@style/Divider" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTreasureHuntDetails_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:scrollbars="vertical"
+            android:text="@string/lorem" />
+
+
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
-    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+    <fragment
+        android:id="@+id/mapTreasureHuntPreview"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btnSolveWaypoint"
+        android:layout_below="@+id/vgTreasureHuntDetails"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        tools:context=".TreasureHuntDetailsActivity" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSolveWaypoint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSolveWaypoint"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="4dp"
-            android:layout_weight="2"
-            android:backgroundTint="@color/colorAccent"
-            android:onClick="startTreasureHunt"
-            android:text="@string/start_hunting" />
-
-    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+        android:backgroundTint="@color/colorAccent"
+        android:onClick="startTreasureHunt"
+        android:text="@string/start_hunting" />
 
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
