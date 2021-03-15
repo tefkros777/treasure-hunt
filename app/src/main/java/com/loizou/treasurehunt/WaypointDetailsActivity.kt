@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
+import kotlinx.android.synthetic.main.activity_waypoint_details.*
+import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.*
 import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.view.*
 
 
@@ -28,23 +30,25 @@ class WaypointDetails : AppCompatActivity() {
 
         title = mWaypoint.name
 
+        if (mWaypoint.isSolved)
+            btnSolveWaypoint.visibility = View.GONE
+
     }
 
     /**
      * Linked to btnSolveWaypoint
      */
     fun solveWaypoint(v: View) {
-        //Inflate the dialog with custom view
-        val dialogView =
-            LayoutInflater.from(this).inflate(R.layout.solve_waypoint_dialog_layout, null)
-        //AlertDialogBuilder
+        // Inflate the dialog with custom view
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.solve_waypoint_dialog_layout, null)
+        // AlertDialogBuilder
         val dialogBuilder = AlertDialog.Builder(this)
             .setView(dialogView)
             .setTitle(R.string.can_you_solve_it)
         val alertDialog = dialogBuilder.show()
 
         // Solve button of the dialog
-        dialogView.btnAttemptSolve.setOnClickListener {
+        dialogView.btnDialogSolve.setOnClickListener {
             var userSolution = dialogView.tvPuzzleSolution.text!!.trim().toString()
             showMessage(dialogView, userSolution)
 
@@ -67,7 +71,7 @@ class WaypointDetails : AppCompatActivity() {
             alertDialog.dismiss()
         }
         // Cancel button of the dialog
-        dialogView.btnAttemptCancel.setOnClickListener {
+        dialogView.btnDialogCancel.setOnClickListener {
             alertDialog.dismiss()
         }
 

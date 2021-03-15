@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAttemptCancel"
+            android:id="@+id/btnDialogCancel"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:textColor="@color/colorSecondaryText" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAttemptSolve"
+            android:id="@+id/btnDialogSolve"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
