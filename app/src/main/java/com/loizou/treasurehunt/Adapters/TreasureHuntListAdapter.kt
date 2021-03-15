@@ -54,6 +54,7 @@ class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : 
 
             val intent = Intent(itemView.context, TreasureHuntDetailsActivity::class.java)
             intent.putExtra("game_id", mTreasureHuntModelList[adapterPosition].id)
+            // intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             itemView.context.startActivity(intent)
 
         }
