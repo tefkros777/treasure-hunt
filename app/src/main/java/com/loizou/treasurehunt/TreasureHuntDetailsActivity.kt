@@ -27,7 +27,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_treasure_hunt_details)
         title = getString(R.string.th_preview)
 
-        mTreasureHunt = DataManager.getTreasureHuntById(intent.getStringExtra("game_id")!!)!!
+        mTreasureHunt = Database.getTreasureHuntById(intent.getStringExtra("game_id")!!)!!
         debugLog("Loaded preview for ${mTreasureHunt.name}")
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

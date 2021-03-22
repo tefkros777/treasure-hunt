@@ -1,15 +1,13 @@
 package com.loizou.treasurehunt.Models
 
-import com.loizou.treasurehunt.debugLog
-
 private var game_id = 0;
 
 data class TreasureHunt(
-    val name: String,
-    val difficulty: Int, // TODO: Make enum (LOW,MID,HARD)
-    val author: String?, // TODO: Make User
-    val Waypoints: List<Waypoint>,
-    val id: String = "TH_" + ++game_id,
+    var name: String = "default name",
+    var difficulty: Int = 0, // TODO: Make enum (LOW,MID,HARD)
+    var author: String? = "nobody", // TODO: Make User
+    var Waypoints: List<Waypoint> = emptyList(),
+    var id: String = "TH_" + ++game_id,
     var description: String = "",
     var isSolved: Boolean = false
 ) {
@@ -18,7 +16,7 @@ data class TreasureHunt(
         Waypoints.first().isVisible = true
         Waypoints.last().isFinal = true
         for (wpt: Waypoint in Waypoints)
-            wpt.parentGame = this
+            wpt.parentGameID = this.id
     }
 
     fun enableNextWaypoint(wpt: Waypoint){

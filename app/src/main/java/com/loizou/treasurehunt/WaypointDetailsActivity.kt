@@ -27,7 +27,7 @@ class WaypointDetails : AppCompatActivity() {
         setContentView(R.layout.activity_waypoint_details)
 
         mWaypoint = DataManager.getWaypointById(intent.getStringExtra("waypoint_id")!!)!!
-        mTreasureHunt = mWaypoint.parentGame
+        mTreasureHunt = DataManager.getTreasureHuntById(mWaypoint.parentGameID)!!
 
         title = mWaypoint.name
 
