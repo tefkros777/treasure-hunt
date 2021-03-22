@@ -23,6 +23,8 @@ class TreasureHuntSelectionActivity : AppCompatActivity() {
 
         Database.fetchTreasureHunts()
 
+        // TODO: SUBSCRIBE TO DATABASE EVENT AND AWAIT FETCHING COMPLETION
+
         val recViewTreasureHuntsList = findViewById<RecyclerView>(R.id.recViewTreasureHunts)
         recViewTreasureHuntsList.layoutManager = LinearLayoutManager(this)
         recViewTreasureHuntsList.adapter = TreasureHuntListAdapter(Database.getTreasureHunts())

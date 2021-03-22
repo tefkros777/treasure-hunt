@@ -24,11 +24,10 @@ object Database {
             .get()
             .addOnSuccessListener { result ->
                 debugLog("Fetched ${result.documents.size} games from the database")
-                for (document in result) {
-                    Log.d(LOG_TAG, "${document.id} => ${document.data}")
-                    val foo = document.toObject(TreasureHunt::class.java)
-                    foo.toString()
-                }
+                for (document in result)
+                    // Deserialize every document into a TreasureHunt object
+                    mTreasureHunts.add(document.toObject(TreasureHunt::class.java))
+                // TODO: IMPLEMENT OBSERVER - RAISE EVENT HERE
             }
             .addOnFailureListener { exception ->
                 debugLog("Error while fetching games from the database")
