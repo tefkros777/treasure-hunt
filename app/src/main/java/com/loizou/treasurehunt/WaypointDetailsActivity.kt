@@ -83,7 +83,7 @@ class WaypointDetails : AppCompatActivity() {
     fun navigateToWaypoint(v: View) {
         // Create a Uri from an intent string. Use the result to create an Intent.
         val intentURI =
-            Uri.parse("http://maps.google.com/maps?daddr=${mWaypoint.coords.latitude},${mWaypoint.coords.longitude}")
+            Uri.parse("http://maps.google.com/maps?daddr=${mWaypoint.latitude},${mWaypoint.longitude}")
         val mapIntent = Intent(Intent.ACTION_VIEW, intentURI)
         mapIntent.resolveActivity(packageManager)?.let {
             startActivity(mapIntent)

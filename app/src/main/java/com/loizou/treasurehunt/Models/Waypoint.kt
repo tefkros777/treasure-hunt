@@ -7,7 +7,8 @@ private var waypoint_id = 0
 
 data class Waypoint(
     var name: String = "waypoint",
-    var coords: LatLng = LatLng(0.0, 0.0),
+    var latitude: Double = 0.0,
+    var longitude: Double = 0.0,
     var solution: String = "mystery",
     var tasks: String = "",
     var description: String = ""
@@ -18,8 +19,8 @@ data class Waypoint(
     var isSolved = false
     var parentGameID = ""
 
-    fun getCoords(){
-
+    fun getCoords(): LatLng {
+        return LatLng(latitude, longitude)
     }
 
     fun attemptSolve(solution: String): Boolean {

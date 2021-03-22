@@ -95,7 +95,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         for (waypoint in waypoints) {
             // Solved waypoints have already been added. Don't add them again
             if (waypoint.isVisible && !waypoint.isSolved) {
-                val marker = LatLng(waypoint.coords.latitude, waypoint.coords.longitude)
+                val marker = LatLng(waypoint.latitude, waypoint.longitude)
                 mMap.addMarker(MarkerOptions().position(marker).title(waypoint.name))
                 debugLog("Added marker for ${waypoint.name}")
             }
@@ -105,7 +105,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     fun handleWaypointClick(waypoint: Waypoint) {
         Log.d(LOG_TAG, "SELECTED WAYPOINT: ${waypoint.name}")
         val zoomLevel = 15.0f
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(waypoint.coords, zoomLevel))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(waypoint.getCoords(), zoomLevel))
     }
 
     /**

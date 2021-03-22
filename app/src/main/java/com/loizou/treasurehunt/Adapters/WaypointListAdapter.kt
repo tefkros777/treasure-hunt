@@ -61,8 +61,8 @@ class WaypointListAdapter(val mWaypointList: MutableList<Waypoint>, val mCalling
 
         fun bind(item: Waypoint) {
             tvName.text = item.name
-            tvLat.text = "Latitude: " + item.coords.latitude.toString()
-            tvLng.text = "Longtitude: " + item.coords.longitude.toString()
+            tvLat.text = "Latitude: " + item.latitude.toString()
+            tvLng.text = "Longtitude: " + item.longitude.toString()
         }
 
     }

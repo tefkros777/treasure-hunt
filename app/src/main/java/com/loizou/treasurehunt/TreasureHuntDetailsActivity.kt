@@ -57,7 +57,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         val group = LatLngBounds.Builder()
         for (wpt: Waypoint in mTreasureHunt.Waypoints)
-            group.include(wpt.coords)
+            group.include(wpt.getCoords())
         drawTreasureHunt()
         mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(group.build(), 100))
@@ -67,7 +67,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
     private fun drawTreasureHunt() {
         val line = PolylineOptions()
         for (waypoint: Waypoint in mTreasureHunt.Waypoints)
-            line.add(waypoint.coords)
+            line.add(waypoint.getCoords())
         line.width(10f).color(R.color.colorPrimary)
         mMap.addPolyline(line)
     }
