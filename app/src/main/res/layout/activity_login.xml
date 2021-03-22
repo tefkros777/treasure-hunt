@@ -44,6 +44,7 @@
         android:layout_below="@id/etPassword"
         android:layout_margin="6dp"
         android:backgroundTint="@color/colorAccent"
+        android:onClick="login"
         android:text="@string/login" />
 
     <com.google.android.material.circularreveal.CircularRevealRelativeLayout
