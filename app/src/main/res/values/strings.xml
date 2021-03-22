@@ -54,6 +54,12 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="available_points">Available points:</string>
     <string name="start_hunting">Start Hunting!</string>
     <string name="hunt_author_placeholder">by Indiana Jones</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="confirm_password">Confirm password</string>
 
 
 </resources>

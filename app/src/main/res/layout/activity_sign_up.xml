@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/loginForm"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signupForm"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".SignUpActivity">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvLoginPrompt"
+        android:id="@+id/tvSignupPrompt"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:text="@string/login_prompt"
+        android:text="@string/create_new_account"
         android:textColor="@color/colorPrimaryText"
         android:textSize="22sp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etDisplayName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvSignupPrompt"
+        android:layout_margin="6dp"
+        android:hint="@string/enter_name"
+        android:textColor="@color/colorPrimaryText"
+        android:textColorHint="@color/colorSecondaryText" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etEmail"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvLoginPrompt"
+        android:layout_below="@+id/etDisplayName"
         android:layout_margin="6dp"
-        android:hint="@string/email"
+        android:hint="@string/enter_email"
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText" />
 
@@ -32,35 +44,46 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etEmail"
         android:layout_margin="6dp"
-        android:hint="@string/password"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimaryText"
+        android:textColorHint="@color/colorSecondaryText" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etPasswordConfirmation"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etPassword"
+        android:layout_margin="6dp"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignup"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etPassword"
+        android:layout_below="@id/etPasswordConfirmation"
         android:layout_margin="6dp"
         android:backgroundTint="@color/colorAccent"
-        android:onClick="login"
-        android:text="@string/login" />
+        android:onClick="createAccount"
+        android:text="@string/signup" />
 
-    <com.google.android.material.circularreveal.CircularRevealRelativeLayout
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnLogin"
+        android:layout_below="@+id/btnSignup"
         android:layout_marginLeft="6dp"
         android:layout_marginTop="64dp"
         android:layout_marginRight="6dp"
         android:gravity="center">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDontHaveAccount"
+            android:id="@+id/tvAlreadyHaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_account"
+            android:text="@string/already_have_account"
             android:textColor="@color/colorSecondaryText" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -68,13 +91,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/tvDontHaveAccount"
-            android:onClick="createNewUser"
-            android:text="@string/signup"
+            android:onClick="loginExistingUser"
+            android:text="@string/login"
             android:textColor="@color/colorSecondaryText"
             android:textStyle="bold" />
 
-    </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
-
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

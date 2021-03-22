@@ -41,7 +41,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun createNewUser(view: View) {
-        
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
     }
 
     private fun closeKeyBoard() {
@@ -54,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun firebaseSignIn(email: String, password: String) {
         // TODO: DEBUGGING ONLY
-        val email = "test@test.com"
+        val email = "wellerman@test.com"
         val password = "123456"
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
