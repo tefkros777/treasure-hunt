@@ -6,8 +6,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
+import java.util.*
+import kotlin.collections.ArrayList
 
-object Database {
+object Database : Observable() {
     private var mTreasureHunts = ArrayList<TreasureHunt>()
     val db = Firebase.firestore
 
@@ -19,7 +21,20 @@ object Database {
         return mTreasureHunts
     }
 
+    fun getWaypointById(id: String) : Waypoint?{
+        for (hunt in mTreasureHunts){
+            for (wpt in hunt.Waypoints){
+                if (wpt.id == id){
+                    return wpt
+                }
+            }
+        }
+        debugLog("Could not find waypoint with waypoint it $id")
+        return null
+    }
+
     fun fetchTreasureHunts(){
+        // TODO: Perhaps we need to clear mTreasureHunts everytime
         db.collection("treasure_hunts")
             .get()
             .addOnSuccessListener { result ->
@@ -28,6 +43,8 @@ object Database {
                     // Deserialize every document into a TreasureHunt object
                     mTreasureHunts.add(document.toObject(TreasureHunt::class.java))
                 // TODO: IMPLEMENT OBSERVER - RAISE EVENT HERE
+                setChanged()
+                notifyObservers(mTreasureHunts)
             }
             .addOnFailureListener { exception ->
                 debugLog("Error while fetching games from the database")
@@ -38,7 +55,6 @@ object Database {
     init {
         // Fetch treasure hunts
         fetchTreasureHunts()
-
     }
 
     fun seedTestData(){

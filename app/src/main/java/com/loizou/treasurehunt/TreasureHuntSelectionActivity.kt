@@ -10,8 +10,10 @@ import com.google.firebase.ktx.Firebase
 import com.loizou.treasurehunt.Adapters.TreasureHuntListAdapter
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
+import java.util.*
+import kotlin.collections.ArrayList
 
-class TreasureHuntSelectionActivity : AppCompatActivity() {
+class TreasureHuntSelectionActivity : AppCompatActivity(), Observer {
 
     val mDb = Firebase.firestore
 
@@ -21,15 +23,26 @@ class TreasureHuntSelectionActivity : AppCompatActivity() {
 
         title = "Select a treasure hunt"
 
+        Database.addObserver(this)
         Database.fetchTreasureHunts()
 
         // TODO: SUBSCRIBE TO DATABASE EVENT AND AWAIT FETCHING COMPLETION
 
-        val recViewTreasureHuntsList = findViewById<RecyclerView>(R.id.recViewTreasureHunts)
-        recViewTreasureHuntsList.layoutManager = LinearLayoutManager(this)
-        recViewTreasureHuntsList.adapter = TreasureHuntListAdapter(Database.getTreasureHunts())
+
 
         // The adapter takes care of launching the TreasureHuntActivity once a selection is made
 
+    }
+
+    override fun update(o: Observable?, arg: Any?) {
+        when (o){
+            is Database -> {
+                val thList = arg as List<TreasureHunt>
+                val recViewTreasureHuntsList = findViewById<RecyclerView>(R.id.recViewTreasureHunts)
+                recViewTreasureHuntsList.layoutManager = LinearLayoutManager(this)
+                recViewTreasureHuntsList.adapter = TreasureHuntListAdapter(thList)
+            }
+            else -> println(o?.javaClass.toString())
+        }
     }
 }

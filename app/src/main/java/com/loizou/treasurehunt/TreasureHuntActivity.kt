@@ -40,7 +40,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_treasure_hunt)
 
         val game_id = intent.getStringExtra("game_id")!!
-        mTreasureHunt = DataManager.getTreasureHuntById(game_id)!!
+        mTreasureHunt = Database.getTreasureHuntById(game_id)!!
         title = mTreasureHunt.name
         Log.d(LOG_TAG, "LOADED GAME WITH ID: ${mTreasureHunt.id}")
 
