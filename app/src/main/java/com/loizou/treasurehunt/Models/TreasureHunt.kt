@@ -17,6 +17,8 @@ data class TreasureHunt(
     fun processWaypoints(){
         Waypoints.first().isVisible = true
         Waypoints.last().isFinal = true
+        for (wpt: Waypoint in Waypoints)
+            wpt.parentGame = this
     }
 
     fun enableNextWaypoint(wpt: Waypoint){

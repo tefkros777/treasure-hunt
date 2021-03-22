@@ -14,7 +14,6 @@ import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 import kotlinx.android.synthetic.main.activity_waypoint_details.*
-import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.*
 import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.view.*
 
 
@@ -28,7 +27,7 @@ class WaypointDetails : AppCompatActivity() {
         setContentView(R.layout.activity_waypoint_details)
 
         mWaypoint = DataManager.getWaypointById(intent.getStringExtra("waypoint_id")!!)!!
-        mTreasureHunt = mWaypoint.parent_game
+        mTreasureHunt = mWaypoint.parentGame
 
         title = mWaypoint.name
 
