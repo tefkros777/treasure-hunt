@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "746991076506",
+    "project_id": "treasure-hunt-28f01",
+    "storage_bucket": "treasure-hunt-28f01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746991076506:android:683e4aad5dbacbe7740b23",
+        "android_client_info": {
+          "package_name": "com.loizou.treasurehunt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746991076506-9fcsk2flhl5136r2fgvsjb2pkrmjf2io.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7j5LtUCKjiIQg_xPJ_e-v2usz5mUel8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746991076506-9fcsk2flhl5136r2fgvsjb2pkrmjf2io.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
