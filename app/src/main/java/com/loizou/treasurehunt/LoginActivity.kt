@@ -1,10 +1,12 @@
 package com.loizou.treasurehunt
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -14,7 +16,9 @@ import com.google.firebase.ktx.Firebase
 
 
 class LoginActivity : AppCompatActivity() {
+    private val SIGNUP_ACTIVITY_REQ: Int = 2
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var mLoginForm : ViewGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +27,8 @@ class LoginActivity : AppCompatActivity() {
 
         // Initialise Firebase auth
         mAuth = Firebase.auth
+
+        mLoginForm = findViewById(R.id.loginForm)
 
     }
 
@@ -42,7 +48,14 @@ class LoginActivity : AppCompatActivity() {
 
     fun createNewUser(view: View) {
         val intent = Intent(this, SignUpActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, SIGNUP_ACTIVITY_REQ)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK)
+            showMessage(mLoginForm, "Account created successfully, please sign in")
     }
 
     private fun closeKeyBoard() {

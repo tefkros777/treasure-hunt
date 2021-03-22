@@ -28,7 +28,6 @@ class GameModeSelectionActivity : AppCompatActivity() {
         // Greet user
         showMessage(rootLayout, "Welcome to treasure hunt!")
 
-
         btnHuntMode.setOnClickListener {
             showMessage(rootLayout, "TREASURE HUNT MODE")
             // val intent = Intent(this, TreasureHuntActivity::class.java)

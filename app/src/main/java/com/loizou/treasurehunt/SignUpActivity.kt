@@ -1,5 +1,6 @@
 package com.loizou.treasurehunt
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -51,6 +52,12 @@ class SignUpActivity : AppCompatActivity() {
             return
         }
 
+        // Check password length
+        if (password.length < 6){
+            showMessage(mSignupForm, "Password must be at least 6 characters long")
+            return
+        }
+
         // Check matching passwords
         if (password != passwordConfirm){
             showMessage(mSignupForm, "Passwords don't match")
@@ -70,7 +77,6 @@ class SignUpActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     debugLog("Firebase signup: Successful")
-                    showMessage(mSignupForm, "Account created successfully")
 
                     // Set display name
                     val profileUpdates = UserProfileChangeRequest.Builder()
@@ -78,6 +84,7 @@ class SignUpActivity : AppCompatActivity() {
                         .build()
                     mAuth.currentUser?.updateProfile(profileUpdates)
 
+                    setResult(Activity.RESULT_OK)
                     finish()
                 } else {
                     debugLog("Firebase signup: Unsuccessful")
