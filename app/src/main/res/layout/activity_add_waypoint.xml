@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/btnSaveWaypoint"
         android:layout_alignParentTop="true"
+        android:scrollbars="vertical"
         android:orientation="vertical">
 
         <!--Name-->
@@ -79,24 +80,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/waypoint_coords" />
 
-        <!--Map-->
-        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:minHeight="250dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:cardCornerRadius="12dp">
-
-            <fragment
-                android:id="@+id/mapWaypointLoc"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                tools:context=".AddWaypointActivity" />
-
-        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
+        <!--Coordinates buttons-->
         <com.google.android.material.circularreveal.CircularRevealLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,7 +94,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_weight="2"
                 android:text="@string/enter_manually"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryText" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnUseCurrentLoc"
@@ -123,8 +107,35 @@
 
         </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
+        <!--Waypoint location preview-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/waypoint_loc_preview" />
+
+        <!--Map-->
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:minHeight="250dp"
+            app:cardCornerRadius="12dp">
+
+            <fragment
+                android:id="@+id/mapWaypointLoc"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:context=".AddWaypointActivity" />
+
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
+    <!--Save waypooint button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSaveWaypoint"
         android:layout_width="match_parent"

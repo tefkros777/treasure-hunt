@@ -84,5 +84,6 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="waypoint_coords">Waypoint Coordinates</string>
     <string name="enter_manually">Enter manually</string>
     <string name="use_current_location">Use my location</string>
+    <string name="waypoint_loc_preview">Waypoint Location Preview</string>
 
 </resources>
