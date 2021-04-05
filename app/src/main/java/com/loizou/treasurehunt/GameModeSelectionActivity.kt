@@ -19,6 +19,8 @@ class GameModeSelectionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game_mode_selection)
         Log.v(LOG_TAG, "Main Activity Loaded")
 
+        title = "Dashboard"
+
         val rootLayout = findViewById<ViewGroup>(R.id.rootLayout)
         val btnHuntMode = findViewById<CardView>(R.id.btnHuntMode)
         val btnBurialMode = findViewById<CardView>(R.id.btnBurialMode)
@@ -29,14 +31,16 @@ class GameModeSelectionActivity : AppCompatActivity() {
         showMessage(rootLayout, "Welcome to treasure hunt!")
 
         btnHuntMode.setOnClickListener {
-            showMessage(rootLayout, "TREASURE HUNT MODE")
+//            showMessage(rootLayout, "TREASURE HUNT MODE")
             // val intent = Intent(this, TreasureHuntActivity::class.java)
             val intent = Intent(this, TreasureHuntSelectionActivity::class.java)
             startActivity(intent)
         }
 
         btnBurialMode.setOnClickListener {
-            showMessage(rootLayout, "TREASURE BURIAL MODE")
+//            showMessage(rootLayout, "TREASURE BURIAL MODE")
+            val intent = Intent(this, TreasureBurialWelcome::class.java)
+            startActivity(intent)
         }
 
     }

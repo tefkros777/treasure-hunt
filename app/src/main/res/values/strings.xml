@@ -60,6 +60,15 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="enter_password">Enter password</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="treasure_burial_mode_welcome">Treasure Burial mode</string>
+    <string name="treasure_burial_mode_instructions">
+        Welcome to the Treasure Burial mode, it\'s great to have you onboard!
+        \n\nThis is the mode where you get to go out and bury a treasure for some other buccaneer to find.
+        \n\nBy playing this mode you are actively contributing to the game\'s community and you are awarded points for every treasure you hide.
+        \n\nAll you need to do is go out, find some interesting location you want to share with the world, and bury your virtual treasure there. Then construct a virtual path of waypoints (clues) leading to that location, and that\'s all there is to it!
+    </string>
+    <string name="aye_aye_lets_go">Aye aye! Let\'s go!</string>
+    <string name="ahoy_matey">Ahoy Matey!</string>
 
 
 </resources>
