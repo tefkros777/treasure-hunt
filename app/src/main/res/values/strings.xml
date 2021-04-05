@@ -69,6 +69,17 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     </string>
     <string name="aye_aye_lets_go">Aye aye! Let\'s go!</string>
     <string name="ahoy_matey">Ahoy Matey!</string>
-
+    <string name="mark_as_final">Mark as final location</string>
+    <string name="add_another_waypoint">Add another waypoint</string>
+    <string name="save_waypoint">Save waypoint</string>
+    <string name="waypoint_num">Waypoint # %1d</string>
+    <string name="waypoint_name">Waypoint Name</string>
+    <string name="enter_waypoint_name">What is the name of this waypoint?</string>
+    <string name="waypoint_description">Waypoint description</string>
+    <string name="enter_waypoint_description">Enter some information about this location</string>
+    <string name="waypoint_task">Waypoint Task</string>
+    <string name="enter_waypoint_task">What is the hunter\'s task at this location?</string>
+    <string name="waypoint_solution">Waypoint solution</string>
+    <string name="enter_waypoint_solution">What is the expected solution for this task?</string>
 
 </resources>
