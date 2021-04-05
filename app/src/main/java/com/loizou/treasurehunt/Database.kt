@@ -33,6 +33,7 @@ object Database : Observable() {
         return null
     }
 
+    // Get Treasure Hunts from the DB
     fun fetchTreasureHunts(){
         // TODO: Perhaps we need to clear mTreasureHunts everytime
         db.collection("treasure_hunts")
@@ -42,7 +43,6 @@ object Database : Observable() {
                 for (document in result)
                     // Deserialize every document into a TreasureHunt object
                     mTreasureHunts.add(document.toObject(TreasureHunt::class.java))
-                // TODO: IMPLEMENT OBSERVER - RAISE EVENT HERE
                 setChanged()
                 notifyObservers(mTreasureHunts)
             }
@@ -72,7 +72,7 @@ object Database : Observable() {
         for (th : TreasureHunt in mTreasureHunts)
             th.processWaypoints()
 
-        // Add a new document with a generated ID
+        // Add TreasureHunt to firestore
         db.collection("treasure_hunts")
             .add(th1)
             .addOnSuccessListener { documentReference ->

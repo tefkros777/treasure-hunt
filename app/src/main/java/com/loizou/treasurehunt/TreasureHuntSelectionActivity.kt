@@ -26,16 +26,15 @@ class TreasureHuntSelectionActivity : AppCompatActivity(), Observer {
         Database.addObserver(this)
         Database.fetchTreasureHunts()
 
-        // TODO: SUBSCRIBE TO DATABASE EVENT AND AWAIT FETCHING COMPLETION
 
-
-
-        // The adapter takes care of launching the TreasureHuntActivity once a selection is made
+        // The adapter takes care of launching the TreasureHuntDetailsActivity once a selection is made
 
     }
 
+    // SUBSCRIBE TO DATABASE EVENT AND AWAIT FETCHING COMPLETION
     override fun update(o: Observable?, arg: Any?) {
         when (o){
+            // When the observer is the is the Database
             is Database -> {
                 val thList = arg as List<TreasureHunt>
                 val recViewTreasureHuntsList = findViewById<RecyclerView>(R.id.recViewTreasureHunts)
