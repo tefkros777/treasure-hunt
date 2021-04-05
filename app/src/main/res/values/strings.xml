@@ -81,5 +81,8 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="enter_waypoint_task">What is the hunter\'s task at this location?</string>
     <string name="waypoint_solution">Waypoint solution</string>
     <string name="enter_waypoint_solution">What is the expected solution for this task?</string>
+    <string name="waypoint_coords">Waypoint Coordinates</string>
+    <string name="enter_manually">Enter manually</string>
+    <string name="use_current_location">Use my location</string>
 
 </resources>
