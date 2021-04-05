@@ -7,133 +7,137 @@
     android:layout_margin="16dp"
     tools:context=".AddWaypointActivity">
 
-    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btnSaveWaypoint"
-        android:layout_alignParentTop="true"
-        android:scrollbars="vertical"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true">
 
-        <!--Name-->
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/waypoint_name" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvWptName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_waypoint_name"
-            android:inputType="textMultiLine" />
-
-        <!--Description-->
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/waypoint_description" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvWptDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_waypoint_description"
-            android:inputType="textMultiLine"
-            android:scrollbars="vertical" />
-
-        <!--Task-->
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/waypoint_task" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvWptTask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_waypoint_task"
-            android:inputType="textMultiLine"
-            android:scrollbars="vertical" />
-
-        <!--Solution-->
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/waypoint_solution" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvWptSolution"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_waypoint_solution"
-            android:inputType="textMultiLine"
-            android:scrollbars="vertical" />
-
-        <!--Coords-->
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/waypoint_coords" />
-
-        <!--Coordinates buttons-->
         <com.google.android.material.circularreveal.CircularRevealLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEnterCoordsManually"
-                style="?attr/materialButtonOutlinedStyle"
+            <!--Name-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/waypoint_name" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvWptName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_waypoint_name"
+                android:inputType="textMultiLine" />
+
+            <!--Description-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/waypoint_description" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvWptDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_waypoint_description"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical" />
+
+            <!--Task-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/waypoint_task" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvWptTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_waypoint_task"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical" />
+
+            <!--Solution-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/waypoint_solution" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvWptSolution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_waypoint_solution"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical" />
+
+            <!--Coords-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/waypoint_coords" />
+
+            <!--Coordinates buttons-->
+            <com.google.android.material.circularreveal.CircularRevealLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEnterCoordsManually"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="2"
+                    android:text="@string/enter_manually"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUseCurrentLoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="2"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="@string/use_current_location" />
+
+            </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+            <!--Waypoint location preview-->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/waypoint_loc_preview" />
+
+            <!--Map-->
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="4dp"
-                android:layout_weight="2"
-                android:text="@string/enter_manually"
-                android:textColor="@color/colorPrimaryText" />
+                android:layout_marginTop="4dp"
+                android:layout_weight="30"
+                android:minHeight="250dp"
+                app:cardCornerRadius="12dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnUseCurrentLoc"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
-                android:layout_weight="2"
-                android:backgroundTint="@color/colorAccent"
-                android:text="@string/use_current_location" />
+                <fragment
+                    android:id="@+id/mapWaypointLocationPreview"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context=".AddWaypointActivity" />
+
+            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
         </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
-        <!--Waypoint location preview-->
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/waypoint_loc_preview" />
-
-        <!--Map-->
-        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:minHeight="250dp"
-            app:cardCornerRadius="12dp">
-
-            <fragment
-                android:id="@+id/mapWaypointLoc"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                tools:context=".AddWaypointActivity" />
-
-        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
-    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <!--Save waypooint button-->
     <com.google.android.material.button.MaterialButton
@@ -145,3 +149,4 @@
         android:textColor="@color/colorPrimaryText" />
 
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+
