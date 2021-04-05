@@ -96,6 +96,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="2"
+                    android:onClick="addLocationManually"
                     android:text="@string/enter_manually"
                     android:textColor="@color/colorPrimaryText" />
 
@@ -106,6 +107,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_weight="2"
                     android:backgroundTint="@color/colorAccent"
+                    android:onClick="setCurrentLocation"
                     android:text="@string/use_current_location" />
 
             </com.google.android.material.circularreveal.CircularRevealLinearLayout>
@@ -145,6 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:onClick="saveWaypoint"
         android:text="@string/save_waypoint"
         android:textColor="@color/colorPrimaryText" />
 

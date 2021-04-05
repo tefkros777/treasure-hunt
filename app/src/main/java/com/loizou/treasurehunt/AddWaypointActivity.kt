@@ -2,6 +2,7 @@ package com.loizou.treasurehunt
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.material.textview.MaterialTextView
@@ -22,6 +23,21 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
         // do stuff ...
     }
+
+    fun addLocationManually(v: View){
+        showMessage(v, "Add location manually")
+        // TODO: Implement popup window for manual coordinate adding
+    }
+
+    fun setCurrentLocation(v: View){
+        showMessage(v, "Set to current location")
+    }
+
+    fun saveWaypoint(v: View){
+        //TODO: Save waypoint and ask whether to add another one or finish via popup
+    }
+
 }
