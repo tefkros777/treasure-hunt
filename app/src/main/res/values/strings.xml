@@ -89,5 +89,6 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="lat">Latitude</string>
     <string name="lng">Longitude</string>
     <string name="done">Done</string>
+    <string name="not_set"><i>Not yet set</i></string>
 
 </resources>

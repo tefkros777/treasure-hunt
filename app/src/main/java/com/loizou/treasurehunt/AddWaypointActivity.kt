@@ -1,7 +1,5 @@
 package com.loizou.treasurehunt
 
-import android.app.Activity
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +12,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.android.synthetic.main.enter_coords_dialog.view.*
 import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.view.*
@@ -25,8 +22,9 @@ private const val ZOOM_LEVEL: Float = 15f
 class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var mRootLayout : ViewGroup
-    private lateinit var mWaypointCoords : LatLng
+    private lateinit var mRootLayout: ViewGroup
+    private lateinit var mTvAddWaypoint_coords: MaterialTextView
+    private lateinit var mWaypointCoords: LatLng
 
     private var WAYPOINT_NUM = 0
 
@@ -35,6 +33,8 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_add_waypoint)
 
         mRootLayout = findViewById(R.id.vgAddWaypointRootLayout)
+        mTvAddWaypoint_coords = findViewById(R.id.tvAddWaypoint_coords)
+
         title = getString(R.string.waypoint_num, ++WAYPOINT_NUM)
 
         val mapFragment = supportFragmentManager
@@ -65,15 +65,17 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
             // Animate map to the coords location
             val wptMarker = MarkerOptions()
                 .position(mWaypointCoords)
-                .title(getString(R.string.waypoint_coords))
+                .title("${mWaypointCoords.latitude}, ${mWaypointCoords.longitude}")
             mMap.addMarker(wptMarker)
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(wptMarker.position, ZOOM_LEVEL))
 
-            showMessage(mRootLayout, "Coordinates set to${mWaypointCoords.latitude}, ${mWaypointCoords.longitude}")
+            val coordsFormatted = "${mWaypointCoords.latitude}, ${mWaypointCoords.longitude}"
+
+            showMessage(mRootLayout,"Coordinates set to $coordsFormatted")
+            mTvAddWaypoint_coords.text = coordsFormatted
 
             alertDialog.dismiss()
         }
-
 
         // Cancel button of the dialog
         dialogView.btnDialogCancel.setOnClickListener { alertDialog.dismiss() }

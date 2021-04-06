@@ -84,6 +84,13 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/waypoint_coords" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAddWaypoint_coords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="@string/not_set" />
+
             <!--Coordinates buttons-->
             <com.google.android.material.circularreveal.CircularRevealLinearLayout
                 android:layout_width="match_parent"
