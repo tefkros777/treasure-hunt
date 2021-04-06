@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/tvCoordsLat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lat"
+        android:inputType="numberSigned" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/tvCoordsLong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lng"
+        android:inputType="numberSigned" />
+
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDialogCancel"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="@string/cancel"
+            android:textColor="@color/colorSecondaryText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDialogDone"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/done"
+            android:textColor="@color/colorAccent" />
+
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+</com.google.android.material.circularreveal.CircularRevealLinearLayout>
