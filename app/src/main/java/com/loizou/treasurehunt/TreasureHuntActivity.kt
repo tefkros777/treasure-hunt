@@ -118,30 +118,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        checkLocationPermission()
+        checkLocationPermission(this)
         mMap.isMyLocationEnabled = true
         getLastLocation()
         addWaypointMarkers(mTreasureHunt.Waypoints)
-    }
-
-    /**
-     * Checks if location permission is granted and requests it if it's not
-     */
-    private fun checkLocationPermission() {
-        // Check for location permission
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Request location permission
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQ_CODE
-            )
-            return
-        }
     }
 
     /**
@@ -153,7 +133,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         locationRequest.interval = 10
         locationRequest.fastestInterval = 0
 
-        checkLocationPermission()
+        checkLocationPermission(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         fusedLocationClient.requestLocationUpdates(
             locationRequest,
@@ -168,7 +148,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     private fun getLastLocation() {
         if (isLocationEnabled()) {
-            checkLocationPermission()
+            checkLocationPermission(this)
             fusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
                 val location: Location? = task.result // Wait until task has finished
                 if (location == null)

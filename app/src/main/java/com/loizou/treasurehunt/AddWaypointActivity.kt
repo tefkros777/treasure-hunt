@@ -91,6 +91,8 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(map: GoogleMap) {
         mMap = map
         mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
+        checkLocationPermission(this)
+        mMap.isMyLocationEnabled = true
         debugLog("Add Waypoint Activity: Map Ready")
         // do stuff ...
     }
