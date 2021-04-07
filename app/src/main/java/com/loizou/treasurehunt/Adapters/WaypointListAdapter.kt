@@ -53,7 +53,7 @@ class WaypointListAdapter(val mWaypointList: MutableList<Waypoint>, val mCalling
      * Used to cache the views within the item layout for fast access
      */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvName = itemView.findViewById<MaterialTextView>(R.id.tvWaypointName)
+        val tvName = itemView.findViewById<MaterialTextView>(R.id.tvWaypointRowLayout_Name)
         val tvLat = itemView.findViewById<MaterialTextView>(R.id.tvWaypointLat)
         val tvLng = itemView.findViewById<MaterialTextView>(R.id.tvWaypointLng)
         val waypointRow = itemView.findViewById<ViewGroup>(R.id.waypointDetailsLayout)

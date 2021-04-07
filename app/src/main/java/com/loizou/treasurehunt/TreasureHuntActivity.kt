@@ -1,17 +1,14 @@
 package com.loizou.treasurehunt
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.*
@@ -29,11 +26,11 @@ import com.loizou.treasurehunt.Models.Waypoint
 class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var mTreasureHunt: TreasureHunt
+    private lateinit var mFusedLocationClient: FusedLocationProviderClient
     private lateinit var mRecViewWaypointList: RecyclerView
 
-    private lateinit var visibleWaypointList: MutableList<Waypoint>
+    private lateinit var mTreasureHunt: TreasureHunt
+    private lateinit var mVisibleWaypointList: MutableList<Waypoint>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,10 +58,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
         // Cache the Waypoint list of the adapter (data source)
-        visibleWaypointList = (mRecViewWaypointList.adapter as WaypointListAdapter).mWaypointList
+        mVisibleWaypointList = (mRecViewWaypointList.adapter as WaypointListAdapter).mWaypointList
 
         // Get location access
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
     }
 
@@ -81,7 +78,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                     showMessage(mRecViewWaypointList, R.string.game_finished)
                     return
                 }
-                visibleWaypointList.add(mTreasureHunt.Waypoints[nextWptIndex])
+                mVisibleWaypointList.add(mTreasureHunt.Waypoints[nextWptIndex])
                 mRecViewWaypointList.adapter!!.notifyItemChanged(nextWptIndex)
                 addWaypointMarkers(mTreasureHunt.Waypoints)
             }
@@ -120,7 +117,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         checkLocationPermission(this)
         mMap.isMyLocationEnabled = true
-        getLastLocation()
+        getLastLocation() // TODO: Maybe we don't need this?
         addWaypointMarkers(mTreasureHunt.Waypoints)
     }
 
@@ -134,8 +131,8 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         locationRequest.fastestInterval = 0
 
         checkLocationPermission(this)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.requestLocationUpdates(
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        mFusedLocationClient.requestLocationUpdates(
             locationRequest,
             locationCallback,
             Looper.myLooper()
@@ -149,7 +146,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun getLastLocation() {
         if (isLocationEnabled()) {
             checkLocationPermission(this)
-            fusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
+            mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
                 val location: Location? = task.result // Wait until task has finished
                 if (location == null)
                     getLocationData() // Request new location

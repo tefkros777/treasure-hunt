@@ -90,5 +90,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="lng">Longitude</string>
     <string name="done">Done</string>
     <string name="not_set"><i>Not yet set</i></string>
+    <string name="please_wait">Please wait...</string>
+    <string name="getting_current_location">Getting current location</string>
 
 </resources>
