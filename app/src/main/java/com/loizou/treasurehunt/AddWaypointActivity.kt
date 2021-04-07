@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -20,7 +21,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
+import com.loizou.treasurehunt.Custom.ScrollableMapFragment
 import com.loizou.treasurehunt.Models.Waypoint
+import kotlinx.android.synthetic.main.activity_add_waypoint.*
 import kotlinx.android.synthetic.main.enter_coords_dialog.view.*
 import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.view.btnDialogCancel
 
@@ -146,7 +149,13 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
     // Callback
     override fun onMapReady(map: GoogleMap) {
         mMap = map
-//        mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
+        (supportFragmentManager.findFragmentById(R.id.mapWaypointLocationPreview) as? ScrollableMapFragment)?.let {
+            it.listener = object: ScrollableMapFragment.OnTouchListener {
+                override fun onTouch() {
+                    scrollView?.requestDisallowInterceptTouchEvent(true)
+                }
+            }
+        }
         checkLocationPermission(this)
         mMap.isMyLocationEnabled = true
         debugLog("Add Waypoint Activity: Map Ready")

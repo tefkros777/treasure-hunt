@@ -9,6 +9,7 @@
     tools:context=".AddWaypointActivity">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btnSaveWaypoint"
@@ -138,7 +139,7 @@
 
                 <fragment
                     android:id="@+id/mapWaypointLocationPreview"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:name="com.loizou.treasurehunt.Custom.ScrollableMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:context=".AddWaypointActivity" />
