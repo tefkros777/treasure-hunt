@@ -3,15 +3,15 @@ package com.loizou.treasurehunt
 import android.content.Context
 import android.location.Location
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -26,6 +26,7 @@ import com.loizou.treasurehunt.Models.Waypoint
 import kotlinx.android.synthetic.main.activity_add_waypoint.*
 import kotlinx.android.synthetic.main.enter_coords_dialog.view.*
 import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.view.btnDialogCancel
+
 
 private const val ZOOM_LEVEL: Float = 18f
 
@@ -45,13 +46,15 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_waypoint)
 
+        title = getString(R.string.waypoint_num, ++WAYPOINT_NUM)
+
         // GPS Location
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         mRootLayout = findViewById(R.id.vgAddWaypointRootLayout)
         mTvAddWaypoint_coords = findViewById(R.id.tvAddWaypoint_coords)
 
-        title = getString(R.string.waypoint_num, ++WAYPOINT_NUM)
+        mWaypointList = mutableListOf()
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapWaypointLocationPreview) as SupportMapFragment
@@ -152,11 +155,24 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add waypoint to the list
         mWaypointList.add(newWaypoint)
+        debugLog("Added waypoint to the list")
 
-        // TODO: Show dialog asking if this is the final waypoint
+        // Show dialog asking if this is the final waypoint
+        showLastWaypointPromt()
+    }
 
-        // If this was the last waypoint, construct the treasurehunt object
-
+    fun showLastWaypointPromt() {
+        val dialog = AlertDialog.Builder(this, R.style.AlertDialogStyle)
+            .setTitle("Waypoint Saved!")
+            .setMessage("Do you wish to add more waypoints?")
+            .setPositiveButton("Add more") { dialog, id ->
+                // clear the form
+            }
+            .setNegativeButton("That was the final one") { dialog, id ->
+                // proceed to add treasure hunt details/metadata
+            }
+            .setCancelable(false)
+            .show()
     }
 
     // Callback
