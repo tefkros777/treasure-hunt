@@ -92,5 +92,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="not_set"><i>Not yet set</i></string>
     <string name="please_wait">Please wait...</string>
     <string name="getting_current_location">Getting current location</string>
+    <string name="cannot_be_blank">Cannot be blank!</string>
+    <string name="wrong_coords">Incorrect coordinates</string>
 
 </resources>

@@ -16,6 +16,8 @@ const val WPT_DETAILS_REQ_CODE: Int = 1
 
 fun showMessage(v: View, msg: Int) = Snackbar.make(v, msg, Snackbar.LENGTH_SHORT).show()
 fun showMessage(v: View, msg: String) = Snackbar.make(v, msg, Snackbar.LENGTH_SHORT).show()
+fun showMessageLong(v: View, msg: String) = Snackbar.make(v, msg, Snackbar.LENGTH_LONG).show()
+fun showMessageLong(v: View, msg: Int) = Snackbar.make(v, msg, Snackbar.LENGTH_LONG).show()
 fun debugLog(msg: String) = Log.d(LOG_TAG, msg)
 
 /**

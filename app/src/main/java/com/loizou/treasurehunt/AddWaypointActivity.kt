@@ -35,7 +35,7 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mRootLayout: ViewGroup
     private lateinit var mTvAddWaypoint_coords: MaterialTextView
-    private lateinit var mWaypointCoords: LatLng
+    private var mWaypointCoords: LatLng? = null
 
     private lateinit var mWaypointList: MutableList<Waypoint>
 
@@ -60,8 +60,6 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // Button Add Location Manually
     fun addLocationManually(v: View) {
-        showMessage(v, "Add location manually")
-
         // Inflate the dialog with custom view
         val dialogView = LayoutInflater.from(this).inflate(R.layout.enter_coords_dialog, null)
         // AlertDialogBuilder
@@ -73,13 +71,24 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         // Solve button of the dialog
         dialogView.btnDialogDone.setOnClickListener {
 
+            // Input validation
+            var errorFlag = false // True if one or more errors occur
+            if (dialogView.tvCoordsLat.text.isNullOrBlank()) {
+                dialogView.tvCoordsLat.error = getString(R.string.cannot_be_blank)
+                errorFlag = true
+            }
+            if (dialogView.tvCoordsLong.text.isNullOrBlank()) {
+                dialogView.tvCoordsLong.error = getString(R.string.cannot_be_blank)
+                errorFlag = true
+            }
+            if (errorFlag) return@setOnClickListener
+
             mWaypointCoords = LatLng(
                 dialogView.tvCoordsLat.text!!.trim().toString().toDouble(),
                 dialogView.tvCoordsLong.text!!.trim().toString().toDouble()
             )
 
             showCoordsOnMap()
-
             alertDialog.dismiss()
         }
 
@@ -107,35 +116,38 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         val tvTask = findViewById<TextInputEditText>(R.id.tvWptTask)
         val tvSolution = findViewById<TextInputEditText>(R.id.tvWptSolution)
 
-        // check if all properties are set before proceeding
+        // Input validation
+        var errorFlag = false // True if one or more error occur
         if (tvName.text.isNullOrBlank()) {
-            tvName.error = "Cannot be blank!"
-            return
+            tvName.error = getString(R.string.cannot_be_blank)
+            errorFlag = true
         }
         if (tvDesc.text.isNullOrBlank()) {
-            tvDesc.error = "Cannot be blank!"
-            return
+            tvDesc.error = getString(R.string.cannot_be_blank)
+            errorFlag = true
         }
         if (tvTask.text.isNullOrBlank()) {
-            tvTask.error = "Cannot be blank!"
-            return
+            tvTask.error = getString(R.string.cannot_be_blank)
+            errorFlag = true
         }
         if (tvSolution.text.isNullOrBlank()) {
-            tvSolution.error = "Cannot be blank!"
-            return
+            tvSolution.error = getString(R.string.cannot_be_blank)
+            errorFlag = true
         }
         if (mWaypointCoords == null) {
             showMessage(mRootLayout, "Coordinates not set!")
-            return
+            errorFlag = true
         }
+        if (errorFlag) return
 
+        // Construct Waypoint based on user input
         val newWaypoint = Waypoint(
             name = tvName.text.toString(),
             description = tvDesc.text.toString(),
             tasks = tvTask.text.toString(),
             solution = tvSolution.text.toString(),
-            latitude = mWaypointCoords.latitude,
-            longitude = mWaypointCoords.longitude
+            latitude = mWaypointCoords!!.latitude,
+            longitude = mWaypointCoords!!.longitude
         )
 
         // Add waypoint to the list
@@ -144,13 +156,14 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         // TODO: Show dialog asking if this is the final waypoint
 
         // If this was the last waypoint, construct the treasurehunt object
+
     }
 
     // Callback
     override fun onMapReady(map: GoogleMap) {
         mMap = map
         (supportFragmentManager.findFragmentById(R.id.mapWaypointLocationPreview) as? ScrollableMapFragment)?.let {
-            it.listener = object: ScrollableMapFragment.OnTouchListener {
+            it.listener = object : ScrollableMapFragment.OnTouchListener {
                 override fun onTouch() {
                     scrollView?.requestDisallowInterceptTouchEvent(true)
                 }
@@ -160,6 +173,26 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.isMyLocationEnabled = true
         debugLog("Add Waypoint Activity: Map Ready")
     }
+
+    // Show coordinates as a marker on the map
+    private fun showCoordsOnMap() {
+        // Animate map to the coords location
+        val wptMarker = MarkerOptions()
+            .position(mWaypointCoords!!)
+            .title("${mWaypointCoords!!.latitude}, ${mWaypointCoords!!.longitude}")
+
+        // Clear markers first
+        mMap.clear()
+        mMap.addMarker(wptMarker)
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(wptMarker.position, ZOOM_LEVEL))
+
+        val coordsFormatted = "${mWaypointCoords!!.latitude}, ${mWaypointCoords!!.longitude}"
+
+        showMessage(mRootLayout, "Coordinates set to $coordsFormatted")
+        mTvAddWaypoint_coords.text = coordsFormatted
+    }
+
+    // Location-related methods
 
     /**
      * Return last location of the client.
@@ -188,23 +221,6 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
                 locationAcquired(lastLoc)
             }
         }
-    }
-
-    private fun showCoordsOnMap() {
-        // Animate map to the coords location
-        val wptMarker = MarkerOptions()
-            .position(mWaypointCoords)
-            .title("${mWaypointCoords.latitude}, ${mWaypointCoords.longitude}")
-
-        // Clear markers first
-        mMap.clear()
-        mMap.addMarker(wptMarker)
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(wptMarker.position, ZOOM_LEVEL))
-
-        val coordsFormatted = "${mWaypointCoords.latitude}, ${mWaypointCoords.longitude}"
-
-        showMessage(mRootLayout, "Coordinates set to $coordsFormatted")
-        mTvAddWaypoint_coords.text = coordsFormatted
     }
 
     /**
