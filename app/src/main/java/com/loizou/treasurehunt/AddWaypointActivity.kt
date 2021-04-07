@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.*
@@ -26,7 +25,6 @@ import com.loizou.treasurehunt.Models.Waypoint
 import kotlinx.android.synthetic.main.activity_add_waypoint.*
 import kotlinx.android.synthetic.main.enter_coords_dialog.view.*
 import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.view.btnDialogCancel
-
 
 private const val ZOOM_LEVEL: Float = 18f
 
@@ -166,13 +164,31 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
             .setTitle("Waypoint Saved!")
             .setMessage("Do you wish to add more waypoints?")
             .setPositiveButton("Add more") { dialog, id ->
-                // clear the form
+                clearForm()
             }
             .setNegativeButton("That was the final one") { dialog, id ->
                 // proceed to add treasure hunt details/metadata
             }
             .setCancelable(false)
             .show()
+    }
+
+    private fun clearForm() {
+        // Update title
+        title = getString(R.string.waypoint_num, ++WAYPOINT_NUM)
+
+        // Clear all fields
+        findViewById<TextInputEditText>(R.id.tvWptName).text?.clear()
+        findViewById<TextInputEditText>(R.id.tvWptDescription).text?.clear()
+        findViewById<TextInputEditText>(R.id.tvWptTask).text?.clear()
+        findViewById<TextInputEditText>(R.id.tvWptSolution).text?.clear()
+        findViewById<MaterialTextView>(R.id.tvAddWaypoint_coords).text = getString(R.string.not_set)
+
+        // Clear location markers
+        mMap.clear()
+
+        // Clear coordinates
+        mWaypointCoords = null
     }
 
     // Callback
