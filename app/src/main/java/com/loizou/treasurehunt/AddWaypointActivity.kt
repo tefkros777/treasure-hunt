@@ -1,6 +1,7 @@
 package com.loizou.treasurehunt
 
 import android.content.Context
+import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -168,6 +169,8 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             .setNegativeButton("That was the final one") { dialog, id ->
                 // proceed to add treasure hunt details/metadata
+                val intent = Intent(this, FinaliseTreasureBurialActivity::class.java)
+                startActivity(intent)
             }
             .setCancelable(false)
             .show()

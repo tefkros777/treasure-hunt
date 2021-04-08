@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".FinaliseTreasureBurialActivity">
+
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:scrollbars="vertical"
+            android:text="@string/finalise_treasure_burial_instructions"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <View style="@style/Divider" />
+
+        <!--Name-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/th_name" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tvFinaliseTH_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/enter_th_name"
+
+            android:inputType="text" />
+
+        <!--Description-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/th_desc" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tvFinaliseTH_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/enter_th_desc"
+            android:inputType="textMultiLine" />
+
+        <!--Difficulty-->
+        <com.google.android.material.circularreveal.CircularRevealLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/th_difficulty" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerDifficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:prompt="@string/select_diff"
+                android:spinnerMode="dialog" />
+
+        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+    <!--Publish-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFinaliseTreasureHunt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/publish_th" />
+
+</com.google.android.material.circularreveal.CircularRevealRelativeLayout>

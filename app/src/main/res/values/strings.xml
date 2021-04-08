@@ -94,5 +94,25 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="getting_current_location">Getting current location</string>
     <string name="cannot_be_blank">Cannot be blank!</string>
     <string name="wrong_coords">Incorrect coordinates</string>
+    <string name="th_name">Treasure Hunt Name</string>
+    <string name="enter_th_name">Give your Treasure Hunt a name</string>
+    <string name="enter_th_desc">Enter a description for your Treasure Hunt</string>
+    <string name="th_desc">Treasure Hunt Description</string>
+    <string name="th_difficulty">Difficulty Rating: </string>
+    <string name="finalise_treasure_burial_instructions">
+        All the waypoints and the final treasure location have now been recorded.
+        \n\nNow enter some final details about the Treasure Hunt you just created.
+        \n\nMake sure that you describe what is interesting about it and what you are trying to teach the hunters through this excursion.
+        \n\nAfter publishing the Treasure Hunt, you will be awarded 10 Pirate Points for helping the community grow.
+    </string>
+    <string name="publish_th">Publish Treasure Hunt!</string>
+    <string name="select_diff">Select a difficulty rating</string>
+
+    <string-array name="difficulty_array">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
 
 </resources>
