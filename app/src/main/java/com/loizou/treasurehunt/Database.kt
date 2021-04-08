@@ -3,7 +3,6 @@ package com.loizou.treasurehunt
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.loizou.treasurehunt.Models.Difficulty
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 import java.util.*
@@ -76,7 +75,7 @@ object Database : Observable() {
             Waypoint("Waypoint St. Davids", 51.882000, -5.269000, "solution")
         )
 
-        val th1 = TreasureHunt("The first second attempt", Difficulty.EASY, "Marium Mosbi", randomWaypoints)
+        val th1 = TreasureHunt("The first second attempt", "EASY", "Marium Mosbi", randomWaypoints)
 
         mTreasureHunts.addAll(listOf(th1))
 

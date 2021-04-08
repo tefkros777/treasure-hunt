@@ -4,7 +4,7 @@ private var game_id = 0;
 
 data class TreasureHunt(
     var name: String = "default name",
-    var difficulty: Difficulty = Difficulty.NOT_SET, // TODO: Make enum (LOW,MID,HARD)
+    var difficulty: String = "NOT_SET",
     var author: String? = "nobody", // TODO: Make User
     var waypoints: List<Waypoint> = emptyList(),
     var id: String = "TH_" + ++game_id,

@@ -9,14 +9,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import com.google.android.material.textfield.TextInputEditText
-import com.loizou.treasurehunt.Models.Difficulty
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 
 class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var mWaypointList: ArrayList<Waypoint>
-    private lateinit var mDifficulty: Difficulty
-    private  lateinit var mRootLayout: ViewGroup
+    private lateinit var mRootLayout: ViewGroup
+    private lateinit var mDifficulty: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +49,6 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
 
         val tvName = findViewById<TextInputEditText>(R.id.tvFinaliseTH_name)
         val tvDesc = findViewById<TextInputEditText>(R.id.tvFinaliseTH_desc)
-        val diff = mDifficulty
 
         // Input validation
         var errorFlag = false // True if one or more error occur
@@ -69,7 +67,7 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
             author = "Panikkos", //todo add author
             name = tvName.text!!.trim().toString(),
             description = tvDesc.text!!.trim().toString(),
-            difficulty = diff,
+            difficulty = mDifficulty,
             waypoints = mWaypointList
         )
 
@@ -80,7 +78,7 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
         Database.addTreasureHunt(th)
 
         // TODO: Award 10 points
-        
+
         val homeIntent = Intent(this, GameModeSelectionActivity::class.java)
         homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(homeIntent)
@@ -89,9 +87,9 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         // Selection
         mDifficulty = when (parent?.getItemAtPosition(position).toString()) {
-            "Easy" -> Difficulty.EASY
-            "Medium" -> Difficulty.MEDIUM
-            "Hard" -> Difficulty.HARD
+            "Easy" -> "Easy"
+            "Medium" -> "Medium"
+            "Hard" -> "Hard"
             else -> {
                 debugLog("Error while selecting Treasure Hunt difficulty")
                 return
