@@ -2,6 +2,7 @@ package com.loizou.treasurehunt.Models
 
 import com.google.android.gms.maps.model.LatLng
 import com.loizou.treasurehunt.debugLog
+import java.io.Serializable
 
 private var waypoint_id = 0
 
@@ -12,7 +13,7 @@ data class Waypoint(
     var solution: String = "mystery",
     var tasks: String = "",
     var description: String = ""
-) {
+) : Serializable {
     var id: String = "WP_" + ++waypoint_id
     var isVisible = false
     var isFinal = false

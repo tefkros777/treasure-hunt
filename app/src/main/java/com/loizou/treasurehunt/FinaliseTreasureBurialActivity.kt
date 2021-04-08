@@ -7,13 +7,18 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import com.loizou.treasurehunt.Models.Difficulty
+import com.loizou.treasurehunt.Models.Waypoint
 
 class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+    private lateinit var mWaypointList: ArrayList<Waypoint>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finalise_treasure_burial)
 
         title = "Finalise Treasure Burial"
+
+        mWaypointList = intent.getSerializableExtra("waypoint_list") as ArrayList<Waypoint>
 
         // Setup difficulty selection spinner
         val spinner = findViewById<Spinner>(R.id.spinnerDifficulty)
@@ -23,9 +28,13 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
                 // Layout to use when list of choices appears
                 adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
                 spinner.adapter = adapter
+                spinner.onItemSelectedListener = this
             }
-        spinner.onItemSelectedListener = this
+    }
 
+    // Linked to Publish Treasure Hunt Button
+    fun saveTreasureHunt(v: View){
+        debugLog("Creating treasure hunt...")
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

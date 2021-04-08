@@ -82,6 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:backgroundTint="@color/colorAccent"
+        android:onClick="saveTreasureHunt"
         android:text="@string/publish_th" />
 
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

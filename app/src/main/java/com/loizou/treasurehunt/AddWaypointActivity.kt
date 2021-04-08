@@ -27,9 +27,9 @@ import kotlinx.android.synthetic.main.activity_add_waypoint.*
 import kotlinx.android.synthetic.main.enter_coords_dialog.view.*
 import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.view.btnDialogCancel
 
-private const val ZOOM_LEVEL: Float = 18f
-
 class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
+    private val ZOOM_LEVEL: Float = 18f
+
     private lateinit var mMap: GoogleMap
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
 
@@ -37,7 +37,7 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mTvAddWaypoint_coords: MaterialTextView
     private var mWaypointCoords: LatLng? = null
 
-    private lateinit var mWaypointList: MutableList<Waypoint>
+    private lateinit var mWaypointList: ArrayList<Waypoint>
 
     private var WAYPOINT_NUM = 0
 
@@ -53,7 +53,7 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         mRootLayout = findViewById(R.id.vgAddWaypointRootLayout)
         mTvAddWaypoint_coords = findViewById(R.id.tvAddWaypoint_coords)
 
-        mWaypointList = mutableListOf()
+        mWaypointList = arrayListOf()
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapWaypointLocationPreview) as SupportMapFragment
@@ -169,7 +169,9 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             .setNegativeButton("That was the final one") { dialog, id ->
                 // proceed to add treasure hunt details/metadata
+                // pass mWaypointList to next activity
                 val intent = Intent(this, FinaliseTreasureBurialActivity::class.java)
+                intent.putExtra("waypoint_list", mWaypointList)
                 startActivity(intent)
             }
             .setCancelable(false)
