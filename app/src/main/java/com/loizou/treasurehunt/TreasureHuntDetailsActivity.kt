@@ -57,7 +57,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val group = LatLngBounds.Builder()
-        for (wpt: Waypoint in mTreasureHunt.Waypoints)
+        for (wpt: Waypoint in mTreasureHunt.waypoints)
             group.include(wpt.getCoords())
         val area = group.build()
         drawTreasureHunt()
@@ -68,7 +68,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
     // Draw a line from all the waypoints of the treasure hunt
     private fun drawTreasureHunt() {
         val line = PolylineOptions()
-        for (waypoint: Waypoint in mTreasureHunt.Waypoints)
+        for (waypoint: Waypoint in mTreasureHunt.waypoints)
             line.add(waypoint.getCoords())
         line.width(10f).color(R.color.colorPrimary)
         mMap.addPolyline(line)

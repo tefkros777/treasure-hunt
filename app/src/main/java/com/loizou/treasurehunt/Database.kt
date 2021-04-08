@@ -1,9 +1,9 @@
 package com.loizou.treasurehunt
 
 import android.util.Log
-import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.loizou.treasurehunt.Models.Difficulty
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 import java.util.*
@@ -11,6 +11,9 @@ import kotlin.collections.ArrayList
 
 object Database : Observable() {
     private var mTreasureHunts = ArrayList<TreasureHunt>()
+
+    private val TREASURE_HUNT_COLLECTION_PATH = "treasure_hunts"
+
     val db = Firebase.firestore
 
     fun getTreasureHuntById(id: String): TreasureHunt? {
@@ -23,7 +26,7 @@ object Database : Observable() {
 
     fun getWaypointById(id: String): Waypoint? {
         for (hunt in mTreasureHunts) {
-            for (wpt in hunt.Waypoints) {
+            for (wpt in hunt.waypoints) {
                 if (wpt.id == id) {
                     return wpt
                 }
@@ -62,6 +65,7 @@ object Database : Observable() {
     init {
         // Fetch treasure hunts
         // fetchTreasureHunts()
+        // seedTestData()
     }
 
     fun seedTestData() {
@@ -72,7 +76,7 @@ object Database : Observable() {
             Waypoint("Waypoint St. Davids", 51.882000, -5.269000, "solution")
         )
 
-        val th1 = TreasureHunt("A very exciting hunt", 2, "Joe Doe", randomWaypoints)
+        val th1 = TreasureHunt("The first second attempt", Difficulty.EASY, "Marium Mosbi", randomWaypoints)
 
         mTreasureHunts.addAll(listOf(th1))
 
@@ -80,14 +84,20 @@ object Database : Observable() {
         for (th: TreasureHunt in mTreasureHunts)
             th.processWaypoints()
 
+        addTreasureHunt(th1)
+
+    }
+
+    fun addTreasureHunt(treasureHunt: TreasureHunt) {
         // Add TreasureHunt to firestore
-        db.collection("treasure_hunts")
-            .add(th1)
+        db.collection(TREASURE_HUNT_COLLECTION_PATH)
+            .add(treasureHunt)
             .addOnSuccessListener { documentReference ->
-                Log.d(LOG_TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                Log.d(LOG_TAG, "DATABASE: DocumentSnapshot added with ID: ${documentReference.id}")
+                Log.d(LOG_TAG, "DATABASE: Treasure Hunt uploaded successfully")
             }
             .addOnFailureListener { e ->
-                Log.w(LOG_TAG, "Error adding document", e)
+                Log.w(LOG_TAG, "DATABASE: Error adding document", e)
             }
     }
 

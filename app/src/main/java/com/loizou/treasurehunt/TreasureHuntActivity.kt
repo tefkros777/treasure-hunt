@@ -52,7 +52,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Include only visible waypoints to the list
         mRecViewWaypointList.adapter =
-            WaypointListAdapter(mTreasureHunt.Waypoints.filter { it.isVisible } as MutableList<Waypoint>,
+            WaypointListAdapter(mTreasureHunt.waypoints.filter { it.isVisible } as MutableList<Waypoint>,
                 this) { item ->
                 handleWaypointClick(item)
             }
@@ -74,13 +74,13 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
             if (data!!.hasExtra("waypoint_index")) {
                 val nextWptIndex = data.extras!!.getInt("waypoint_index") + 1
                 // If there is no next waypoint
-                if (nextWptIndex >= mTreasureHunt.Waypoints.size) {
+                if (nextWptIndex >= mTreasureHunt.waypoints.size) {
                     showMessage(mRecViewWaypointList, R.string.game_finished)
                     return
                 }
-                mVisibleWaypointList.add(mTreasureHunt.Waypoints[nextWptIndex])
+                mVisibleWaypointList.add(mTreasureHunt.waypoints[nextWptIndex])
                 mRecViewWaypointList.adapter!!.notifyItemChanged(nextWptIndex)
-                addWaypointMarkers(mTreasureHunt.Waypoints)
+                addWaypointMarkers(mTreasureHunt.waypoints)
             }
         }
     }
@@ -118,7 +118,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         checkLocationPermission(this)
         mMap.isMyLocationEnabled = true
         getLastLocation() // TODO: Maybe we don't need this?
-        addWaypointMarkers(mTreasureHunt.Waypoints)
+        addWaypointMarkers(mTreasureHunt.waypoints)
     }
 
     /**
