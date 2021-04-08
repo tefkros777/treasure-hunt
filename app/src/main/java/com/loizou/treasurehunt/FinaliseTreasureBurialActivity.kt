@@ -1,5 +1,6 @@
 package com.loizou.treasurehunt
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -65,7 +66,7 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
 
         // Validation Passed
         val th = TreasureHunt(
-            //todo add author
+            author = "Panikkos", //todo add author
             name = tvName.text!!.trim().toString(),
             description = tvDesc.text!!.trim().toString(),
             difficulty = diff,
@@ -75,8 +76,14 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
         debugLog("Performing waypoint post-processing...")
         th.processWaypoints()
 
-        // todo: add to database
+        // Add to Database
+        Database.addTreasureHunt(th)
 
+        // TODO: Award 10 points
+        
+        val homeIntent = Intent(this, GameModeSelectionActivity::class.java)
+        homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(homeIntent)
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
