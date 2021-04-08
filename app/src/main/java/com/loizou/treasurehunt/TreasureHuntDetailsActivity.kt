@@ -30,13 +30,14 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         mTreasureHunt = Database.getTreasureHuntById(intent.getStringExtra("game_id")!!)!!
         debugLog("Loaded preview for ${mTreasureHunt.name}")
 
+        // Make description scrollable
+        findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description).movementMethod = ScrollingMovementMethod()
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapTreasureHuntPreview) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        // Make description scrollable
-        findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description).movementMethod = ScrollingMovementMethod()
     }
 
     fun startTreasureHunt(view: View) {
@@ -58,9 +59,10 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         val group = LatLngBounds.Builder()
         for (wpt: Waypoint in mTreasureHunt.Waypoints)
             group.include(wpt.getCoords())
+        val area = group.build()
         drawTreasureHunt()
         mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(group.build(), 100))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(area!!, 25))
     }
 
     // Draw a line from all the waypoints of the treasure hunt
