@@ -27,13 +27,12 @@ data class Waypoint(
         return if (checkSolution(solution)) {
             debugLog("Waypoint ${this.name} solved")
             this.isSolved = true
-            // TODO: Enable next waypoint
-            // parentGame.enableNextWaypoint(this)
             true
+            // Next waypoint should be enabled in the calling class/activity of this method
+            // via calling treasurehunt.enableNextWaypoint(wpt: Waypoint)
         } else {
             false
         }
-
     }
 
     private fun checkSolution(solution: String): Boolean {
