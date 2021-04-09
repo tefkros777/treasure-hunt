@@ -10,8 +10,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -194,6 +196,9 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Clear coordinates
         mWaypointCoords = null
+
+        // Scroll to top
+        scrollView.scrollTo(0,0)
     }
 
     // Callback
