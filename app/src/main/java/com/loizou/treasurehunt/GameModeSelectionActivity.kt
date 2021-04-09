@@ -21,6 +21,9 @@ class GameModeSelectionActivity : AppCompatActivity() {
 
         title = "Dashboard"
 
+        // Ask for location permission here to avoid crashing later
+        checkLocationPermission(this)
+
         val rootLayout = findViewById<ViewGroup>(R.id.rootLayout)
         val btnHuntMode = findViewById<CardView>(R.id.btnHuntMode)
         val btnBurialMode = findViewById<CardView>(R.id.btnBurialMode)
