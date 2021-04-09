@@ -117,26 +117,8 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         checkLocationPermission(this)
         mMap.isMyLocationEnabled = true
-        getLastLocation() // TODO: Maybe we don't need this?
+        // getLastLocation() // TODO: Maybe we don't need this?
         addWaypointMarkers(mTreasureHunt.waypoints)
-    }
-
-    /**
-     * Request new high accuracy location
-     */
-    private fun getLocationData() {
-        val locationRequest = LocationRequest()
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 10
-        locationRequest.fastestInterval = 0
-
-        checkLocationPermission(this)
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocationClient.requestLocationUpdates(
-            locationRequest,
-            locationCallback,
-            Looper.myLooper()
-        )
     }
 
     /**
@@ -163,6 +145,24 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+    }
+
+    /**
+     * Request new high accuracy location
+     */
+    private fun getLocationData() {
+        val locationRequest = LocationRequest()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = 10
+        locationRequest.fastestInterval = 0
+
+        checkLocationPermission(this)
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        mFusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.myLooper()
+        )
     }
 
     /**
