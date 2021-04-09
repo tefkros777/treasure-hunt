@@ -36,6 +36,18 @@ class WaypointDetails : AppCompatActivity() {
 
         findViewById<MaterialTextView>(R.id.tvWaypointDetails_description).movementMethod = ScrollingMovementMethod()
 
+        loadWaypointData()
+
+    }
+
+    private fun loadWaypointData() {
+        val tvCoords = findViewById<MaterialTextView>(R.id.tvWaypointDetails_coords)
+        val tvDesc = findViewById<MaterialTextView>(R.id.tvWaypointDetails_description)
+        val tvTask = findViewById<MaterialTextView>(R.id.tvWaypointDetails_Task)
+
+        tvCoords.text = "${mWaypoint.latitude}, ${mWaypoint.longitude}"
+        tvDesc.text = mWaypoint.description
+        tvTask.text = mWaypoint.tasks
     }
 
     /**
@@ -55,7 +67,7 @@ class WaypointDetails : AppCompatActivity() {
             var userSolution = dialogView.tvPuzzleSolution.text!!.trim().toString()
             showMessage(dialogView, userSolution)
 
-            userSolution = "solution" // TODO: FOR TESTING ONLY, DELETE AFTERWARDS
+            userSolution = mWaypoint.solution // TODO: FOR TESTING ONLY, DELETE AFTERWARDS
 
             // Attempt to solve the puzzle
             val attempt = mWaypoint.attemptSolve(userSolution)

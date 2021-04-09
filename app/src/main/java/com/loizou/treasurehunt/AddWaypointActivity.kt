@@ -225,7 +225,7 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val coordsFormatted = "${mWaypointCoords!!.latitude}, ${mWaypointCoords!!.longitude}"
 
-        showMessage(mRootLayout, "Coordinates set to $coordsFormatted")
+        // showMessage(mRootLayout, "Coordinates set to $coordsFormatted")
         mTvAddWaypoint_coords.text = coordsFormatted
     }
 

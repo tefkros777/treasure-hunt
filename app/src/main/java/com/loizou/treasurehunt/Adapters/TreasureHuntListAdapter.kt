@@ -30,7 +30,7 @@ class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : 
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvName.text = mTreasureHuntModelList[position].name
-        holder.tvDifficulty.text = "Difficulty: " + mTreasureHuntModelList[position].difficulty.toString()
+        holder.tvDifficulty.text = mTreasureHuntModelList[position].difficulty
         holder.tvDistance.text = "Distance from me: RANDOM DISTANCE"
     }
 

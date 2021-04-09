@@ -38,6 +38,21 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.mapTreasureHuntPreview) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        loadGameData()
+    }
+
+    fun loadGameData(){
+        val tvName = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_name)
+        val tvAuthor = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_author)
+        val tvDesc = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description)
+        val tvDiff = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_difficulty)
+        val tvPoints = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_points)
+
+        tvName.text = mTreasureHunt.name
+        tvAuthor.text = mTreasureHunt.author
+        tvDesc.text = mTreasureHunt.description
+        tvDiff.text = mTreasureHunt.difficulty
+        // todo: points
     }
 
     fun startTreasureHunt(view: View) {
