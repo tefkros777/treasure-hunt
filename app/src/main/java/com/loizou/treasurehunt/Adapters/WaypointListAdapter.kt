@@ -34,7 +34,8 @@ class WaypointListAdapter(val mWaypointList: MutableList<Waypoint>, val mCalling
         holder.waypointRow.setOnClickListener { listener(item) }
         holder.btnShowDetails.setOnClickListener {
             val intent = Intent(mCallingActivity, WaypointDetails::class.java)
-            intent.putExtra("wpt", mWaypointList[position])
+            // intent.putExtra("wpt", mWaypointList[position])
+            intent.putExtra("wpt_id", mWaypointList[position].id)
             intent.putExtra("game_id", mWaypointList[position].parentGameID)
             /**
              * When secondary activity finishes, the onActivityResult method of the mCallingActivity

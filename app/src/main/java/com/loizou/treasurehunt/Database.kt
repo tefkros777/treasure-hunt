@@ -16,7 +16,7 @@ object Database : Observable() {
     val db = Firebase.firestore
 
     fun getTreasureHuntById(id: String): TreasureHunt? {
-        return mTreasureHunts.find { it.id == id }
+        return mTreasureHunts.find { it.id.toString() == id }
     }
 
     fun getTreasureHunts(): ArrayList<TreasureHunt> {
@@ -26,7 +26,7 @@ object Database : Observable() {
     fun getWaypointById(id: String): Waypoint? {
         for (hunt in mTreasureHunts) {
             for (wpt in hunt.waypoints) {
-                if (wpt.id == id) {
+                if (wpt.id.toString() == id) {
                     return wpt
                 }
             }

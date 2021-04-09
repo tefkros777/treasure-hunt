@@ -1,13 +1,13 @@
 package com.loizou.treasurehunt.Models
 
-private var game_id = 0;
+import java.util.*
 
 data class TreasureHunt(
     var name: String = "default name",
     var difficulty: String = "NOT_SET",
     var author: String? = "nobody", // TODO: Make User
     var waypoints: List<Waypoint> = emptyList(),
-    var id: String = "TH_" + ++game_id,
+    var id: String = UUID.randomUUID().toString(),
     var description: String = "",
     var isSolved: Boolean = false
 ) {
@@ -16,7 +16,7 @@ data class TreasureHunt(
         waypoints.first().isVisible = true
         waypoints.last().isFinal = true
         for (wpt: Waypoint in waypoints)
-            wpt.parentGameID = this.id
+            wpt.parentGameID = this.id.toString()
     }
 
     fun enableNextWaypoint(wpt: Waypoint){
