@@ -37,7 +37,6 @@ class WaypointDetails : AppCompatActivity() {
         findViewById<MaterialTextView>(R.id.tvWaypointDetails_description).movementMethod = ScrollingMovementMethod()
 
         loadWaypointData()
-
     }
 
     private fun loadWaypointData() {
