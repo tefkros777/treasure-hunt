@@ -109,6 +109,14 @@
 
         </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
+        <View style="@style/Divider" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/aprox_route"
+            android:textStyle="bold"/>
+
         <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:id="@+id/roundedMapContainer"
             android:layout_width="match_parent"

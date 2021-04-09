@@ -107,6 +107,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     </string>
     <string name="publish_th">Publish Treasure Hunt!</string>
     <string name="select_diff">Select a difficulty rating</string>
+    <string name="aprox_route">Approximate Treasure Hunt Route:</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

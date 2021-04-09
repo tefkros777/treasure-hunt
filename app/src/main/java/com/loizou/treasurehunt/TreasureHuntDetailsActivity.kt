@@ -76,7 +76,8 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
             group.include(wpt.getCoords())
         val area = group.build()
         drawTreasureHunt()
-        mMap.uiSettings.setAllGesturesEnabled(false) // Disable zooming
+        mMap.uiSettings.setAllGesturesEnabled(false) // Disable all gestures
+//        mMap.uiSettings.isZoomGesturesEnabled = false // Disable zooming
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(area!!, 25))
     }
 
