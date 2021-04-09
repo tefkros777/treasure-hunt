@@ -28,9 +28,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
     private lateinit var mRecViewWaypointList: RecyclerView
-
     private lateinit var mTreasureHunt: TreasureHunt
+
     private lateinit var mVisibleWaypointList: MutableList<Waypoint>
+    private lateinit var mMarkerList: MutableList<MarkerOptions>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +58,8 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                 handleWaypointClick(item)
             }
 
+        mMarkerList = mutableListOf()
+
         // Cache the Waypoint list of the adapter (data source)
         mVisibleWaypointList = (mRecViewWaypointList.adapter as WaypointListAdapter).mWaypointList
 
@@ -80,7 +83,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
                 mVisibleWaypointList.add(mTreasureHunt.waypoints[nextWptIndex])
                 mRecViewWaypointList.adapter!!.notifyItemChanged(nextWptIndex)
-                addWaypointMarkers(mTreasureHunt.waypoints)
+                addWaypointMarkers(mVisibleWaypointList)
             }
         }
     }
@@ -91,9 +94,12 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun addWaypointMarkers(waypoints: List<Waypoint>) {
         for (waypoint in waypoints) {
             // Solved waypoints have already been added. Don't add them again
-            if (waypoint.isVisible && !waypoint.isSolved) {
-                val marker = LatLng(waypoint.latitude, waypoint.longitude)
-                mMap.addMarker(MarkerOptions().position(marker).title(waypoint.name))
+            if (waypoint.isVisible && !mMarkerList.contains(waypoint)) {
+                val marker = MarkerOptions()
+                    .position(LatLng(waypoint.latitude, waypoint.longitude))
+                    .title(waypoint.name)
+                mMap.addMarker(marker)
+                mMarkerList.add(marker)
                 debugLog("Added marker for ${waypoint.name}")
             }
         }
@@ -118,7 +124,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         checkLocationPermission(this)
         mMap.isMyLocationEnabled = true
         // getLastLocation() // TODO: Maybe we don't need this?
-        addWaypointMarkers(mTreasureHunt.waypoints)
+        addWaypointMarkers(mVisibleWaypointList)
     }
 
     /**
