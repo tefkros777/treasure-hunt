@@ -13,7 +13,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.User
 
 
@@ -86,12 +85,13 @@ class LoginActivity : AppCompatActivity() {
                                 debugLog("DATABASE: Successfully retrieved document for email $email")
 
                                 // Deserialize user document to object
-                                val deserializedUser =
-                                    documentReference.toObject(User::class.java)!!
+                                val deserializedUser = documentReference.toObject(User::class.java)!!
+
+                                // Update UserSingleton
+                                UserSingleton.activeUser = deserializedUser
 
                                 // If all is successful, move into next activity (Dashboard)
-                                val intent = Intent(this, GameModeSelectionActivity::class.java)
-                                intent.putExtra(ACTIVE_USER_FLAG, deserializedUser)
+                                val intent = Intent(this, DashboardActivity::class.java)
                                 startActivity(intent)
                                 finish()
 

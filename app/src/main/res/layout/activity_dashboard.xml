@@ -5,7 +5,7 @@
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameModeSelectionActivity">
+    tools:context=".DashboardActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvAhoy"
@@ -47,6 +47,7 @@
             android:layout_marginBottom="12dp"
             android:layout_weight="2"
             android:clickable="true"
+            android:onClick="huntMode"
             app:cardBackgroundColor="#651B421C"
             app:cardCornerRadius="12dp">
 
@@ -89,6 +90,7 @@
             android:layout_marginBottom="12dp"
             android:layout_weight="2"
             android:clickable="true"
+            android:onClick="burialMode"
             app:cardBackgroundColor="#651B421C"
             app:cardCornerRadius="12dp">
 

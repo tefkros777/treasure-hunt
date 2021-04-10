@@ -109,15 +109,5 @@ object Database : Observable() {
         db.collection(USERS_COLLECTION_PATH)
             .document(user.email)
             .set(user)
-
-//        db.collection(USERS_COLLECTION_PATH)
-//            .add(user)
-//            .addOnSuccessListener { documentReference ->
-//                Log.d(LOG_TAG, "DATABASE: DocumentSnapshot added with ID: ${documentReference.id}")
-//                Log.d(LOG_TAG, "DATABASE: User account uploaded successfully")
-//            }
-//            .addOnFailureListener { e ->
-//                Log.w(LOG_TAG, "DATABASE: Error adding document", e)
-//            }
     }
 }

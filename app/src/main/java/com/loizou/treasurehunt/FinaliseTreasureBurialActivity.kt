@@ -79,7 +79,7 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
 
         // TODO: Award 10 points
 
-        val homeIntent = Intent(this, GameModeSelectionActivity::class.java)
+        val homeIntent = Intent(this, DashboardActivity::class.java)
         homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(homeIntent)
     }
