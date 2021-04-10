@@ -107,7 +107,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
     fun handleWaypointClick(waypoint: Waypoint) {
         Log.d(LOG_TAG, "SELECTED WAYPOINT: ${waypoint.name}")
-        val zoomLevel = 15.0f
+        val zoomLevel = 18.0f
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(waypoint.getCoords(), zoomLevel))
     }
 
