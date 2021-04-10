@@ -4,14 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.loizou.treasurehunt.Adapters.TreasureHuntListAdapter
+import com.loizou.treasurehunt.Data.Database
 import com.loizou.treasurehunt.Models.TreasureHunt
-import com.loizou.treasurehunt.Models.Waypoint
 import java.util.*
-import kotlin.collections.ArrayList
 
 class TreasureHuntSelectionActivity : AppCompatActivity(), Observer {
 

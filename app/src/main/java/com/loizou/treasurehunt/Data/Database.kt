@@ -1,11 +1,13 @@
-package com.loizou.treasurehunt
+package com.loizou.treasurehunt.Data
 
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.loizou.treasurehunt.LOG_TAG
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.User
 import com.loizou.treasurehunt.Models.Waypoint
+import com.loizou.treasurehunt.debugLog
 import java.util.*
 import kotlin.collections.ArrayList
 

@@ -9,6 +9,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import com.google.android.material.textfield.TextInputEditText
+import com.loizou.treasurehunt.Data.Database
+import com.loizou.treasurehunt.Data.UserSingleton
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 

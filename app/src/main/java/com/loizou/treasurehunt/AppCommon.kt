@@ -18,7 +18,10 @@ const val LOCATION_PERMISSION_REQ_CODE = 42
 const val WPT_DETAILS_REQ_CODE: Int = 1
 
 // Intents
-const val ACTIVE_USER_FLAG: String = "active_user"
+const val CONGRATS_TITLE: String = "congrats_title"
+const val CONGRATS_BODY: String = "congrats_body"
+const val CONGRATS_IMG_SRC: String = "congrats_img_src"
+const val CONGRATS_BTN_TXT: String = "congrats_btn_text"
 
 fun showMessage(v: View, msg: Int) = Snackbar.make(v, msg, Snackbar.LENGTH_SHORT).show()
 fun showMessage(v: View, msg: String) = Snackbar.make(v, msg, Snackbar.LENGTH_SHORT).show()

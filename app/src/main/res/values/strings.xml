@@ -108,6 +108,11 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="publish_th">Publish Treasure Hunt!</string>
     <string name="select_diff">Select a difficulty rating</string>
     <string name="aprox_route">Approximate Treasure Hunt Route:</string>
+    <string name="congrats">Congratulations!</string>
+    <string name="finish_game_body">
+        You have found the treasure and completed this game!
+        \n10 Points have been awarded
+    </string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

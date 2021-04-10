@@ -19,6 +19,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.loizou.treasurehunt.Adapters.WaypointListAdapter
+import com.loizou.treasurehunt.Data.Database
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 
@@ -78,6 +79,15 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                 val nextWptIndex = data.extras!!.getInt("waypoint_index") + 1
                 // If there is no next waypoint
                 if (nextWptIndex >= mTreasureHunt.waypoints.size) {
+
+                    // Show congratulations activity
+                    val intent = Intent(this, CongratulationsActivity::class.java)
+                    intent.putExtra(CONGRATS_TITLE, getString(R.string.congrats))
+                    intent.putExtra(CONGRATS_BODY, getString(R.string.finish_game_body))
+                    intent.putExtra(CONGRATS_BTN_TXT, getString(R.string.done))
+                    intent.putExtra(CONGRATS_IMG_SRC, R.drawable.trophy1)
+                    startActivity(intent)
+
                     showMessage(mRecViewWaypointList, R.string.game_finished)
                     return
                 }

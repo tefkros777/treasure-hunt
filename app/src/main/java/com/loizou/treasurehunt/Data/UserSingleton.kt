@@ -1,4 +1,4 @@
-package com.loizou.treasurehunt
+package com.loizou.treasurehunt.Data
 
 import com.loizou.treasurehunt.Models.User
 
