@@ -81,9 +81,27 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
 
         // TODO: Award 10 points
 
-        val homeIntent = Intent(this, DashboardActivity::class.java)
-        homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        startActivity(homeIntent)
+        // Show Congratulations Screen
+        val intent = Intent(this, CongratulationsActivity::class.java)
+        intent.putExtra(CONGRATS_TITLE, getString(R.string.hooray))
+        intent.putExtra(CONGRATS_BODY, getString(R.string.upload_treasure_hunt))
+        intent.putExtra(CONGRATS_BTN_TXT, getString(R.string.done))
+        intent.putExtra(CONGRATS_IMG_SRC, R.drawable.pirate_hat_1)
+        startActivityForResult(intent, PUBLISH_TH_REQ_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        debugLog("Activity result called - Request code: $requestCode")
+        when (requestCode){
+            PUBLISH_TH_REQ_CODE ->{
+                // Congratulations Activity finished
+                // Go back to dashboard
+                val homeIntent = Intent(this, DashboardActivity::class.java)
+                homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(homeIntent)
+            }
+        }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

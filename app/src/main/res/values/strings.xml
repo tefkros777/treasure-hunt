@@ -111,7 +111,13 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="congrats">Congratulations!</string>
     <string name="finish_game_body">
         You have found the treasure and completed this game!
-        \n10 Points have been awarded
+    </string>
+    <string name="hooray">Hooray!</string>
+    <string name="upload_treasure_hunt">
+        Your Treasure Hunt is now published!
+        \nHunters will soon start looking for your treasure!
+        \n\nThank you for contributing to the game\'s community.
+        \nYou have been awarded 10 Pirate Points
     </string>
 
     <string-array name="difficulty_array">

@@ -74,6 +74,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        debugLog("Activity result called - Request code: $requestCode")
         when (requestCode){
             WPT_DETAILS_REQ_CODE -> {
                 // Waypoint details activity has finished

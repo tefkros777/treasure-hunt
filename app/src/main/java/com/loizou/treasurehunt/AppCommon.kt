@@ -17,6 +17,7 @@ const val LOG_TAG = "TREASURE_HUNT_APP_DEBUG: "
 const val LOCATION_PERMISSION_REQ_CODE = 42
 const val WPT_DETAILS_REQ_CODE: Int = 1
 const val FINISH_GAME_REQ_CODE: Int = 2
+const val PUBLISH_TH_REQ_CODE: Int = 3
 
 // Intents
 const val CONGRATS_TITLE: String = "congrats_title"
