@@ -1,9 +1,11 @@
 package com.loizou.treasurehunt
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Data.UserSingleton
@@ -36,4 +38,18 @@ class DashboardActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+            .setTitle(R.string.app_name)
+            .setMessage(R.string.exit_promt)
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialog, id ->
+                // TODO: Maybe perform some saving?
+                finish()
+            }
+            .setNegativeButton("No") { dialog, id ->
+                dialog.cancel()
+            }
+        builder.create().show()
+    }
 }
