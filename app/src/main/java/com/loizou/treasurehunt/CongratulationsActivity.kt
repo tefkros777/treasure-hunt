@@ -1,5 +1,6 @@
 package com.loizou.treasurehunt
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -37,6 +38,7 @@ class CongratulationsActivity : AppCompatActivity() {
     }
 
     fun btnAction(v: View){
+        setResult(Activity.RESULT_OK)
         finish()
     }
 }

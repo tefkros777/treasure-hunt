@@ -74,26 +74,38 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == WPT_DETAILS_REQ_CODE) {
-            if (data!!.hasExtra("waypoint_index")) {
-                val nextWptIndex = data.extras!!.getInt("waypoint_index") + 1
-                // If there is no next waypoint
-                if (nextWptIndex >= mTreasureHunt.waypoints.size) {
+        when (requestCode){
+            WPT_DETAILS_REQ_CODE -> {
+                // Waypoint details activity has finished
+                if (resultCode == Activity.RESULT_OK) {
+                    if (data!!.hasExtra("waypoint_index")) {
+                        val nextWptIndex = data.extras!!.getInt("waypoint_index") + 1
+                        // If there is no next waypoint
+                        if (nextWptIndex >= mTreasureHunt.waypoints.size) {
 
-                    // Show congratulations activity
-                    val intent = Intent(this, CongratulationsActivity::class.java)
-                    intent.putExtra(CONGRATS_TITLE, getString(R.string.congrats))
-                    intent.putExtra(CONGRATS_BODY, getString(R.string.finish_game_body))
-                    intent.putExtra(CONGRATS_BTN_TXT, getString(R.string.done))
-                    intent.putExtra(CONGRATS_IMG_SRC, R.drawable.trophy1)
-                    startActivity(intent)
-
-                    showMessage(mRecViewWaypointList, R.string.game_finished)
-                    return
+                            // Show congratulations activity
+                            val intent = Intent(this, CongratulationsActivity::class.java)
+                            intent.putExtra(CONGRATS_TITLE, getString(R.string.congrats))
+                            intent.putExtra(CONGRATS_BODY, getString(R.string.finish_game_body))
+                            intent.putExtra(CONGRATS_BTN_TXT, getString(R.string.done))
+                            intent.putExtra(CONGRATS_IMG_SRC, R.drawable.trophy1)
+                            startActivityForResult(intent, FINISH_GAME_REQ_CODE)
+                            return
+                        }
+                        mVisibleWaypointList.add(mTreasureHunt.waypoints[nextWptIndex])
+                        mRecViewWaypointList.adapter!!.notifyItemChanged(nextWptIndex)
+                        addWaypointMarkers(mVisibleWaypointList)
+                    }
                 }
-                mVisibleWaypointList.add(mTreasureHunt.waypoints[nextWptIndex])
-                mRecViewWaypointList.adapter!!.notifyItemChanged(nextWptIndex)
-                addWaypointMarkers(mVisibleWaypointList)
+            }
+            FINISH_GAME_REQ_CODE -> {
+                // Congratulations activity has finished
+
+                // Go back to treasurehunt selection
+                val homeIntent = Intent(this, DashboardActivity::class.java)
+                homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(homeIntent)
+                finish()
             }
         }
     }
