@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.loizou.treasurehunt.Models.TreasureHunt
+import com.loizou.treasurehunt.Models.User
 import com.loizou.treasurehunt.Models.Waypoint
 import java.util.*
 import kotlin.collections.ArrayList
@@ -11,7 +12,8 @@ import kotlin.collections.ArrayList
 object Database : Observable() {
     private var mTreasureHunts = ArrayList<TreasureHunt>()
 
-    private val TREASURE_HUNT_COLLECTION_PATH = "treasure_hunts"
+    val TREASURE_HUNT_COLLECTION_PATH = "treasure_hunts"
+    val USERS_COLLECTION_PATH = "users"
 
     val db = Firebase.firestore
 
@@ -45,10 +47,10 @@ object Database : Observable() {
 
                 for (document in task.result!!) {
                     // Deserialize every document into a TreasureHunt object
-                    val serializedDoc = document.toObject(TreasureHunt::class.java)
+                    val deserializedDoc = document.toObject(TreasureHunt::class.java)
                     // Add treasure hunts to mTreasureHunts only if they don't already exist
-                    if (!mTreasureHunts.contains(serializedDoc))
-                        mTreasureHunts.add(serializedDoc)
+                    if (!mTreasureHunts.contains(deserializedDoc))
+                        mTreasureHunts.add(deserializedDoc)
                 }
 
                 setChanged()
@@ -100,4 +102,22 @@ object Database : Observable() {
             }
     }
 
+    /**
+     * Add user as an encapsulated object into the database
+     */
+    fun addUserToDatabase(user: User){
+        db.collection(USERS_COLLECTION_PATH)
+            .document(user.email)
+            .set(user)
+
+//        db.collection(USERS_COLLECTION_PATH)
+//            .add(user)
+//            .addOnSuccessListener { documentReference ->
+//                Log.d(LOG_TAG, "DATABASE: DocumentSnapshot added with ID: ${documentReference.id}")
+//                Log.d(LOG_TAG, "DATABASE: User account uploaded successfully")
+//            }
+//            .addOnFailureListener { e ->
+//                Log.w(LOG_TAG, "DATABASE: Error adding document", e)
+//            }
+    }
 }

@@ -12,12 +12,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.loizou.treasurehunt.Models.User
 
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mSignupForm : ViewGroup
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +76,7 @@ class SignUpActivity : AppCompatActivity() {
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    debugLog("Firebase signup: Successful")
+                    debugLog("FIREBASE AUTH: Signup Successful")
 
                     // Set display name
                     val profileUpdates = UserProfileChangeRequest.Builder()
@@ -84,10 +84,20 @@ class SignUpActivity : AppCompatActivity() {
                         .build()
                     mAuth.currentUser?.updateProfile(profileUpdates)
 
+                    // Create new user account
+                    val user = User(
+                        displayName = name,
+                        email = email,
+                        userID = mAuth.currentUser!!.uid
+                    )
+
+                    // Add User to the cloud database
+                    Database.addUserToDatabase(user)
+
                     setResult(Activity.RESULT_OK)
                     finish()
                 } else {
-                    debugLog("Firebase signup: Unsuccessful")
+                    debugLog("FIREBASE AUTH: Signup Unsuccessful}")
                     debugLog(task.exception.toString())
                     showMessage(mSignupForm, "Account creation failed")
                 }
