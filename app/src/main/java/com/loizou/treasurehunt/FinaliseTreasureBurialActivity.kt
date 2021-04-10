@@ -64,7 +64,7 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
 
         // Validation Passed
         val th = TreasureHunt(
-            author = "Panikkos", //todo add author
+            author = UserSingleton.activeUser.email,
             name = tvName.text!!.trim().toString(),
             description = tvDesc.text!!.trim().toString(),
             difficulty = mDifficulty,
