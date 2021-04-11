@@ -7,14 +7,16 @@ import com.loizou.treasurehunt.LOG_TAG
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.User
 import com.loizou.treasurehunt.Models.Waypoint
+import com.loizou.treasurehunt.databaseLog
 import com.loizou.treasurehunt.debugLog
 import java.util.*
 import kotlin.collections.ArrayList
 
 object Database : Observable() {
     private var mTreasureHunts = ArrayList<TreasureHunt>()
-
     val TREASURE_HUNT_COLLECTION_PATH = "treasure_hunts"
+
+    val USER_SCORE_DOCUMENT = "score"
     val USERS_COLLECTION_PATH = "users"
 
     val db = Firebase.firestore
@@ -35,7 +37,7 @@ object Database : Observable() {
                 }
             }
         }
-        debugLog("Could not find waypoint with waypoint it $id")
+        databaseLog("Could not find waypoint with waypoint it $id")
         return null
     }
 
@@ -45,7 +47,7 @@ object Database : Observable() {
         thCollection.get().addOnCompleteListener {task ->
 
             if (task.isSuccessful) {
-                debugLog("Fetched ${task.result?.documents?.size} games from the database")
+                databaseLog("Fetched ${task.result?.documents?.size} games")
 
                 for (document in task.result!!) {
                     // Deserialize every document into a TreasureHunt object
@@ -59,8 +61,8 @@ object Database : Observable() {
                 notifyObservers(mTreasureHunts)
 
             } else {
-                debugLog("Error while fetching games from the database")
-                debugLog(task.exception.toString())
+                databaseLog("Error while fetching games")
+                databaseLog(task.exception.toString())
             }
         }
     }
@@ -96,11 +98,11 @@ object Database : Observable() {
         db.collection(TREASURE_HUNT_COLLECTION_PATH)
             .add(treasureHunt)
             .addOnSuccessListener { documentReference ->
-                Log.d(LOG_TAG, "DATABASE: DocumentSnapshot added with ID: ${documentReference.id}")
-                Log.d(LOG_TAG, "DATABASE: Treasure Hunt uploaded successfully")
+                databaseLog("DocumentSnapshot added with ID: ${documentReference.id}")
+                databaseLog("Treasure Hunt uploaded successfully")
             }
             .addOnFailureListener { e ->
-                Log.w(LOG_TAG, "DATABASE: Error adding document", e)
+                databaseLog("Error adding document - $e")
             }
     }
 
@@ -111,5 +113,13 @@ object Database : Observable() {
         db.collection(USERS_COLLECTION_PATH)
             .document(user.email)
             .set(user)
+    }
+
+    fun updateUserScore(user: User) {
+        db.collection(USERS_COLLECTION_PATH)
+            .document(user.email)
+            .update(USER_SCORE_DOCUMENT, user.score)
+            .addOnSuccessListener { databaseLog("Successfully updated user score") }
+            .addOnFailureListener { e -> databaseLog("Failed to update user score - $e") }
     }
 }
