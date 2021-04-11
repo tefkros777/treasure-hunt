@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Data.Database
+import com.loizou.treasurehunt.Data.UserSingleton
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 
@@ -32,7 +33,8 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         debugLog("Loaded preview for ${mTreasureHunt.name}")
 
         // Make description scrollable
-        findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description).movementMethod = ScrollingMovementMethod()
+        findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description).movementMethod =
+            ScrollingMovementMethod()
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -42,21 +44,26 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         loadGameData()
     }
 
-    fun loadGameData(){
+    fun loadGameData() {
         val tvName = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_name)
+            .apply { text = mTreasureHunt.name }
         val tvAuthor = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_author)
+            .apply { text = mTreasureHunt.author }
         val tvDesc = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description)
+            .apply { text = mTreasureHunt.description }
         val tvDiff = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_difficulty)
+            .apply { text = mTreasureHunt.difficulty }
         val tvPoints = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_points)
-
-        tvName.text = mTreasureHunt.name
-        tvAuthor.text = mTreasureHunt.author
-        tvDesc.text = mTreasureHunt.description
-        tvDiff.text = mTreasureHunt.difficulty
-        // todo: points
+            .apply { text = mTreasureHunt.points.toString() }
+        val tvCost = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_cost)
+            .apply { text = mTreasureHunt.cost.toString() }
     }
 
     fun startTreasureHunt(view: View) {
+        // Deduct Pirate points
+        UserSingleton.activeUser.score -= mTreasureHunt.cost
+        Database.updateUserScore(UserSingleton.activeUser)
+
         val intent = Intent(this, TreasureHuntActivity::class.java)
         intent.putExtra("game_id", mTreasureHunt.id)
         this.startActivity(intent)

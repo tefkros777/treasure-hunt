@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.loizou.treasurehunt.Adapters.WaypointListAdapter
 import com.loizou.treasurehunt.Data.Database
+import com.loizou.treasurehunt.Data.UserSingleton
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 
@@ -81,7 +82,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (resultCode == Activity.RESULT_OK) {
                     if (data!!.hasExtra("waypoint_index")) {
                         val nextWptIndex = data.extras!!.getInt("waypoint_index") + 1
-                        // If there is no next waypoint
+                        // If there is no next waypoint (this is the last one)
                         if (nextWptIndex >= mTreasureHunt.waypoints.size) {
 
                             // Show congratulations activity
@@ -101,6 +102,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             FINISH_GAME_REQ_CODE -> {
                 // Congratulations activity has finished
+
+                // Award Pirate Points to the player
+                UserSingleton.activeUser.score += mTreasureHunt.points
+                Database.updateUserScore(UserSingleton.activeUser)
 
                 // Go back to treasurehunt selection
                 val homeIntent = Intent(this, DashboardActivity::class.java)

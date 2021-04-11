@@ -28,10 +28,13 @@ const val CONGRATS_BTN_TXT: String = "congrats_btn_text"
 
 // Fixed values
 const val POINTS_BURY_TREASURE: Int = 20
-const val POINTS_BEGIN_HUNT: Int = 5
-const val POINTS_FOUND_EASY: Int = 1
-const val POINTS_FOUND_MEDIUM: Int = 3
-const val POINTS_FOUND_HARD: Int = 5
+const val POINTS_EASY_PLAY: Int = 5
+const val POINTS_EASY_FIND: Int = 6
+const val POINTS_MEDIUM_PLAY: Int = 10
+const val POINTS_MEDIUM_FIND: Int = 12
+const val POINTS_HARD_PLAY: Int = 15
+const val POINTS_HARD_FIND: Int = 20
+
 
 fun showMessage(v: View, msg: Int) = Snackbar.make(v, msg, Snackbar.LENGTH_SHORT).show()
 fun showMessage(v: View, msg: String) = Snackbar.make(v, msg, Snackbar.LENGTH_SHORT).show()

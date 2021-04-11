@@ -1,5 +1,7 @@
 package com.loizou.treasurehunt.Models
 
+import com.loizou.treasurehunt.*
+import java.io.Serializable
 import java.util.*
 
 data class TreasureHunt(
@@ -10,7 +12,21 @@ data class TreasureHunt(
     var id: String = UUID.randomUUID().toString(),
     var description: String = "",
     var isSolved: Boolean = false
-) {
+) : Serializable {
+
+    var cost : Int = when(difficulty){
+        "Easy" -> POINTS_EASY_PLAY
+        "Medium" -> POINTS_MEDIUM_PLAY
+        "Hard" -> POINTS_HARD_PLAY
+        else -> 0
+    }
+
+    var points : Int = when(difficulty){
+        "Easy" -> POINTS_EASY_FIND
+        "Medium" -> POINTS_MEDIUM_FIND
+        "Hard" -> POINTS_HARD_FIND
+        else -> 0
+    }
 
     fun processWaypoints(){
         waypoints.first().isVisible = true

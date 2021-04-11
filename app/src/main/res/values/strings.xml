@@ -131,6 +131,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="signout_promt">Do you really wish to sign out?</string>
     <string name="number_placeholder">98</string>
     <string name="pirate_points">Pirate Points</string>
+    <string name="cost">Cost:</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

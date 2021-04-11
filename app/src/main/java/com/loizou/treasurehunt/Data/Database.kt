@@ -81,7 +81,7 @@ object Database : Observable() {
             Waypoint("Waypoint St. Davids", 51.882000, -5.269000, "solution")
         )
 
-        val th1 = TreasureHunt("The first second attempt", "EASY", "Marium Mosbi", randomWaypoints)
+        val th1 = TreasureHunt("The first second attempt", "Easy", "Marium Mosbi", randomWaypoints)
 
         mTreasureHunts.addAll(listOf(th1))
 
