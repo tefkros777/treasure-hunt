@@ -30,6 +30,8 @@ class DashboardActivity : AppCompatActivity() {
             .apply { text = UserSingleton.activeUser.displayName }
         val tvEmail = findViewById<MaterialTextView>(R.id.tvEmail)
             .apply { text = UserSingleton.activeUser.email }
+        val tvScore = findViewById<MaterialTextView>(R.id.tvScore)
+            .apply { text = UserSingleton.activeUser.score.toString() }
     }
 
     fun huntMode(v: View) {
