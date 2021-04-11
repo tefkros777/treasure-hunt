@@ -22,18 +22,23 @@ class DashboardActivity : AppCompatActivity() {
         // Ask for location permission here to avoid crashing later
         checkLocationPermission(this)
 
-        val btnHuntMode = findViewById<CardView>(R.id.btnHuntMode)
-        val btnBurialMode = findViewById<CardView>(R.id.btnBurialMode)
         val tvAhoy = findViewById<MaterialTextView>(R.id.tvAhoy)
         tvAhoy.append(" ${UserSingleton.activeUser.displayName}!")
+
+        val tvUsername = findViewById<MaterialTextView>(R.id.tvUsername)
+            .apply { text = UserSingleton.activeUser.username }
+        val tvEmail = findViewById<MaterialTextView>(R.id.tvEmail)
+            .apply { text = UserSingleton.activeUser.email }
+        val tvScore = findViewById<MaterialTextView>(R.id.tvScore)
+            .apply { text = UserSingleton.activeUser.score.toString() }
     }
 
-    fun huntMode(v: View){
+    fun huntMode(v: View) {
         val intent = Intent(this, TreasureHuntSelectionActivity::class.java)
         startActivity(intent)
     }
 
-    fun burialMode(v: View){
+    fun burialMode(v: View) {
         val intent = Intent(this, TreasureBurialWelcome::class.java)
         startActivity(intent)
     }
