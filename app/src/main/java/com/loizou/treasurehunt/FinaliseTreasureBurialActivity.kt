@@ -79,7 +79,9 @@ class FinaliseTreasureBurialActivity : AppCompatActivity(), AdapterView.OnItemSe
         // Add to Database
         Database.addTreasureHunt(th)
 
-        // TODO: Award 10 points
+        // Award Pirate points
+        UserSingleton.activeUser.score += POINTS_BURY_TREASURE;
+        Database.updateUserScore(UserSingleton.activeUser)
 
         // Show Congratulations Screen
         val intent = Intent(this, CongratulationsActivity::class.java)
