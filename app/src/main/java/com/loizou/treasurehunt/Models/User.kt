@@ -3,7 +3,6 @@ package com.loizou.treasurehunt.Models
 import java.io.Serializable
 
 data class User(
-    var username: String = "np_username",
     var displayName: String = "no_name",
     var email: String = "no_email",
     var score: Int = 50, // 50 points upon account creation

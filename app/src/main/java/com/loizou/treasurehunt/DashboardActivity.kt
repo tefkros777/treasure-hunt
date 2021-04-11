@@ -1,12 +1,10 @@
 package com.loizou.treasurehunt
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.cardview.widget.CardView
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Data.UserSingleton
 
@@ -25,8 +23,8 @@ class DashboardActivity : AppCompatActivity() {
         val tvAhoy = findViewById<MaterialTextView>(R.id.tvAhoy)
         tvAhoy.append(" ${UserSingleton.activeUser.displayName}!")
 
-        val tvUsername = findViewById<MaterialTextView>(R.id.tvUsername)
-            .apply { text = UserSingleton.activeUser.username }
+        val tvName = findViewById<MaterialTextView>(R.id.tvName)
+            .apply { text = UserSingleton.activeUser.displayName }
         val tvEmail = findViewById<MaterialTextView>(R.id.tvEmail)
             .apply { text = UserSingleton.activeUser.email }
         val tvScore = findViewById<MaterialTextView>(R.id.tvScore)
