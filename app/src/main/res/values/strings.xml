@@ -125,7 +125,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="pirate_name">Pirate name: </string>
     <string name="username_placeholder">Username</string>
     <string name="user_email">Email:</string>
-    <string name="score_placeholder">score</string>
+    <string name="score_placeholder">Score</string>
     <string name="pirate_score">Pirate Score:</string>
     <string name="logout">Logout</string>
     <string name="signout_promt">Do you really wish to sign out?</string>

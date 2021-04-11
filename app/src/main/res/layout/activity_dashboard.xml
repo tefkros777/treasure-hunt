@@ -5,8 +5,8 @@
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="12dp"
     android:orientation="vertical"
+    android:padding="12dp"
     tools:context=".DashboardActivity">
 
     <!--Greeting-->
@@ -43,14 +43,15 @@
     <!--User Panel-->
     <com.google.android.material.circularreveal.CircularRevealLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:orientation="horizontal">
 
         <!--Account Info-->
         <com.google.android.material.circularreveal.CircularRevealLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
+            android:layout_margin="6dp"
             android:layout_weight="2"
             android:orientation="vertical">
 
@@ -100,9 +101,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
                 style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
+                android:layout_gravity="bottom"
                 android:onClick="logout"
                 android:text="@string/logout" />
 
@@ -112,14 +113,26 @@
         <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="6dp"
             android:layout_weight="2"
-            app:cardBackgroundColor="#651B421C"
-            app:cardCornerRadius="12dp">
+            app:cardBackgroundColor="#FFCF41"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="6dp">
 
             <com.google.android.material.circularreveal.CircularRevealLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:gravity="center"
                 android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="@string/score_placeholder"
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvScore"
@@ -129,17 +142,15 @@
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
                     android:text="@string/number_placeholder"
-                    android:textSize="32sp" />
+                    android:textSize="28sp" />
 
-                <View style="@style/Divider" />
-
-                <!--Welcome message-->
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center" android:layout_gravity="bottom"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
                     android:text="@string/pirate_points"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
             </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
@@ -151,6 +162,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/select_game_mode" />
 
     <View style="@style/Divider" />
@@ -160,20 +172,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:gravity="bottom"
+        android:orientation="vertical">
 
         <!--Treasure Hunt Button-->
         <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:id="@+id/btnHuntMode"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="6dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
             android:layout_weight="2"
             android:clickable="true"
             android:onClick="huntMode"
-            app:cardBackgroundColor="#651B421C"
-            app:cardCornerRadius="12dp">
+            app:cardCornerRadius="6dp"
+            app:cardElevation="6dp">
 
             <com.google.android.material.circularreveal.CircularRevealLinearLayout
                 android:layout_width="wrap_content"
@@ -196,7 +208,6 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/treasure_hunt"
-                    android:textColor="@color/colorPrimaryText"
                     android:textSize="18sp" />
 
             </com.google.android.material.circularreveal.CircularRevealLinearLayout>
@@ -207,13 +218,13 @@
         <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:id="@+id/btnBurialMode"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="6dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
             android:layout_weight="2"
             android:clickable="true"
             android:onClick="burialMode"
-            app:cardBackgroundColor="#651B421C"
-            app:cardCornerRadius="12dp">
+            app:cardCornerRadius="6dp"
+            app:cardElevation="6dp">
 
             <com.google.android.material.circularreveal.CircularRevealLinearLayout
                 android:layout_width="wrap_content"
@@ -236,7 +247,6 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/treasure_burial"
-                    android:textColor="@color/colorPrimaryText"
                     android:textSize="18sp" />
 
             </com.google.android.material.circularreveal.CircularRevealLinearLayout>

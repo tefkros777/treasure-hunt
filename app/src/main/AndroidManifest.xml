@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CongratulationsActivity"></activity>
+        <activity
+            android:name=".CongratulationsActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
         <activity android:name=".FinaliseTreasureBurialActivity" />
         <activity android:name=".AddWaypointActivity" />
         <activity android:name=".TreasureBurialWelcome" />
