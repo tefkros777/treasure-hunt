@@ -10,10 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ScrollView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -30,18 +28,19 @@ import kotlinx.android.synthetic.main.enter_coords_dialog.view.*
 import kotlinx.android.synthetic.main.solve_waypoint_dialog_layout.view.btnDialogCancel
 
 class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
-    private val ZOOM_LEVEL: Float = 18f
-
     private lateinit var mMap: GoogleMap
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
 
+    private lateinit var mLoadingDialog: AlertDialog
+
     private lateinit var mRootLayout: ViewGroup
     private lateinit var mTvAddWaypoint_coords: MaterialTextView
-    private var mWaypointCoords: LatLng? = null
 
     private lateinit var mWaypointList: ArrayList<Waypoint>
-
+    private var mWaypointCoords: LatLng? = null
     private var WAYPOINT_NUM = 0
+
+    private val ZOOM_LEVEL: Float = 18f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +59,13 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.mapWaypointLocationPreview) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // Configure loading dialog
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.loading_dialog, null)
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setTitle(R.string.getting_current_location)
+        mLoadingDialog = dialogBuilder.create()
     }
 
     // Button Add Location Manually
@@ -107,7 +113,7 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     // Called when getLastLocation finishes successfully
-    fun locationAcquired(loc: LatLng) {
+    fun onLocationAcquired(loc: LatLng) {
         debugLog("Location acquired successfully - $loc")
         mWaypointCoords = LatLng(loc.latitude, loc.longitude)
         showCoordsOnMap()
@@ -245,11 +251,7 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         if (!isLocationEnabled()) return
 
         // Show loading window
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.loading_dialog, null)
-        val dialogBuilder = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .setTitle(R.string.getting_current_location)
-        val loadingDialog = dialogBuilder.show()
+        mLoadingDialog.show()
 
         mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
             val location: Location? = task.result // Wait until task has finished
@@ -257,10 +259,9 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
                 requestLocationUpdates() // Request new location
             else {
                 val lastLoc = LatLng(location.latitude, location.longitude)
-                Log.i(LOG_TAG, "Last Location: ${lastLoc.latitude}, ${lastLoc.longitude}")
-                // todo RETURN SOMEHOW
-                loadingDialog.dismiss()
-                locationAcquired(lastLoc)
+                debugLog("Last Location: ${lastLoc.latitude}, ${lastLoc.longitude}")
+                mLoadingDialog.dismiss()
+                onLocationAcquired(lastLoc)
             }
         }
     }
@@ -290,7 +291,8 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         override fun onLocationResult(locationResult: LocationResult) {
             val lat = locationResult.lastLocation.latitude
             val long = locationResult.lastLocation.longitude
-            Log.i(LOG_TAG, "New Location: $lat, $long")
+            debugLog("New Location: $lat, $long")
+            if (mLoadingDialog.isShowing) mLoadingDialog.dismiss()
         }
     }
 
