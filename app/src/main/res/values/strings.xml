@@ -128,6 +128,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="score_placeholder">score</string>
     <string name="pirate_score">Pirate Score:</string>
     <string name="logout">Logout</string>
+    <string name="signout_promt">Do you really wish to sign out?</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

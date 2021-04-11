@@ -89,33 +89,14 @@
 
         </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
-        <!--Score-->
-        <com.google.android.material.circularreveal.CircularRevealLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:text="@string/pirate_score"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvScore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/score_placeholder" />
-
-        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
-
+        <!--Logout Button-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogout"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
+            android:onClick="logout"
             android:text="@string/logout" />
 
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
