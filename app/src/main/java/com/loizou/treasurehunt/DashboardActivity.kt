@@ -30,6 +30,10 @@ class DashboardActivity : AppCompatActivity() {
             .apply { text = UserSingleton.activeUser.displayName }
         val tvEmail = findViewById<MaterialTextView>(R.id.tvEmail)
             .apply { text = UserSingleton.activeUser.email }
+    }
+
+    override fun onResume() {
+        super.onResume()
         val tvScore = findViewById<MaterialTextView>(R.id.tvScore)
             .apply { text = UserSingleton.activeUser.score.toString() }
     }
