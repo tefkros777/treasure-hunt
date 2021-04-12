@@ -45,18 +45,47 @@ class TreasureHuntListAdapter(var mTreasureHuntModelList: List<TreasureHunt>, va
         val context = holder.itemView.context
 
         val distance = mCurrentLocation.distanceTo(firstWaypointLocation)
+        val bearing = mCurrentLocation.bearingTo(firstWaypointLocation)
+        val direction = getBearingDirection(bearing)
         if (distance < 1000){
             // Matter of meters
-            holder.tvDistance.text = context.getString(R.string.distance_from_me, distance.roundToInt(), "m")
+            holder.tvDistance.text = context.getString(R.string.distance_from_me, distance.roundToInt(), "m", direction)
         } else {
             // Matter of km
-            val km = (distance/1000)
-            holder.tvDistance.text = context.getString(R.string.distance_from_me, floor(km*100) /100, "km")
+            val km = (distance / 1000)
+            holder.tvDistance.text =
+                context.getString(R.string.distance_from_me_float, floor(km * 100) / 100, "km", direction)
         }
     }
 
     override fun getItemCount(): Int {
         return mTreasureHuntModelList.size
+    }
+
+    private fun getBearingDirection(bearing: Float) : String{
+        var direction = ""
+        if (bearing <= 22.5){
+            direction = "N"
+        } else if (bearing <= 67.5){
+            direction = "NE"
+        } else if (bearing <= 112.5){
+            direction = "E"
+        } else if (bearing <= 157.5){
+            direction = "SE"
+        } else if (bearing <= 202.5){
+            direction = "S"
+        } else if (bearing <= 247.5){
+            direction = "SW"
+        } else if (bearing <= 292.5){
+            direction = "W"
+        } else if (bearing <= 337.5){
+            direction = "NW"
+        } else if (bearing <= 360){
+            direction = "N"
+        } else {
+            direction = "Fourth dimension!?"
+        }
+        return direction
     }
 
     /**

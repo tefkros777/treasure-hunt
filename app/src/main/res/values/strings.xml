@@ -139,7 +139,11 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
         \nTry attending an easier game that requires a lower score, or go hide your own treasures in Treasure Burial mode to get lots of Pirate Points!
     </string>
     <string name="distance_from_me">
-        Distance from me: %1$d%2$s
+        Distance from me: %1$d%2$s %3$s
+    </string>
+
+    <string name="distance_from_me_float">
+        Distance from me: %1$f%2$s %3$s
     </string>
 
     <string-array name="difficulty_array">
