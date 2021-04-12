@@ -17,14 +17,29 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".CongratulationsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.NoActionBar" />
-        <activity android:name=".FinaliseTreasureBurialActivity" />
-        <activity android:name=".AddWaypointActivity" />
-        <activity android:name=".TreasureBurialWelcome" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".TreasureHuntPreviewActivity" />
-        <activity android:name=".WaypointDetails" />
-        <activity android:name=".TreasureHuntSelectionActivity" />
+        <activity
+            android:name=".FinaliseTreasureBurialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddWaypointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TreasureBurialWelcome"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TreasureHuntPreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WaypointDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TreasureHuntSelectionActivity"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,15 +54,20 @@
 
         <activity
             android:name=".TreasureHuntActivity"
-            android:label="@string/title_activity_treasure_hunt" />
-        <activity android:name=".LoginActivity">
+            android:label="@string/title_activity_treasure_hunt"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashboardActivity" />
+        <activity
+            android:name=".DashboardActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
