@@ -151,7 +151,6 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         checkLocationPermission(this)
         mMap.isMyLocationEnabled = true
-        // getLastLocation() // TODO: Maybe we don't need this?
         addWaypointMarkers(mVisibleWaypointList)
     }
 

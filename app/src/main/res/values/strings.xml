@@ -16,7 +16,6 @@
     <string name="hunt_name_placeholder">Treasure Hunt Placeholder</string>
     <string name="hunt_difficulty_placeholder">EASY</string>
     <string name="hunt_distance_placeholder">1.2 mi</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="waypoint_placeholder">Waypoint name</string>
     <string name="coord_placeholder">35.42197</string>
@@ -145,6 +144,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="distance_from_me_string">
         Distance from me: %1$s%2$s %3$s
     </string>
+    <string name="already_solved">You have already found this treasure</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

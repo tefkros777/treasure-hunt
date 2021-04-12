@@ -11,6 +11,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Data.Database
 import com.loizou.treasurehunt.Data.UserSingleton
@@ -35,6 +36,14 @@ class TreasureHuntPreviewActivity() : AppCompatActivity(), OnMapReadyCallback {
         // Make description scrollable
         findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description).movementMethod =
             ScrollingMovementMethod()
+
+        // If it's solved, disable start button
+        if (mTreasureHunt.isSolved){
+            val btn = findViewById<MaterialButton>(R.id.btnStartHaunting).apply {
+                text = getString(R.string.already_solved)
+                isEnabled = false
+            }
+        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager

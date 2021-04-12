@@ -25,14 +25,10 @@ object Database : Observable() {
         return mTreasureHunts.find { it.id.toString() == id }
     }
 
-    fun getTreasureHunts(): ArrayList<TreasureHunt> {
-        return mTreasureHunts
-    }
-
     fun getWaypointById(id: String): Waypoint? {
         for (hunt in mTreasureHunts) {
             for (wpt in hunt.waypoints) {
-                if (wpt.id.toString() == id) {
+                if (wpt.id == id) {
                     return wpt
                 }
             }
@@ -54,7 +50,7 @@ object Database : Observable() {
                     val deserializedDoc = document.toObject(TreasureHunt::class.java)
                     // Add treasure hunts to mTreasureHunts only if they don't already exist
                     if (!mTreasureHunts.contains(deserializedDoc))
-                        mTreasureHunts.add(deserializedDoc)
+                        mTreasureHunts.add(deserializedDoc) //TODO: This fails, it will add the TH if it's been solved already
                 }
 
                 setChanged()
