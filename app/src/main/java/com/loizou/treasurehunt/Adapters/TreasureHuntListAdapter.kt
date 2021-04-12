@@ -47,11 +47,12 @@ class TreasureHuntListAdapter(
 
         val context = holder.itemView.context
 
-        val distance = mCurrentLocation.distanceTo(firstWaypointLocation)
         var bearing = mCurrentLocation.bearingTo(firstWaypointLocation)
-        if (bearing < 0) bearing += 360
+        if (bearing < 0)
+            bearing += 360
+
+        val distance = mCurrentLocation.distanceTo(firstWaypointLocation)
         val direction = getBearingDirection(bearing)
-        debugLog("GAME: ${mTreasureHuntModelList[position].name}, bearing $bearing")
 
         if (distance < 1000) {
             // Matter of meters
@@ -59,9 +60,8 @@ class TreasureHuntListAdapter(
                 context.getString(R.string.distance_from_me, distance.roundToInt(), "m", direction)
         } else {
             // Matter of km
-            val km = distance / 1000
-            holder.tvDistance.text =
-                context.getString(R.string.distance_from_me_float, km.round(2), "km", direction)
+            val km = String.format("%.2f", distance/1000)
+            holder.tvDistance.text = context.getString(R.string.distance_from_me_string, km, "km", direction)
         }
     }
 
