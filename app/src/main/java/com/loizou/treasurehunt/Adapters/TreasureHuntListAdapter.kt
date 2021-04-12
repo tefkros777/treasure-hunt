@@ -18,7 +18,10 @@ import kotlin.math.round
 import kotlin.math.roundToInt
 import kotlin.properties.Delegates
 
-class TreasureHuntListAdapter(var mTreasureHuntModelList: List<TreasureHunt>, var mCurrentLocation: Location) : RecyclerView.Adapter<TreasureHuntListAdapter.ViewHolder>() {
+class TreasureHuntListAdapter(
+    var mTreasureHuntModelList: List<TreasureHunt>,
+    var mCurrentLocation: Location
+) : RecyclerView.Adapter<TreasureHuntListAdapter.ViewHolder>() {
 
     /**
      * Called whenever new item needs to be created
@@ -27,7 +30,7 @@ class TreasureHuntListAdapter(var mTreasureHuntModelList: List<TreasureHunt>, va
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context) // Parent calling activity/class
         // Inflate a row_layout
-        val treasureHuntView = inflater.inflate(R.layout.treasure_hunt_row_layout, parent,false)
+        val treasureHuntView = inflater.inflate(R.layout.treasure_hunt_row_layout, parent, false)
         return ViewHolder(treasureHuntView)
     }
 
@@ -39,22 +42,26 @@ class TreasureHuntListAdapter(var mTreasureHuntModelList: List<TreasureHunt>, va
         holder.tvDifficulty.text = mTreasureHuntModelList[position].difficulty
         val firstWaypointLocation = Location("TreasureHunt_Start").apply {
             latitude = mTreasureHuntModelList[position].waypoints[0].latitude
-            longitude =mTreasureHuntModelList[position].waypoints[0].longitude
+            longitude = mTreasureHuntModelList[position].waypoints[0].longitude
         }
 
         val context = holder.itemView.context
 
         val distance = mCurrentLocation.distanceTo(firstWaypointLocation)
-        val bearing = mCurrentLocation.bearingTo(firstWaypointLocation)
+        var bearing = mCurrentLocation.bearingTo(firstWaypointLocation)
+        if (bearing < 0) bearing += 360
         val direction = getBearingDirection(bearing)
-        if (distance < 1000){
+        debugLog("GAME: ${mTreasureHuntModelList[position].name}, bearing $bearing")
+
+        if (distance < 1000) {
             // Matter of meters
-            holder.tvDistance.text = context.getString(R.string.distance_from_me, distance.roundToInt(), "m", direction)
+            holder.tvDistance.text =
+                context.getString(R.string.distance_from_me, distance.roundToInt(), "m", direction)
         } else {
             // Matter of km
-            val km = (distance / 1000)
+            val km = distance / 1000
             holder.tvDistance.text =
-                context.getString(R.string.distance_from_me_float, floor(km * 100) / 100, "km", direction)
+                context.getString(R.string.distance_from_me_float, km.round(2), "km", direction)
         }
     }
 
@@ -62,25 +69,25 @@ class TreasureHuntListAdapter(var mTreasureHuntModelList: List<TreasureHunt>, va
         return mTreasureHuntModelList.size
     }
 
-    private fun getBearingDirection(bearing: Float) : String{
-        var direction = ""
-        if (bearing <= 22.5){
+    private fun getBearingDirection(bearing: Float): String {
+        var direction: String
+        if (bearing <= 22.5) {
             direction = "N"
-        } else if (bearing <= 67.5){
+        } else if (bearing <= 67.5) {
             direction = "NE"
-        } else if (bearing <= 112.5){
+        } else if (bearing <= 112.5) {
             direction = "E"
-        } else if (bearing <= 157.5){
+        } else if (bearing <= 157.5) {
             direction = "SE"
-        } else if (bearing <= 202.5){
+        } else if (bearing <= 202.5) {
             direction = "S"
-        } else if (bearing <= 247.5){
+        } else if (bearing <= 247.5) {
             direction = "SW"
-        } else if (bearing <= 292.5){
+        } else if (bearing <= 292.5) {
             direction = "W"
-        } else if (bearing <= 337.5){
+        } else if (bearing <= 337.5) {
             direction = "NW"
-        } else if (bearing <= 360){
+        } else if (bearing <= 360) {
             direction = "N"
         } else {
             direction = "Fourth dimension!?"
