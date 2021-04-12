@@ -81,9 +81,11 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                 // Waypoint details activity has finished
                 if (resultCode == Activity.RESULT_OK) {
                     if (data!!.hasExtra("waypoint_index")) {
-                        val nextWptIndex = data.extras!!.getInt("waypoint_index") + 1
+                        val solvedWptIndex = data.extras!!.getInt("waypoint_index")
                         // If there is no next waypoint (this is the last one)
-                        if (nextWptIndex >= mTreasureHunt.waypoints.size) {
+                        if (solvedWptIndex + 1 >= mTreasureHunt.waypoints.size) {
+                            // Set as solved
+                            mTreasureHunt.isSolved = true
 
                             // Show congratulations activity
                             val intent = Intent(this, CongratulationsActivity::class.java)
@@ -93,10 +95,14 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                             intent.putExtra(CONGRATS_IMG_SRC, R.drawable.trophy1)
                             startActivityForResult(intent, FINISH_GAME_REQ_CODE)
                             return
+                        } else {
+                            val solvedWpt = mTreasureHunt.waypoints[solvedWptIndex]
+                            mTreasureHunt.enableNextWaypoint(solvedWpt)
+                            val nextWpt = mTreasureHunt.waypoints[solvedWptIndex + 1]
+                            mVisibleWaypointList.add(nextWpt)
+                            mRecViewWaypointList.adapter!!.notifyItemChanged(solvedWptIndex + 1)
+                            addWaypointMarkers(mVisibleWaypointList)
                         }
-                        mVisibleWaypointList.add(mTreasureHunt.waypoints[nextWptIndex])
-                        mRecViewWaypointList.adapter!!.notifyItemChanged(nextWptIndex)
-                        addWaypointMarkers(mVisibleWaypointList)
                     }
                 }
             }

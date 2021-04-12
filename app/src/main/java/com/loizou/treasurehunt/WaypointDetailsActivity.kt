@@ -74,7 +74,6 @@ class WaypointDetails : AppCompatActivity() {
             val attempt = mWaypoint.attemptSolve(userSolution)
             if (attempt) {
                 // Solve attempt successful
-                mTreasureHunt.enableNextWaypoint(mWaypoint)
                 val data = Intent()
                 data.putExtra("waypoint_index", mTreasureHunt.waypoints.indexOf(mWaypoint))
                 setResult(Activity.RESULT_OK, data)

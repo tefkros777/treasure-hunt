@@ -38,11 +38,6 @@ data class TreasureHunt(
     fun enableNextWaypoint(wpt: Waypoint){
         // Make next waypoint visible
         val wptIndex = waypoints.indexOf(wpt)
-        if (wpt.isFinal || wptIndex == waypoints.size-1){
-            // There is no next waypoint
-            this.isSolved = true
-            return
-        }
         if (wptIndex + 1 <= waypoints.size)
             waypoints[wptIndex + 1].isVisible = true;
     }
