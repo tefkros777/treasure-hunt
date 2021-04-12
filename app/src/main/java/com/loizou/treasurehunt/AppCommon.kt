@@ -2,12 +2,12 @@ package com.loizou.treasurehunt
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.nfc.Tag
+import android.location.LocationManager
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.snackbar.Snackbar
 
 // Debugging

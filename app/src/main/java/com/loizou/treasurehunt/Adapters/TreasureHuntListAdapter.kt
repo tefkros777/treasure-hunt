@@ -1,16 +1,26 @@
 package com.loizou.treasurehunt.Adapters
 
 import android.content.Intent
+import android.location.Location
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.*
 import com.loizou.treasurehunt.Models.TreasureHunt
+import kotlin.properties.Delegates
 
-class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : RecyclerView.Adapter<TreasureHuntListAdapter.ViewHolder>() {
+class TreasureHuntListAdapter(var mTreasureHuntModelList: List<TreasureHunt>, var mCurrentLocation: Location) : RecyclerView.Adapter<TreasureHuntListAdapter.ViewHolder>() {
+
+//    var mCurrentLocation by Delegates.observable(LatLng(0.0,0.0)) { property, oldValue, newValue ->
+//        debugLog("New Value $newValue")
+//        debugLog("Old Value $oldValue")
+//    }
 
     /**
      * Called whenever new item needs to be created
@@ -29,7 +39,13 @@ class TreasureHuntListAdapter(val mTreasureHuntModelList: List<TreasureHunt>) : 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvName.text = mTreasureHuntModelList[position].name
         holder.tvDifficulty.text = mTreasureHuntModelList[position].difficulty
-        holder.tvDistance.text = "Distance from me: RANDOM DISTANCE"
+        val firstWaypointLocation = Location("TreasureHunt_Start").apply {
+            latitude = mTreasureHuntModelList[position].waypoints[0].latitude
+            longitude =mTreasureHuntModelList[position].waypoints[0].longitude
+        }
+        val distance = mCurrentLocation.distanceTo(firstWaypointLocation)
+
+        holder.tvDistance.text = "Distance from me: $distance"
     }
 
     override fun getItemCount(): Int {

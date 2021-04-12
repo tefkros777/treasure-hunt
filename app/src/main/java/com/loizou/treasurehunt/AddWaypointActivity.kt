@@ -303,5 +303,4 @@ class AddWaypointActivity : AppCompatActivity(), OnMapReadyCallback {
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
-
 }
