@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.snackbar.Snackbar
+import kotlin.math.round
 
 // Debugging
 const val LOG_TAG = "TREASURE_HUNT_APP_DEBUG: "
@@ -65,5 +66,9 @@ fun checkLocationPermission(callingActivity: AppCompatActivity) {
 }
 
 // Extension functions
-fun Double.round(decimals: Int = 2): Double = "%.${decimals}f".format(this).toDouble()
+fun Double.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return round(this * multiplier) / multiplier
+}
 fun Float.round(decimals: Int = 2): Float = "%.${decimals}f".format(this).toFloat()
