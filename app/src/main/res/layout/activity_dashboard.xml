@@ -14,7 +14,7 @@
         android:id="@+id/tvAhoy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="monospace"
+        android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="@string/ahoy"
         android:textSize="24sp"
@@ -47,7 +47,7 @@
         android:orientation="horizontal">
 
         <!--Account Info-->
-        <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        <com.google.android.material.circularreveal.CircularRevealRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
@@ -55,45 +55,52 @@
             android:layout_weight="2"
             android:orientation="vertical">
 
-            <!--Username-->
             <com.google.android.material.circularreveal.CircularRevealLinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:text="@string/pirate_name"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvName"
+                <!--Username-->
+                <com.google.android.material.circularreveal.CircularRevealLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/username_placeholder" />
+                    android:layout_marginBottom="6dp">
 
-            </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:text="@string/pirate_name"
+                        android:textStyle="bold" />
 
-            <!--Email-->
-            <com.google.android.material.circularreveal.CircularRevealLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/username_placeholder" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:text="@string/user_email"
-                    android:textStyle="bold" />
+                </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvEmail"
+                <!--Email-->
+                <com.google.android.material.circularreveal.CircularRevealLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/email" />
+                    android:layout_marginBottom="6dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:text="@string/user_email"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email" />
+
+                </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
             </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
@@ -103,17 +110,18 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
                 android:onClick="logout"
                 android:text="@string/logout" />
 
-        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+        </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
 
         <!--Score-->
         <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="6dp"
+            android:layout_margin="12dp"
             android:layout_weight="2"
             app:cardBackgroundColor="#FFCF41"
             app:cardCornerRadius="6dp"
@@ -184,6 +192,7 @@
             android:layout_weight="2"
             android:clickable="true"
             android:onClick="huntMode"
+            app:cardBackgroundColor="#FFEEE0"
             app:cardCornerRadius="6dp"
             app:cardElevation="6dp">
 
@@ -196,11 +205,12 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="200dp"
-                    android:layout_height="100dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="12dp"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="false"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/treasure_map" />
+                    android:src="@drawable/map2" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -223,6 +233,7 @@
             android:layout_weight="2"
             android:clickable="true"
             android:onClick="burialMode"
+            app:cardBackgroundColor="#D5FFDE"
             app:cardCornerRadius="6dp"
             app:cardElevation="6dp">
 
@@ -235,11 +246,12 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="200dp"
-                    android:layout_height="100dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="12dp"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="false"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/treasure_chest" />
+                    android:src="@drawable/chest1" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
