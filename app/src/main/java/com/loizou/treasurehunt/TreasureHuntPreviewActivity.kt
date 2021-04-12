@@ -18,7 +18,7 @@ import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.Waypoint
 
 
-class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
+class TreasureHuntPreviewActivity() : AppCompatActivity(), OnMapReadyCallback {
 
     private val ZOOM_LEVEL: Float = 15f
     private lateinit var mMap: GoogleMap
@@ -26,7 +26,7 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_treasure_hunt_details)
+        setContentView(R.layout.activity_treasure_hunt_preview)
         title = getString(R.string.th_preview)
 
         mTreasureHunt = Database.getTreasureHuntById(intent.getStringExtra("game_id")!!)!!
@@ -60,6 +60,19 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun startTreasureHunt(view: View) {
+        // If player doesn't have enough points to attend this game
+        if (UserSingleton.activeUser.score < mTreasureHunt.cost){
+            debugLog("Not enough points for this treasure hunt")
+
+            val intent = Intent(this, CongratulationsActivity::class.java)
+            intent.putExtra(CONGRATS_TITLE, getString(R.string.oh_no))
+            intent.putExtra(CONGRATS_BODY, getString(R.string.not_enough_points))
+            intent.putExtra(CONGRATS_BTN_TXT, getString(R.string.go_back))
+            intent.putExtra(CONGRATS_IMG_SRC, R.drawable.skull)
+            startActivityForResult(intent, NOT_ENOUGH_POINTS_REQ_CODE)
+            return
+        }
+
         // Deduct Pirate points
         UserSingleton.activeUser.score -= mTreasureHunt.cost
         Database.updateUserScore(UserSingleton.activeUser)
@@ -67,6 +80,20 @@ class TreasureHuntDetailsActivity() : AppCompatActivity(), OnMapReadyCallback {
         val intent = Intent(this, TreasureHuntActivity::class.java)
         intent.putExtra("game_id", mTreasureHunt.id)
         this.startActivity(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        debugLog("Activity result called - Request code: $requestCode")
+        when (requestCode){
+            NOT_ENOUGH_POINTS_REQ_CODE ->{
+                // Go back to dashboard
+                val homeIntent = Intent(this, DashboardActivity::class.java)
+                homeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(homeIntent)
+                finish()
+            }
+        }
     }
 
     /**

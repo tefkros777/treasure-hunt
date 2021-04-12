@@ -22,7 +22,7 @@
         <activity android:name=".AddWaypointActivity" />
         <activity android:name=".TreasureBurialWelcome" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".TreasureHuntDetailsActivity" />
+        <activity android:name=".TreasureHuntPreviewActivity" />
         <activity android:name=".WaypointDetails" />
         <activity android:name=".TreasureHuntSelectionActivity" />
         <!--
