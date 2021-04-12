@@ -13,14 +13,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.*
 import com.loizou.treasurehunt.Models.TreasureHunt
+import kotlin.math.floor
+import kotlin.math.round
+import kotlin.math.roundToInt
 import kotlin.properties.Delegates
 
 class TreasureHuntListAdapter(var mTreasureHuntModelList: List<TreasureHunt>, var mCurrentLocation: Location) : RecyclerView.Adapter<TreasureHuntListAdapter.ViewHolder>() {
-
-//    var mCurrentLocation by Delegates.observable(LatLng(0.0,0.0)) { property, oldValue, newValue ->
-//        debugLog("New Value $newValue")
-//        debugLog("Old Value $oldValue")
-//    }
 
     /**
      * Called whenever new item needs to be created
@@ -43,9 +41,18 @@ class TreasureHuntListAdapter(var mTreasureHuntModelList: List<TreasureHunt>, va
             latitude = mTreasureHuntModelList[position].waypoints[0].latitude
             longitude =mTreasureHuntModelList[position].waypoints[0].longitude
         }
-        val distance = mCurrentLocation.distanceTo(firstWaypointLocation)
 
-        holder.tvDistance.text = "Distance from me: $distance"
+        val context = holder.itemView.context
+
+        val distance = mCurrentLocation.distanceTo(firstWaypointLocation)
+        if (distance < 1000){
+            // Matter of meters
+            holder.tvDistance.text = context.getString(R.string.distance_from_me, distance.roundToInt(), "m")
+        } else {
+            // Matter of km
+            val km = (distance/1000)
+            holder.tvDistance.text = context.getString(R.string.distance_from_me, floor(km*100) /100, "km")
+        }
     }
 
     override fun getItemCount(): Int {

@@ -138,6 +138,9 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
         It seems like you do not have enough points to attend this Treasure Hunt!
         \nTry attending an easier game that requires a lower score, or go hide your own treasures in Treasure Burial mode to get lots of Pirate Points!
     </string>
+    <string name="distance_from_me">
+        Distance from me: %1$d%2$s
+    </string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>
