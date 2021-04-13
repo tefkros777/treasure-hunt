@@ -87,6 +87,10 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                             // Set as solved
                             mTreasureHunt.isSolved = true
 
+                            // Add to user's solved games list
+                            UserSingleton.activeUser.completedGames.add(mTreasureHunt)
+                            Database.updateUserCompletedGames(UserSingleton.activeUser)
+
                             // Show congratulations activity
                             val intent = Intent(this, CongratulationsActivity::class.java)
                             intent.putExtra(CONGRATS_TITLE, getString(R.string.congrats))

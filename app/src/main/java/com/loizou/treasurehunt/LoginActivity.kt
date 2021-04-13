@@ -39,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
     fun login(view: View) {
         val etEmail = findViewById<TextInputEditText>(R.id.etEmail)
         val etPass = findViewById<TextInputEditText>(R.id.etPassword)
-//            TODO: UNCOMMENT SECTION - DEBUGGING ONLY
         if (!etEmail.text.isNullOrBlank() || !etPass.text.isNullOrBlank()) {
             closeKeyBoard()
             val email = etEmail.text!!.trim().toString()
@@ -71,9 +70,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun firebaseSignIn(email: String, password: String) {
-        // TODO: DEBUGGING ONLY
-//        val email = "wellerman@test.com"
-//        val password = "123456"
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {

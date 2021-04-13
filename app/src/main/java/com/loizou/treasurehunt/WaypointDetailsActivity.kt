@@ -68,7 +68,8 @@ class WaypointDetails : AppCompatActivity() {
             var userSolution = dialogView.tvPuzzleSolution.text!!.trim().toString()
             showMessage(dialogView, userSolution)
 
-            userSolution = mWaypoint.solution // TODO: FOR TESTING ONLY, DELETE AFTERWARDS
+            // Bypass solution checking - For testing only
+            // userSolution = mWaypoint.solution
 
             // Attempt to solve the puzzle
             val attempt = mWaypoint.attemptSolve(userSolution)

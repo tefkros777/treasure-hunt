@@ -1,14 +1,11 @@
 package com.loizou.treasurehunt.Data
 
-import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.loizou.treasurehunt.LOG_TAG
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.Models.User
 import com.loizou.treasurehunt.Models.Waypoint
 import com.loizou.treasurehunt.databaseLog
-import com.loizou.treasurehunt.debugLog
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -17,6 +14,7 @@ object Database : Observable() {
     val TREASURE_HUNT_COLLECTION_PATH = "treasure_hunts"
 
     val USER_SCORE_DOCUMENT = "score"
+    val USER_COMPLETED_GAMES_DOCUMENT = "completedGames"
     val USERS_COLLECTION_PATH = "users"
 
     val db = Firebase.firestore
@@ -117,5 +115,13 @@ object Database : Observable() {
             .update(USER_SCORE_DOCUMENT, user.score)
             .addOnSuccessListener { databaseLog("Successfully updated user score") }
             .addOnFailureListener { e -> databaseLog("Failed to update user score - $e") }
+    }
+
+    fun updateUserCompletedGames(user: User) {
+        db.collection(USERS_COLLECTION_PATH)
+            .document(user.email)
+            .update(USER_COMPLETED_GAMES_DOCUMENT, user.completedGames)
+            .addOnSuccessListener { databaseLog("Completed games field updated") }
+            .addOnFailureListener { e -> databaseLog("Could not add game to completed games field - $e") }
     }
 }
