@@ -49,8 +49,8 @@ object Database : Observable() {
                     // Deserialize every document into a TreasureHunt object
                     val deserializedDoc = document.toObject(TreasureHunt::class.java)
                     // Add treasure hunts to mTreasureHunts only if they don't already exist
-                    if (!mTreasureHunts.contains(deserializedDoc))
-                        mTreasureHunts.add(deserializedDoc) //TODO: This fails, it will add the TH if it's been solved already
+                    if (!mTreasureHunts.any { th -> th.id == deserializedDoc.id })
+                        mTreasureHunts.add(deserializedDoc)
                 }
 
                 setChanged()
