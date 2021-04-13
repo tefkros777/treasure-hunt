@@ -38,7 +38,7 @@ class TreasureHuntPreviewActivity() : AppCompatActivity(), OnMapReadyCallback {
             ScrollingMovementMethod()
 
         // If it's solved, disable start button
-        if (mTreasureHunt.isSolved){
+        if (mTreasureHunt.isSolved || UserSingleton.activeUser.completedGames.any { th -> th.id == mTreasureHunt.id }){
             val btn = findViewById<MaterialButton>(R.id.btnStartHaunting).apply {
                 text = getString(R.string.already_solved)
                 isEnabled = false
