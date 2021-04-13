@@ -3,7 +3,6 @@ package com.loizou.treasurehunt
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -37,14 +36,26 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.mymenu, menu);
+        menuInflater.inflate(R.menu.dashboard_overflow_menu, menu);
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == R.id.btnAbout) {
-            debugLog("About button pressed")
+        when (item.itemId) {
+            R.id.btnAbout -> {
+                debugLog("About button pressed")
+                val intent = Intent (this, ShowTextActivity::class.java)
+                intent.putExtra(INTENT_EXTRA_TITLE, "About This App")
+                intent.putExtra(INTENT_EXTRA_TEXT, getString(R.string.lorem))
+                startActivity(intent)
+            }
+            R.id.btnHelp -> {
+                debugLog("Help button pressed")
+                val intent = Intent (this, ShowTextActivity::class.java)
+                intent.putExtra(INTENT_EXTRA_TITLE, "Help")
+                intent.putExtra(INTENT_EXTRA_TEXT, getString(R.string.lorem))
+                startActivity(intent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

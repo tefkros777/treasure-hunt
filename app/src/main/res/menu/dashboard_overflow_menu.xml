@@ -2,8 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/btnHelp"
+        android:title="@string/help"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/btnAbout"
-        android:icon="@drawable/ic_baseline_info_24"
         android:title="@string/about"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 </menu>

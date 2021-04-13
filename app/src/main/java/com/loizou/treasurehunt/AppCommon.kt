@@ -27,6 +27,8 @@ const val CONGRATS_TITLE: String = "congrats_title"
 const val CONGRATS_BODY: String = "congrats_body"
 const val CONGRATS_IMG_SRC: String = "congrats_img_src"
 const val CONGRATS_BTN_TXT: String = "congrats_btn_text"
+const val INTENT_EXTRA_TITLE: String = "title"
+const val INTENT_EXTRA_TEXT: String = "text"
 
 // Fixed values
 const val POINTS_BURY_TREASURE: Int = 20

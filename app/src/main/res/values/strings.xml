@@ -146,6 +146,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     </string>
     <string name="already_solved">You have already found this treasure</string>
     <string name="about">About</string>
+    <string name="help">Help</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>
