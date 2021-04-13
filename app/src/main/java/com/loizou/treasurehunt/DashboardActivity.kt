@@ -25,7 +25,6 @@ class DashboardActivity : AppCompatActivity() {
         checkLocationPermission(this)
 
 
-
         val tvAhoy = findViewById<MaterialTextView>(R.id.tvAhoy)
         tvAhoy.append(" ${UserSingleton.activeUser.displayName}!")
 
@@ -44,16 +43,18 @@ class DashboardActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.btnAbout -> {
                 debugLog("About button pressed")
-                val intent = Intent (this, ShowTextActivity::class.java)
+                val intent = Intent(this, ShowTextActivity::class.java)
                 intent.putExtra(INTENT_EXTRA_TITLE, "About This App")
                 intent.putExtra(INTENT_EXTRA_TEXT, getString(R.string.lorem))
+                intent.putExtra(INTENT_EXTRA_IMG, R.drawable.octopus)
                 startActivity(intent)
             }
             R.id.btnHelp -> {
                 debugLog("Help button pressed")
-                val intent = Intent (this, ShowTextActivity::class.java)
+                val intent = Intent(this, ShowTextActivity::class.java)
                 intent.putExtra(INTENT_EXTRA_TITLE, "Help")
                 intent.putExtra(INTENT_EXTRA_TEXT, getString(R.string.lorem))
+                intent.putExtra(INTENT_EXTRA_IMG, R.drawable.pirate_hat_2)
                 startActivity(intent)
             }
         }
