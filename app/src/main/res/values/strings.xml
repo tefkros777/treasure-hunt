@@ -145,6 +145,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
         Distance from me: %1$s%2$s %3$s
     </string>
     <string name="already_solved">You have already found this treasure</string>
+    <string name="about">About</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

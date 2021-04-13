@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.textview.MaterialTextView
@@ -23,6 +25,8 @@ class DashboardActivity : AppCompatActivity() {
         // Ask for location permission here to avoid crashing later
         checkLocationPermission(this)
 
+
+
         val tvAhoy = findViewById<MaterialTextView>(R.id.tvAhoy)
         tvAhoy.append(" ${UserSingleton.activeUser.displayName}!")
 
@@ -30,6 +34,19 @@ class DashboardActivity : AppCompatActivity() {
             .apply { text = UserSingleton.activeUser.displayName }
         val tvEmail = findViewById<MaterialTextView>(R.id.tvEmail)
             .apply { text = UserSingleton.activeUser.email }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.mymenu, menu);
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.btnAbout) {
+            debugLog("About button pressed")
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onResume() {
