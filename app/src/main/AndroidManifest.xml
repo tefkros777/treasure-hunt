@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ShowTextActivity"
+            android:name=".AboutActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ShowHelpActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity

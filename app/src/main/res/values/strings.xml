@@ -146,7 +146,49 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     </string>
     <string name="already_solved">You have already found this treasure</string>
     <string name="about">About</string>
-    <string name="help">Help</string>
+    <string name="help">
+        Welcome to Treasure Hunt! A game about solving tasks at interesting locations in the physical world to getting points and achievements in the digital world!
+        \n\n
+        After logging in your are taken to your Dashboard.
+        \n
+        From the Dashboard you can view information about your own account such as your Pirate Score, your email and Pirate name and select one of the two game modes to play.
+        \n\n
+        TREASURE HUNT MODE
+        \n
+        \nIn this mode you act as a Hunter, and are looking for Treasures in your location, placed by fellow players.
+        \nTreasure Hunts are routes made up of Waypoints - Real world locations that form a path leading to a final location.
+        \nOnce at a waypoint, you will have to solve a specific task or puzzle, set up by the author (pirate) of the Treasure Hunt and enter your solution in the game to proceed.
+        \nIf you successfully solve the task at the final location then the Treasure Hunt is considered solved and the Treasure found.
+        \nEach Treasure Hunt you attend costs you a different amount of Pirate Points (depending on its difficulty).
+        \nIf you successfully complete the Treasure Hunt, you are awarded Pirate Points that you can use to access other Treasure Hunts and unlock achievements.
+        \n
+        \nIf you ever find yourself in a situation where you do not have enough points to attend a certain Treasure Hunt, you might want to have a look at the other game mode to boost your score
+
+        \n\n
+        TREASURE BURIAL MODE
+        \n
+        \nIn this mode you will be acting as a Pirate, and will be creating your own Treasure Hunts in areas of your liking and interest that other players can search for in Treasure Hunt mode.
+        \nTry to be creative! Think of unique, interesting locations near your area or far away. Try to make each of your games exciting, educational and fun.
+        \nWhenever you finish a Treasure Burial session and successfully publish your Treasure, you will be awarded 20 Pirate Points as a reward for helping the game community grow.
+    </string>
+    <string name="about_body">
+        This app was build by the foreseen developer as the final undergraduate project during his studies at Swansea University 2020-2021
+        \n\nThe project was developed under the CSP354/CSP344 - Project Specification and Development module and was supervised by Dr. Jennifer Pearson
+        \n\nThe development took place entirely in Android Studio using the Kotlin language using standard Android libraries, Google Material Libraries and the Google Maps API
+        \n\nThe login/signup service relies on Firebase Authentication and all user and game data is stored online at Firebase Firestore servers in western Europe.
+    </string>
+    <string name="app_version">Version %1$s</string>
+    <string name="developed_by">Developed by</string>
+    <string name="his_majesty">Constantinos Tefkros Loizou</string>
+    <string name="student_email">962355@swansea.ac.uk</string>
+    <string name="credits_attributions">Credits and Attributions</string>
+    <string name="credits">
+        This app makes use of the Android Material Icons Library licensed under the Apache Licence 2.0, in addition to other icons as follows:
+        \n\nThe App Icon and all other graphics of this app have been sourced from flaticon - https://www.flaticon.com under their Flaticon License, which allows for free use for personal and commercial purposes with appropriate attribution.
+        \n\nFlaticon creators of graphics used in this app:
+        \nFreepik, Smashicons, Nhor Phai, Becris, Nikita Golubev,
+    </string>
+    <string name="help_label">Help</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

@@ -1,15 +1,15 @@
 package com.loizou.treasurehunt
 
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 
-class ShowTextActivity : AppCompatActivity() {
+class ShowHelpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_show_text)
+        setContentView(R.layout.activity_show_help)
+        debugLog("Help Activity Loaded")
 
         val tlt = intent.getStringExtra(INTENT_EXTRA_TITLE)!!
         val body = intent.getStringExtra(INTENT_EXTRA_TEXT)!!
