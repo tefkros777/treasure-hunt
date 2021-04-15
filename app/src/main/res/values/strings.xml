@@ -189,6 +189,8 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
         \nFreepik, Smashicons, Nhor Phai, Becris, Nikita Golubev,
     </string>
     <string name="help_label">Help</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>
