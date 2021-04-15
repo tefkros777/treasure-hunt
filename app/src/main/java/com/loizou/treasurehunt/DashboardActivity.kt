@@ -2,13 +2,12 @@ package com.loizou.treasurehunt
 
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
@@ -28,6 +27,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         setContentView(R.layout.activity_dashboard)
         debugLog("Main Activity Loaded")
 
+        // Ask for location permission here to avoid crashing later
+        checkLocationPermission(this)
+
         // Setting up drawer layout and appbar
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar_main)
         setSupportActionBar(toolbar)
@@ -36,21 +38,15 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         mDrawer.addDrawerListener(mToggle)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        findViewById<NavigationView>(R.id.nav_view)
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
             .apply { setNavigationItemSelectedListener(this@DashboardActivity) }
-
-        // Ask for location permission here to avoid crashing later
-        checkLocationPermission(this)
+        val navigationHeader = navigationView.getHeaderView(0)
 
         val tvAhoy = findViewById<MaterialTextView>(R.id.tvAhoy)
         tvAhoy.append(" ${UserSingleton.activeUser.displayName}!")
 
-        findViewById<MaterialTextView>(R.id.tvName)
-            .apply { text = UserSingleton.activeUser.displayName }
-        findViewById<MaterialTextView>(R.id.tvEmail)
+        navigationHeader.findViewById<MaterialTextView>(R.id.nav_header_email)
             .apply { text = UserSingleton.activeUser.email }
-
-        //findViewById<MaterialTextView>(R.id.nav_header_textView).apply { text = "manasou" }
     }
 
     override fun onResume() {

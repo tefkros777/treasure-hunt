@@ -66,66 +66,6 @@
                 android:layout_height="120dp"
                 android:orientation="horizontal">
 
-                <!--Account Info-->
-                <com.google.android.material.circularreveal.CircularRevealRelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="6dp"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.circularreveal.CircularRevealLinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <!--Username-->
-                        <com.google.android.material.circularreveal.CircularRevealLinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="6dp">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="6dp"
-                                android:text="@string/pirate_name"
-                                android:textStyle="bold" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/tvName"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/username_placeholder" />
-
-                        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
-
-                        <!--Email-->
-                        <com.google.android.material.circularreveal.CircularRevealLinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="6dp">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="6dp"
-                                android:text="@string/user_email"
-                                android:textStyle="bold" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/tvEmail"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/email" />
-
-                        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
-
-                    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
-
-                </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
-
                 <!--Score-->
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
                     android:layout_width="match_parent"
