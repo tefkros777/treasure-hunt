@@ -52,6 +52,7 @@
 
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
+
     <!--Gaming Stats-->
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
@@ -61,93 +62,123 @@
 
     <View style="@style/Divider" />
 
-    <!--Score-->
-    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-        android:layout_width="wrap_content"
+    <!-- Score and Finds-->
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="6dp">
+        android:orientation="horizontal">
 
-        <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        <!--Score-->
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:layout_weight="3"
+            app:cardBackgroundColor="#FFDB6F"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="6dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:text="@string/score_placeholder"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvStats_Score"
+            <com.google.android.material.circularreveal.CircularRevealLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="sans-serif-medium"
+                android:layout_margin="3dp"
                 android:gravity="center"
-                android:text="@string/number_placeholder"
-                android:textSize="28sp" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:text="@string/pirate_points"
-                android:textStyle="normal" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="@string/score_placeholder"
+                    android:textStyle="bold" />
 
-        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvStats_Score"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="@string/number_placeholder"
+                    android:textSize="28sp" />
 
-    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="@string/pirate_points"
+                    android:textStyle="normal" />
 
-    <!--Total Finds-->
-    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        app:cardBackgroundColor="#CF9B67"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="6dp">
+            </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
-        <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+        <!--Total Finds-->
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_margin="12dp"
+            android:layout_weight="2"
+            app:cardBackgroundColor="#596A4D"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="6dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvStats_TotalFinds"
+            <com.google.android.material.circularreveal.CircularRevealLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif-medium"
+                android:layout_margin="12dp"
                 android:gravity="center"
-                android:text="@string/number_placeholder"
-                android:textSize="28sp" />
+                android:orientation="horizontal">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:text="@string/total_finds"
-                android:textStyle="normal" />
+                <com.google.android.material.circularreveal.CircularRevealLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:text="@string/total"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textStyle="normal" />
 
-    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvStats_TotalFinds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:text="@string/number_placeholder"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="28sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:text="@string/total_finds"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textStyle="bold" />
+
+
+                </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+            </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
     <!--Easy Finds-->
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         app:cardCornerRadius="6dp"
@@ -178,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif-medium"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:text="@string/number_placeholder"
                     android:textSize="28sp" />
 
@@ -186,8 +217,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:text="@string/easy_finds"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
             </com.google.android.material.circularreveal.CircularRevealLinearLayout>
@@ -199,7 +231,7 @@
 
     <!--Medium Finds-->
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         app:cardCornerRadius="6dp"
@@ -230,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif-medium"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:text="@string/number_placeholder"
                     android:textSize="28sp" />
 
@@ -238,8 +270,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:text="@string/medium_finds"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
             </com.google.android.material.circularreveal.CircularRevealLinearLayout>
@@ -251,7 +284,7 @@
 
     <!--Hard Finds-->
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         app:cardCornerRadius="6dp"
@@ -282,7 +315,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif-medium"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:text="@string/number_placeholder"
                     android:textSize="28sp" />
 
@@ -290,8 +323,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:text="@string/hard_finds"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
             </com.google.android.material.circularreveal.CircularRevealLinearLayout>
