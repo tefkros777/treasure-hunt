@@ -112,6 +112,10 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 val intent = Intent(this, GamesHistoryActivity::class.java)
                 startActivity(intent)
             }
+            R.id.item_stats -> {
+                val intent = Intent(this, GameStatsActivity::class.java)
+                startActivity(intent)
+            }
         }
         mDrawer.closeDrawer(GravityCompat.START)
         return true

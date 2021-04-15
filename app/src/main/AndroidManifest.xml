@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/app_icon_1_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GamesHistoryActivity"></activity>
+        <activity android:name=".GameStatsActivity"></activity>
+        <activity android:name=".GamesHistoryActivity" />
         <activity
             android:name=".AboutActivity"
             android:noHistory="true"

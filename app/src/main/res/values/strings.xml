@@ -120,7 +120,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     </string>
     <string name="exit_promt">Do you really wish to exit?</string>
     <string name="select_game_mode">Select a game mode to get started</string>
-    <string name="my_profile">My Account</string>
+    <string name="my_account">My Account</string>
     <string name="pirate_name">Pirate name: </string>
     <string name="username_placeholder">Username</string>
     <string name="user_email">Email:</string>
@@ -195,6 +195,15 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="difficulty_with_placeholder">Difficulty: %1$s</string>
     <string name="points_gained_with_placeholder">Points gained: %1$d</string>
     <string name="found_on_with_placeholder">Found on: %1$s</string>
+    <string name="my_stats">My Pirate Statistics</string>
+    <string name="displayName">Display Name:</string>
+    <string name="fullName">Full Name:</string>
+    <string name="onboard_since">Onboard Since:</string>
+    <string name="gaming_stats">Gaming Statistics</string>
+    <string name="total_finds">Treasure Hunts Completed</string>
+    <string name="easy_finds">Easy Finds</string>
+    <string name="medium_finds">Medium Finds</string>
+    <string name="hard_finds">Hard Finds</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

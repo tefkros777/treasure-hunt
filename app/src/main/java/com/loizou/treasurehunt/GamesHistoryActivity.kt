@@ -12,6 +12,7 @@ class GamesHistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_games_history)
 
+        debugLog("Loaded Games History Activity")
         title = "Completed Games"
 
         val recViewGameHistory = findViewById<RecyclerView>(R.id.recViewGameHistory).apply {
