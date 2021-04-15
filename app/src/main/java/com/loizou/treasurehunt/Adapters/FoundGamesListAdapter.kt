@@ -1,5 +1,8 @@
 package com.loizou.treasurehunt.Adapters
 
+import android.icu.text.DateFormat.getDateInstance
+import android.icu.text.DateFormat.getDateTimeInstance
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +12,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.R
 import com.loizou.treasurehunt.debugLog
+import java.text.SimpleDateFormat
 
 class FoundGamesListAdapter(
     var mFoundGames: List<TreasureHunt>
@@ -34,7 +38,13 @@ class FoundGamesListAdapter(
         holder.tvName.text = mFoundGames[position].name
         holder.tvDifficulty.text = context.getString(R.string.difficulty_with_placeholder, mFoundGames[position].difficulty)
         holder.tvPoints.text = context.getString(R.string.points_gained_with_placeholder, mFoundGames[position].points)
-        holder.tvFoundoOn.text = context.getString(R.string.found_on_with_placeholder, "NOT YET")
+
+        var foundDate = mFoundGames[position].solvedOn?.toDate()
+
+        var formatted = "null"
+        if (foundDate != null) formatted =  getDateInstance().format(foundDate).toString()
+
+        holder.tvFoundoOn.text = context.getString(R.string.found_on_with_placeholder, formatted)
         when(mFoundGames[position].difficulty){
             "Easy" -> { holder.ivTrophy.setImageResource(R.drawable.trophy1_easy) }
             "Medium" -> { holder.ivTrophy.setImageResource(R.drawable.trophy1_med) }

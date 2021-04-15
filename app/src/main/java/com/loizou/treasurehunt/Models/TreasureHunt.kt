@@ -1,5 +1,6 @@
 package com.loizou.treasurehunt.Models
 
+import com.google.firebase.Timestamp
 import com.loizou.treasurehunt.*
 import java.io.Serializable
 import java.util.*
@@ -13,6 +14,8 @@ data class TreasureHunt(
     var description: String = "",
     var isSolved: Boolean = false
 ) : Serializable {
+
+    var solvedOn : Timestamp? = null
 
     var cost : Int = when(difficulty){
         "Easy" -> POINTS_EASY_PLAY

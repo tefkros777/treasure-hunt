@@ -18,6 +18,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.Timestamp
 import com.loizou.treasurehunt.Adapters.WaypointListAdapter
 import com.loizou.treasurehunt.Data.Database
 import com.loizou.treasurehunt.Data.UserSingleton
@@ -88,6 +89,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
 
                             // Set as solved
                             mTreasureHunt.isSolved = true
+                            mTreasureHunt.solvedOn = Timestamp.now()
 
                             // Add to user's solved games list
                             UserSingleton.activeUser.completedGames.add(mTreasureHunt)
