@@ -1,5 +1,6 @@
 package com.loizou.treasurehunt
 
+import android.icu.text.DateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.textview.MaterialTextView
@@ -14,6 +15,12 @@ class GameStatsActivity : AppCompatActivity() {
         title = "My Pirate Stats"
 
         // Set up values
+
+        findViewById<MaterialTextView>(R.id.tvStats_username)
+            .apply { text = UserSingleton.activeUser.displayName }
+
+        findViewById<MaterialTextView>(R.id.tvStats_email)
+            .apply { text = UserSingleton.activeUser.email }
 
         findViewById<MaterialTextView>(R.id.tvStats_Score)
             .apply { text = UserSingleton.activeUser.score.toString() }
