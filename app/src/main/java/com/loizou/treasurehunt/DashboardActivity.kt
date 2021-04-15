@@ -108,6 +108,10 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.item_logout -> {
                 logout()
             }
+            R.id.item_completedGames -> {
+                val intent = Intent(this, GamesHistoryActivity::class.java)
+                startActivity(intent)
+            }
         }
         mDrawer.closeDrawer(GravityCompat.START)
         return true

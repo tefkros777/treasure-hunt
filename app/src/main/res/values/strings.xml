@@ -191,6 +191,10 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="help_label">Help</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="completed_games">My Completed Games</string>
+    <string name="difficulty_with_placeholder">Difficulty: %1$s</string>
+    <string name="points_gained_with_placeholder">Points gained: %1$d</string>
+    <string name="found_on_with_placeholder">Found on: %1$s</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>
