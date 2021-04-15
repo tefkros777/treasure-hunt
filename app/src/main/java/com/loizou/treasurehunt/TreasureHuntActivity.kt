@@ -84,12 +84,18 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                         val solvedWptIndex = data.extras!!.getInt("waypoint_index")
                         // If there is no next waypoint (this is the last one)
                         if (solvedWptIndex + 1 >= mTreasureHunt.waypoints.size) {
+                            // Perform saving before showing congratulation activity
+
                             // Set as solved
                             mTreasureHunt.isSolved = true
 
                             // Add to user's solved games list
                             UserSingleton.activeUser.completedGames.add(mTreasureHunt)
                             Database.updateUserCompletedGames(UserSingleton.activeUser)
+
+                            // Award Pirate Points to the player
+                            UserSingleton.activeUser.score += mTreasureHunt.points
+                            Database.updateUserScore(UserSingleton.activeUser)
 
                             // Show congratulations activity
                             val intent = Intent(this, CongratulationsActivity::class.java)
@@ -111,11 +117,7 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
             FINISH_GAME_REQ_CODE -> {
-                // Congratulations activity has finished
-
-                // Award Pirate Points to the player
-                UserSingleton.activeUser.score += mTreasureHunt.points
-                Database.updateUserScore(UserSingleton.activeUser)
+                // Congratulations activity has finished - Game has finished
 
                 // Go back to treasurehunt selection
                 val homeIntent = Intent(this, DashboardActivity::class.java)

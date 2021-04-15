@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.Models.TreasureHunt
 import com.loizou.treasurehunt.R
@@ -34,6 +35,12 @@ class FoundGamesListAdapter(
         holder.tvDifficulty.text = context.getString(R.string.difficulty_with_placeholder, mFoundGames[position].difficulty)
         holder.tvPoints.text = context.getString(R.string.points_gained_with_placeholder, mFoundGames[position].points)
         holder.tvFoundoOn.text = context.getString(R.string.found_on_with_placeholder, "NOT YET")
+        when(mFoundGames[position].difficulty){
+            "Easy" -> { holder.ivTrophy.setImageResource(R.drawable.trophy1_easy) }
+            "Medium" -> { holder.ivTrophy.setImageResource(R.drawable.trophy1_med) }
+            "Hard" -> { holder.ivTrophy.setImageResource(R.drawable.trophy1_hard) }
+            else -> { holder.ivTrophy.setImageResource(R.drawable.pirate_parrot) }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -47,6 +54,7 @@ class FoundGamesListAdapter(
         val tvDifficulty = itemView.findViewById<MaterialTextView>(R.id.tvFoundGame_Difficulty)
         val tvPoints = itemView.findViewById<MaterialTextView>(R.id.tvFoundGame_Points)
         val tvFoundoOn = itemView.findViewById<MaterialTextView>(R.id.tvFoundGame_FoundOn)
+        val ivTrophy = itemView.findViewById<ShapeableImageView>(R.id.ivFoundGames_Trophie)
 
         override fun onClick(v: View?) {
             // Use adapterPosition to get index of selected item
