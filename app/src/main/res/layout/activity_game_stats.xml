@@ -16,48 +16,68 @@
 
     <View style="@style/Divider" />
 
-    <!--Username-->
     <com.google.android.material.circularreveal.CircularRevealLinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pirate_name"
-            android:textStyle="bold" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivStats"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/pirate_parrot" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvStats_username"
+        <com.google.android.material.circularreveal.CircularRevealLinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:gravity="start|center"
+            android:orientation="vertical">
+
+            <!--Username-->
+            <com.google.android.material.circularreveal.CircularRevealLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pirate_name"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvStats_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+            <!--Email-->
+            <com.google.android.material.circularreveal.CircularRevealLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_email"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvStats_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+
+        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
     </com.google.android.material.circularreveal.CircularRevealLinearLayout>
-
-    <!--Email-->
-    <com.google.android.material.circularreveal.CircularRevealLinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/user_email"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvStats_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
-
 
     <!--Gaming Stats-->
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="48dp"
         android:text="@string/gaming_stats" />
 
     <View style="@style/Divider" />
