@@ -68,22 +68,22 @@ object Database : Observable() {
     }
 
     fun seedTestData() {
-        var randomWaypoints = listOf(
-            Waypoint("Waypoint Swansea", 51.621441, -3.943646, "solution"),
-            Waypoint("Waypoint Cardiff", 51.481583, -3.179090, "solution"),
-            Waypoint("Waypoint Bournemouth", 50.718395, -1.883377, "solution"),
-            Waypoint("Waypoint St. Davids", 51.882000, -5.269000, "solution")
-        )
-
-        val th1 = TreasureHunt("The first second attempt", "Easy", "Marium Mosbi", randomWaypoints)
-
-        mTreasureHunts.addAll(listOf(th1))
-
-        // Perform waypoint post-processing
-        for (th: TreasureHunt in mTreasureHunts)
-            th.processWaypoints()
-
-        addTreasureHunt(th1)
+//        var randomWaypoints = listOf(
+//            Waypoint("Waypoint Swansea", 51.621441, -3.943646, "solution"),
+//            Waypoint("Waypoint Cardiff", 51.481583, -3.179090, "solution"),
+//            Waypoint("Waypoint Bournemouth", 50.718395, -1.883377, "solution"),
+//            Waypoint("Waypoint St. Davids", 51.882000, -5.269000, "solution")
+//        )
+//
+//        val th1 = TreasureHunt("The first second attempt", "Easy", "Marium Mosbi", randomWaypoints)
+//
+//        mTreasureHunts.addAll(listOf(th1))
+//
+//        // Perform waypoint post-processing
+//        for (th: TreasureHunt in mTreasureHunts)
+//            th.processWaypoints()
+//
+//        addTreasureHunt(th1)
 
     }
 

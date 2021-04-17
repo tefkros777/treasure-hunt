@@ -57,7 +57,7 @@ class TreasureHuntPreviewActivity() : AppCompatActivity(), OnMapReadyCallback {
         val tvName = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_name)
             .apply { text = mTreasureHunt.name }
         val tvAuthor = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_author)
-            .apply { text = mTreasureHunt.author }
+            .apply { text = mTreasureHunt.author?.displayName }
         val tvDesc = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_description)
             .apply { text = mTreasureHunt.description }
         val tvDiff = findViewById<MaterialTextView>(R.id.tvTreasureHuntDetails_difficulty)

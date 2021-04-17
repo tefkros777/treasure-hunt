@@ -8,7 +8,7 @@ import java.util.*
 data class TreasureHunt(
     var name: String = "default name",
     var difficulty: String = "NOT_SET",
-    var author: String? = "nobody",
+    var author: User? = null,
     var waypoints: List<Waypoint> = emptyList(),
     var id: String = UUID.randomUUID().toString(),
     var description: String = "",
