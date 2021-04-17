@@ -47,34 +47,49 @@
         android:onClick="login"
         android:text="@string/login" />
 
-    <com.google.android.material.circularreveal.CircularRevealRelativeLayout
-        android:layout_width="250dp"
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginRight="6dp"
-        android:gravity="center">
+        android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDontHaveAccount"
+        <com.google.android.material.circularreveal.CircularRevealRelativeLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginRight="6dp"
+            android:gravity="center">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDontHaveAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_account"
+                android:textColor="@color/colorSecondaryText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvSignup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@+id/tvDontHaveAccount"
+                android:onClick="createNewUser"
+                android:text="@string/signup"
+                android:textColor="@color/colorSecondaryText"
+                android:textStyle="bold" />
+
+        </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_account"
-            android:textColor="@color/colorSecondaryText" />
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:visibility="invisible" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSignup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/tvDontHaveAccount"
-            android:onClick="createNewUser"
-            android:text="@string/signup"
-            android:textColor="@color/colorSecondaryText"
-            android:textStyle="bold" />
-
-    </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
-
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

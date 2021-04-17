@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -16,23 +17,26 @@ import com.google.firebase.ktx.Firebase
 import com.loizou.treasurehunt.Data.Database
 import com.loizou.treasurehunt.Data.UserSingleton
 import com.loizou.treasurehunt.Models.User
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
     private val SIGNUP_ACTIVITY_REQ: Int = 2
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mLoginForm: ViewGroup
+    private lateinit var mLoginButton: MaterialButton
     private lateinit var mActiveUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        Log.v(LOG_TAG, "Login Activity Loaded")
+        debugLog("Login Activity Loaded")
 
         // Initialise Firebase auth
         mAuth = Firebase.auth
 
         mLoginForm = findViewById(R.id.loginForm)
+        mLoginButton = findViewById(R.id.btnLogin)
 
     }
 
@@ -40,6 +44,8 @@ class LoginActivity : AppCompatActivity() {
         val etEmail = findViewById<TextInputEditText>(R.id.etEmail)
         val etPass = findViewById<TextInputEditText>(R.id.etPassword)
         if (!etEmail.text.isNullOrBlank() || !etPass.text.isNullOrBlank()) {
+            mLoginButton.isEnabled = false
+            progressBar.visibility = View.VISIBLE
             closeKeyBoard()
             val email = etEmail.text!!.trim().toString()
             val pass = etPass.text!!.trim().toString()
@@ -104,6 +110,9 @@ class LoginActivity : AppCompatActivity() {
                     // If sign in fails, display a message to the user.
                     debugLog("FIREBASE AUTH: Login Unsuccessful")
                     debugLog(task.exception.toString())
+                    showMessage(mLoginForm, task.exception?.message.toString())
+                    mLoginButton.isEnabled = true
+                    progressBar.visibility = View.GONE
                 }
             }
     }
