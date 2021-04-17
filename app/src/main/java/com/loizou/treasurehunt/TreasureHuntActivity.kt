@@ -8,6 +8,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -166,6 +167,21 @@ class TreasureHuntActivity : AppCompatActivity(), OnMapReadyCallback {
         checkLocationPermission(this)
         mMap.isMyLocationEnabled = true
         addWaypointMarkers(mVisibleWaypointList)
+    }
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+            .setTitle(R.string.warning)
+            .setMessage(R.string.quit_hunt_promt)
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialog, id ->
+                // TODO: Maybe perform some saving?
+                finish()
+            }
+            .setNegativeButton("No") { dialog, id ->
+                dialog.cancel()
+            }
+        builder.create().show()
     }
 
     /**

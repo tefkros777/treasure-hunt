@@ -205,6 +205,10 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="medium_finds">Medium Finds</string>
     <string name="hard_finds">Hard Finds</string>
     <string name="total">Total</string>
+    <string name="warning">Warning</string>
+    <string name="quit_hunt_promt">
+        Are you sure you want to abandon this Treasure Hunt? You will lose points by doing so
+    </string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>
