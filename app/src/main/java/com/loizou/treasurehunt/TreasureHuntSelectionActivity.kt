@@ -46,6 +46,7 @@ class TreasureHuntSelectionActivity : AppCompatActivity(), Observer {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.loading_dialog, null)
         val dialogBuilder = AlertDialog.Builder(this)
             .setView(dialogView)
+            .setCancelable(false)
             .setTitle(R.string.getting_current_location)
         mLoadingDialog = dialogBuilder.create()
         mLoadingDialog.show()

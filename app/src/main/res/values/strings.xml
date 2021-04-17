@@ -138,11 +138,11 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
         \nTry attending an easier game that requires a lower score, or go hide your own treasures in Treasure Burial mode to get lots of Pirate Points!
     </string>
     <string name="distance_from_me">
-        Distance from me: %1$d%2$s %3$s
+        %1$d%2$s %3$s
     </string>
 
     <string name="distance_from_me_string">
-        Distance from me: %1$s%2$s %3$s
+        %1$s%2$s %3$s
     </string>
     <string name="already_solved">You have already found this treasure</string>
     <string name="about">About</string>
@@ -194,6 +194,8 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="completed_games">My Completed Games</string>
     <string name="difficulty_with_placeholder">Difficulty: %1$s</string>
     <string name="points_gained_with_placeholder">Points gained: %1$d</string>
+    <string name="cost_with_placeholder">Cost: %1$d</string>
+    <string name="available_points_with_placeholder">Available points: %1$d</string>
     <string name="found_on_with_placeholder">Found on: %1$s</string>
     <string name="my_stats">My Pirate Statistics</string>
     <string name="displayName">Display Name:</string>
@@ -209,6 +211,7 @@ Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique.
     <string name="quit_hunt_promt">
         Are you sure you want to abandon this Treasure Hunt? You will lose points by doing so
     </string>
+    <string name="distance">Distance</string>
 
     <string-array name="difficulty_array">
         <item>Easy</item>

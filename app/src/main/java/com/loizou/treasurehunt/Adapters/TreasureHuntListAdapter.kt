@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.loizou.treasurehunt.*
 import com.loizou.treasurehunt.Models.TreasureHunt
@@ -38,14 +39,16 @@ class TreasureHuntListAdapter(
      * Populate data, feed information from the data source to the view
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val context = holder.itemView.context
+
         holder.tvName.text = mTreasureHuntModelList[position].name
-        holder.tvDifficulty.text = mTreasureHuntModelList[position].difficulty
+        holder.tvDifficulty.text = context.getString(R.string.difficulty_with_placeholder, mTreasureHuntModelList[position].difficulty)
+        holder.tvCost.text = context.getString(R.string.cost_with_placeholder, mTreasureHuntModelList[position].cost)
+        holder.tvPoints.text = context.getString(R.string.available_points_with_placeholder, mTreasureHuntModelList[position].points)
         val firstWaypointLocation = Location("TreasureHunt_Start").apply {
             latitude = mTreasureHuntModelList[position].waypoints[0].latitude
             longitude = mTreasureHuntModelList[position].waypoints[0].longitude
         }
-
-        val context = holder.itemView.context
 
         var bearing = mCurrentLocation.bearingTo(firstWaypointLocation)
         if (bearing < 0)
@@ -54,15 +57,30 @@ class TreasureHuntListAdapter(
         val distance = mCurrentLocation.distanceTo(firstWaypointLocation)
         val direction = getBearingDirection(bearing)
 
+        // Select direction icon
+        when(direction){
+            "N" -> {holder.ivNavArrow.setImageResource(R.drawable.navigation_n)}
+            "NE" -> {holder.ivNavArrow.setImageResource(R.drawable.navigation_ne)}
+            "E" -> {holder.ivNavArrow.setImageResource(R.drawable.navigation_e)}
+            "SE" -> {holder.ivNavArrow.setImageResource(R.drawable.navigation_se)}
+            "S" -> {holder.ivNavArrow.setImageResource(R.drawable.navigation_s)}
+            "SW" -> {holder.ivNavArrow.setImageResource(R.drawable.navigation_sw)}
+            "W" -> {holder.ivNavArrow.setImageResource(R.drawable.navigation_w)}
+            "NW" -> {holder.ivNavArrow.setImageResource(R.drawable.navigation_nw)}
+            else -> {holder.ivNavArrow.setImageResource(R.drawable.pirate_hat_2)}
+        }
+
+
         if (distance < 1000) {
             // Matter of meters
-            holder.tvDistance.text =
-                context.getString(R.string.distance_from_me, distance.roundToInt(), "m", direction)
+            holder.tvDistance.text = context.getString(R.string.distance_from_me, distance.roundToInt(), "m", direction)
         } else {
             // Matter of km
             val km = String.format("%.2f", distance/1000)
             holder.tvDistance.text = context.getString(R.string.distance_from_me_string, km, "km", direction)
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -101,13 +119,16 @@ class TreasureHuntListAdapter(
      */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        val tvName = itemView.findViewById<MaterialTextView>(R.id.tvHuntName)
-        val tvDifficulty = itemView.findViewById<MaterialTextView>(R.id.tvHuntDifficulty)
-        val tvDistance = itemView.findViewById<MaterialTextView>(R.id.tvHuntDistanceFromMe)
+        val tvName = itemView.findViewById<MaterialTextView>(R.id.tvTHRow_Name)
+        val tvDifficulty = itemView.findViewById<MaterialTextView>(R.id.tvTHRow_Difficulty)
+        val tvDistance = itemView.findViewById<MaterialTextView>(R.id.tvTHRow_Distance)
+        val tvCost = itemView.findViewById<MaterialTextView>(R.id.tvTHRow_Cost)
+        val tvPoints = itemView.findViewById<MaterialTextView>(R.id.tvTHRow_Points)
+        val ivNavArrow = itemView.findViewById<ShapeableImageView>(R.id.ivTHRow_Direction)
 
         override fun onClick(v: View?) {
             // Use adapterPosition to get index of selected item
-            Log.d(LOG_TAG, mTreasureHuntModelList[adapterPosition].name + " clicked")
+            debugLog(mTreasureHuntModelList[adapterPosition].name + " clicked")
 
             val intent = Intent(itemView.context, TreasureHuntPreviewActivity::class.java)
             intent.putExtra("game_id", mTreasureHuntModelList[adapterPosition].id)
