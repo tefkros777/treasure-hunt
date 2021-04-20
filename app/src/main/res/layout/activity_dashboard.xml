@@ -136,7 +136,7 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
                     android:id="@+id/btnHuntMode"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_margin="12dp"
                     android:layout_weight="2"
                     android:clickable="true"
@@ -146,16 +146,17 @@
                     app:cardElevation="6dp">
 
                     <com.google.android.material.circularreveal.CircularRevealLinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:clickable="false"
                         android:orientation="vertical">
 
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:layout_width="200dp"
-                            android:layout_height="125dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_margin="12dp"
+                            android:layout_weight="2"
                             android:background="?android:attr/selectableItemBackgroundBorderless"
                             android:clickable="false"
                             android:scaleType="fitCenter"
@@ -164,6 +165,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
                             android:clickable="false"
                             android:gravity="center"
                             android:text="@string/treasure_hunt"
@@ -177,7 +179,7 @@
                 <com.google.android.material.circularreveal.cardview.CircularRevealCardView
                     android:id="@+id/btnBurialMode"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_margin="12dp"
                     android:layout_weight="2"
                     android:clickable="true"
@@ -187,16 +189,17 @@
                     app:cardElevation="6dp">
 
                     <com.google.android.material.circularreveal.CircularRevealLinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:clickable="false"
                         android:orientation="vertical">
 
                         <androidx.appcompat.widget.AppCompatImageButton
-                            android:layout_width="200dp"
-                            android:layout_height="125dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_margin="12dp"
+                            android:layout_weight="2"
                             android:background="?android:attr/selectableItemBackgroundBorderless"
                             android:clickable="false"
                             android:scaleType="fitCenter"
@@ -205,6 +208,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
                             android:clickable="false"
                             android:gravity="center"
                             android:text="@string/treasure_burial"
