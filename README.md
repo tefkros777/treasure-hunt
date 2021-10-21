@@ -5,7 +5,7 @@ GPS Treasure Hunt game for Android API 28+
 
 *The final dissertation document on this project was marked with 95/100*
 
-**The lated release candidate apk can be found** [here]([RC3][DEBUG]_treasure_hunt.apk)
+**The latest release candidate apk can be found** [here]([RC3][DEBUG]_treasure_hunt.apk)
 <H1>Introduction</H1>
 This project is about a location-based mobile game that implements the idea of a Treasure Hunt – also known as Scavenger Hunt – modified and adapted in ways to fit in the gaming culture of the 21st century. It is inspired by the success of games like Geocaching and Pokemon GO. This game is suitable for all genders and ages who have access to a GPS-enabled Android device.
 
